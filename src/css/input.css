@@ -108,8 +108,8 @@
   details.faq > summary .plus::after { transform: rotate(90deg); }
   details.faq[open] > summary .plus::after { transform: rotate(0); }
 
-  .float-a { animation: floatA 7s ease-in-out infinite; }
-  .float-b { animation: floatA 9s ease-in-out infinite reverse; }
+  .float-a { animation: floatA 4s ease-in-out infinite; }
+  .float-b { animation: floatA 5s ease-in-out infinite reverse; }
   @keyframes floatA { 0%,100% { transform: translateY(0) rotate(0) } 50% { transform: translateY(-10px) rotate(6deg) } }
 }
 
