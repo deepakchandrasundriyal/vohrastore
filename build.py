@@ -93,7 +93,7 @@ def product_card(p, eager=False):
     return f'''<article class="p-card group" style="--tint:{p["tint"]}" data-card data-slug="{p["slug"]}" data-name="{esc(p["name"])}" data-profile="{p["profile"]}" data-protein="{nut["protein"][0]}" data-energy="{nut["energy"][0]}" data-fat="{nut["fat"][0]}" data-fibre="{nut["fibre"][0]}" data-allergens="{",".join(p["allergens"]).lower() or "none"}">
   <a href="product-{p["slug"]}.html" class="p-card__stage relative block aspect-[4/5]" aria-label="{esc(p["name"])} Roasted Makhana">
     {badge}
-    <img src="assets/img/products/{p["slug"]}.webp" alt="Vohra's {esc(p["name"])} roasted makhana, 100 g tin" width="358" height="750" {"" if eager else 'loading="lazy"'} decoding="async" class="absolute left-1/2 bottom-[7%] h-[84%] w-auto -translate-x-1/2 drop-shadow-[0_18px_18px_rgba(31,26,19,.28)] transition duration-500 group-hover:-translate-y-1 group-hover:rotate-[-2deg]">
+    <img src="assets/img/products/{p["slug"]}.webp" alt="Vohra's {esc(p["name"])} roasted makhana, 100 g tin" width="358" height="750" {"" if eager else 'loading="lazy"'} decoding="async" class="absolute left-1/2 bottom-[7%] h-[84%] w-auto -translate-x-1/2 drop-shadow-[0_18px_18px_rgba(20,16,16,.28)] transition duration-500 group-hover:-translate-y-1 group-hover:rotate-[-2deg]">
   </a>
   <div class="flex flex-1 flex-col gap-1.5 p-3.5 sm:p-5">
     <p class="text-[10.5px] sm:text-[11px] uppercase tracking-[.18em] text-muted">Roasted Makhana · {p["weight"]}</p>
@@ -113,9 +113,9 @@ def all_card():
             f'<img src="assets/img/products/{p["slug"]}.webp" alt="" width="358" height="750" loading="lazy" class="h-full w-auto drop-shadow-[0_8px_10px_rgba(0,0,0,.4)]">' for p in items) + '</div>'
     back, front = PRODUCTS[:3], PRODUCTS[3:]
     total = sum(p["price"] for p in PRODUCTS)
-    return f'''<article class="p-card !bg-ink !border-ink text-cream" data-allcard>
-  <div class="relative aspect-[4/5] overflow-hidden" style="background:radial-gradient(90% 70% at 50% 100%, rgba(201,138,27,.5), transparent 70%)">
-    <span class="absolute left-3 top-3 z-10 tag bg-gold text-ink">Tasting set</span>
+    return f'''<article class="p-card all-card !border-transparent text-cream" data-allcard>
+  <div class="relative aspect-[4/5] overflow-hidden" style="background:radial-gradient(90% 70% at 50% 100%, rgba(247,197,49,.38), transparent 70%)">
+    <span class="absolute left-3 top-3 z-10 tag bg-mustard text-ink">Tasting set</span>
     {row(back, "absolute inset-x-0 top-[17%] h-[40%] opacity-90")}
     {row(front, "absolute inset-x-0 bottom-[7%] h-[42%]")}
   </div>
@@ -125,7 +125,7 @@ def all_card():
     <p class="text-[13px] sm:text-sm text-cream/70 leading-snug">One tin of every flavour, added in a single tap.</p>
     <div class="mt-auto flex flex-wrap items-center justify-between gap-2 pt-3">
       <p class="num"><span class="text-[1.15rem] font-semibold">₹{total:,}</span></p>
-      <button type="button" class="btn-gold btn-sm !px-3.5 sm:!px-4" data-add-all>{icon("plus","w-4 h-4")}<span>Add all</span></button>
+      <button type="button" class="btn-gold btn-sm !px-3.5 sm:!px-4 !bg-mustard !text-ink hover:!bg-cream" data-add-all>{icon("plus","w-4 h-4")}<span>Add all</span></button>
     </div>
   </div>
 </article>'''
@@ -135,7 +135,7 @@ def flavour_rail():
     for p in PRODUCTS:
         items.append(f'''<a href="product-{p["slug"]}.html" class="group snap-start shrink-0 w-[132px] sm:w-[150px] text-center">
   <span class="relative mx-auto grid place-items-center w-[112px] h-[112px] sm:w-[128px] sm:h-[128px] rounded-full transition group-hover:scale-[1.04]" style="background:{p["tint"]}">
-    <img src="assets/img/bowls/{p["slug"]}.webp" alt="" width="200" height="180" loading="lazy" class="w-[86%] h-auto drop-shadow-[0_10px_10px_rgba(31,26,19,.2)]">
+    <img src="assets/img/bowls/{p["slug"]}.webp" alt="" width="200" height="180" loading="lazy" class="w-[86%] h-auto drop-shadow-[0_10px_10px_rgba(20,16,16,.2)]">
   </span>
   <span class="mt-3 block font-display text-[1.15rem] leading-tight text-ink group-hover:text-maroon">{esc(p["name"])}</span>
 </a>''')

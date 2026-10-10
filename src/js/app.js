@@ -564,6 +564,48 @@
     else toast(txt);
   });
 
+  /* home video reels (YouTube via data-yt, else a <video>).
+     Autoplay muted + looped while the section is on screen (browsers block autoplay with sound);
+     paused when scrolled away. Reduced-motion users get tap-to-play only. */
+  function ytFrame(card, muted) {
+    const id = encodeURIComponent(card.dataset.yt);
+    const f = document.createElement('iframe');
+    f.className = 'v-media';
+    f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=${muted ? 1 : 0}&loop=1&playlist=${id}&playsinline=1&rel=0&modestbranding=1&enablejsapi=1`;
+    f.title = ($('[data-video-play]', card) || card).getAttribute('aria-label') || 'Video';
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    card.prepend(f);
+    card.classList.add('is-playing');
+  }
+  const ytCmd = (f, func) => f.contentWindow && f.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: [] }), '*');
+  function stopReel(c) {
+    const f = $('iframe.v-media', c); if (f) f.remove();
+    const v = $('video', c); if (v) v.pause();
+    c.classList.remove('is-playing');
+  }
+  const reelSection = $('#videos');
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reelSection && !calm && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([en]) => {
+      $$('[data-video][data-yt]', reelSection).forEach(card => {
+        const f = $('iframe.v-media', card);
+        if (en.isIntersecting) { if (f) ytCmd(f, 'playVideo'); else ytFrame(card, true); }
+        else if (f) ytCmd(f, 'pauseVideo');
+      });
+    }, { threshold: 0.25 }).observe(reelSection);
+  }
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-video-play]'); if (!b) return;
+    const card = b.closest('[data-video]');
+    $$('[data-video].is-playing').forEach(c => { if (c !== card) stopReel(c); });
+    if (card.dataset.yt) { ytFrame(card, false); return; }
+    card.classList.add('is-playing');
+    const v = $('video', card), p = v.play();
+    if (p && p.catch) p.catch(() => { card.classList.remove('is-playing'); toast('This video is coming soon'); });
+  });
+  $$('[data-video] video').forEach(v => v.addEventListener('ended', () => { v.currentTime = 0; v.closest('[data-video]').classList.remove('is-playing'); }));
+
   /* ---------------- boot ---------------- */
   function renderAll() { renderCounts(); renderMini(); renderCartPage(); renderCheckout(); }
   renderAll(); renderSuccess(); initShop(); initCompare(); initProduct(); initAuth(); initAccount(); initTrack();

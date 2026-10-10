@@ -9,8 +9,8 @@
   body { @apply bg-cream text-ink font-sans antialiased; font-size: 15.5px; line-height: 1.6; }
   h1, h2, h3, h4 { @apply font-display text-ink; text-wrap: balance; line-height: 1.08; font-weight: 600; font-variant-numeric: lining-nums; }
   .font-display { font-variant-numeric: lining-nums; }
-  ::selection { background: #F2E2B8; color: #1F1A13; }
-  :focus-visible { outline: 2px solid #C98A1B; outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: #F1DFC0; color: #141010; }
+  :focus-visible { outline: 2px solid #B8862B; outline-offset: 2px; border-radius: 6px; }
   img { max-width: 100%; height: auto; }
   [hidden] { display: none !important; }
   .num { font-variant-numeric: lining-nums tabular-nums; }
@@ -26,15 +26,26 @@
   .h-section { @apply text-[2rem] sm:text-[2.6rem] lg:text-5xl; }
   .lede { @apply text-[1.02rem] sm:text-lg text-muted max-w-prose; }
 
-  /* Brochure ornament: ——•◆— ◆•—— */
-  .ornament { @apply flex items-center gap-2 text-gold; }
-  .ornament::before, .ornament::after { content: ""; @apply h-px flex-1 bg-current opacity-70; }
-  .ornament > span { @apply block w-1.5 h-1.5 rotate-45 bg-current; }
+  /* Brochure ornament: fading rule — ◆ ◇• ◆ — fading rule (markup: two empty spans) */
+  .ornament { @apply flex items-center text-gold; }
+  .ornament::before, .ornament::after { content: ""; @apply h-px flex-1; }
+  .ornament::before { background: linear-gradient(to left, currentColor, transparent); }
+  .ornament::after { background: linear-gradient(to right, currentColor, transparent); }
+  .ornament > span { @apply hidden; }
+  .ornament > span:first-child { @apply relative block shrink-0 w-3 h-3 mx-6 rotate-45 border-[1.5px] border-current; background: radial-gradient(circle, currentColor 0 2px, transparent 2.5px); }
+  /* side diamonds sit 15px left/right on screen: (∓10.6px, ±10.6px) in the rotated frame */
+  .ornament > span:first-child::before, .ornament > span:first-child::after { content: ""; @apply absolute w-[5px] h-[5px] bg-current; transform: translate(-50%, -50%); }
+  .ornament > span:first-child::before { left: calc(50% - 10.6px); top: calc(50% + 10.6px); }
+  .ornament > span:first-child::after { left: calc(50% + 10.6px); top: calc(50% - 10.6px); }
+  .ornament-center { @apply mx-auto; }
+
+  /* "Can't pick one?" tasting-set card: chilli red, like the Peri Peri tin */
+  .all-card { background: linear-gradient(165deg, #C2342A 0%, #A3221A 55%, #6E140E 100%); }
 
   /* Buttons */
   .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 h-12 text-[14.5px] font-medium tracking-wide transition duration-200 select-none whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none; }
   .btn-sm { @apply h-10 px-4 text-[13.5px]; }
-  .btn-ink { @apply btn bg-ink text-cream hover:bg-maroon; }
+  .btn-ink { @apply btn bg-maroon text-cream hover:bg-ink; }
   .btn-gold { @apply btn bg-gold text-ink hover:bg-gold-deep hover:text-cream; }
   .btn-line { @apply btn border border-ink/80 text-ink hover:bg-ink hover:text-cream; }
   .btn-ghost { @apply btn text-ink hover:bg-sand; }
@@ -48,7 +59,7 @@
   select.input { @apply pr-10 appearance-none bg-no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231F1A13' stroke-width='1.6'/%3E%3C/svg%3E"); background-position: right 1rem center; }
   .input.is-invalid { @apply border-red-700 ring-4 ring-red-700/10; }
   .field-error { @apply mt-1 text-[12.5px] text-red-800; }
-  .check { @apply w-5 h-5 rounded border-line text-ink accent-[#1F1A13]; }
+  .check { @apply w-5 h-5 rounded border-line text-ink accent-[#141010]; }
 
   /* Surfaces */
   .panel { @apply rounded-2xl bg-paper border border-line; }
@@ -61,7 +72,7 @@
 
   /* Product card */
   .p-card { @apply relative flex flex-col rounded-[22px] bg-paper border border-line overflow-hidden transition duration-300 hover:shadow-lift hover:-translate-y-0.5; }
-  .p-card__stage { background: radial-gradient(120% 80% at 50% 100%, var(--tint) 0%, color-mix(in srgb, var(--tint) 45%, #FFFDF8) 55%, #FFFDF8 100%); }
+  .p-card__stage { background: radial-gradient(120% 80% at 50% 100%, var(--tint) 0%, color-mix(in srgb, var(--tint) 45%, #FFFFFF) 55%, #FFFFFF 100%); }
 
   /* Steppers */
   .qty { @apply inline-flex items-center rounded-full border border-line bg-paper h-11; }
@@ -107,6 +118,37 @@
   details.faq > summary .plus::before, details.faq > summary .plus::after { content: ""; @apply absolute left-0 right-0 top-1/2 h-[1.5px] bg-ink transition; }
   details.faq > summary .plus::after { transform: rotate(90deg); }
   details.faq[open] > summary .plus::after { transform: rotate(0); }
+
+  /* Home video reels (9:16) */
+  .v-card { @apply relative shrink-0 snap-start w-[68vw] max-w-[280px] lg:w-auto lg:max-w-none aspect-[9/16] rounded-[22px] overflow-hidden border border-line bg-ink shadow-lift; }
+  .v-media { @apply absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300; }
+  .v-cover { @apply absolute inset-0 w-full flex flex-col items-center justify-center text-left transition-opacity duration-300; }
+  .v-cover::after { content: ""; @apply absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-ink/85 via-ink/40 to-transparent; }
+  .v-poster { @apply w-[88%] -mt-16 drop-shadow-xl transition-transform duration-500 ease-out; }
+  .v-cover:hover .v-poster { @apply scale-105 -rotate-2; }
+  .v-play { @apply relative z-10 -mt-6 grid place-items-center w-16 h-16 rounded-full bg-paper/90 text-maroon ring-1 ring-gold/40 shadow-lift transition duration-300; }
+  .v-play::before { content: ""; @apply absolute -inset-2 rounded-full border border-paper/60 animate-ping opacity-40; animation-duration: 2.2s; }
+  .v-cover:hover .v-play { @apply bg-gold text-paper scale-105; }
+  .v-cap { @apply absolute z-10 inset-x-0 bottom-0 p-5 flex flex-col gap-1; }
+  .v-kicker { @apply text-[11px] font-medium uppercase tracking-[.22em] text-gold-soft; }
+  .v-title { @apply font-display text-[1.6rem] leading-[1.1] text-cream font-semibold; }
+  iframe.v-media { @apply border-0 bg-ink; }
+  .v-card.is-playing .v-media { @apply opacity-100; }
+
+  /* Videos section: soft dot grid that fades out downwards, with a warm glow */
+  .bg-dots {
+    background-image:
+      radial-gradient(60% 80% at 85% 0%, rgba(247,197,49,.14), transparent 65%),
+      radial-gradient(55% 75% at 0% 100%, rgba(0,0,0,.25), transparent 70%);
+  }
+  .bg-dots::before {
+    content: ""; @apply absolute inset-0 pointer-events-none;
+    background-image: radial-gradient(rgba(247,197,49,.5) 1.3px, transparent 1.9px);
+    background-size: 24px 24px;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 90%);
+            mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 90%);
+  }
+  .v-card.is-playing .v-cover { @apply opacity-0 pointer-events-none; }
 
   .float-a { animation: floatA 4s ease-in-out infinite; }
   .float-b { animation: floatA 5s ease-in-out infinite reverse; }

@@ -5,15 +5,18 @@ module.exports = {
     container: { center: true, padding: { DEFAULT: '1rem', sm: '1.25rem', lg: '2rem' }, screens: { '2xl': '1240px' } },
     extend: {
       colors: {
-        cream: '#FBF6EA',      // page ground (logo plate)
-        paper: '#FFFDF8',      // cards / inputs
-        sand: '#F3EAD3',       // quiet panels
-        line: '#E7D9B8',       // hairlines
-        ink: '#1F1A13',        // wordmark black-brown
-        muted: '#6E6353',
-        maroon: '#4B1C14',     // "Distributing Purity" tagline
-        gold: { DEFAULT: '#C98A1B', deep: '#9E7210', soft: '#F2E2B8' },  // logo border / brochure brass
-        leaf: { DEFAULT: '#5E8A21', deep: '#2F4A12', soft: '#E9F0D6' },  // logo leaves
+        cream: '#FFFFFF',      // page ground (white)
+        paper: '#FFFFFF',      // cards / inputs
+        sand: '#F6F4F2',       // quiet panels
+        line: '#E8E2DD',       // hairlines
+        ink: '#141010',        // near-black text
+        muted: '#5C5552',
+        maroon: '#B3261E',     // chilli red — primary CTAs (Peri Peri tin, logo tagline)
+        cocoa: { DEFAULT: '#2B140C', deep: '#140805', soft: '#4A2416' },  // dark hero ground
+        mustard: '#F7C531',    // Cheesy Delight tin yellow
+        plum: '#3E1F3A',       // Pink Salt tin purple — videos section
+        gold: { DEFAULT: '#B8862B', deep: '#8C6418', soft: '#F9D45C' },  // logo border / brochure brass; soft = light mustard panels
+        leaf: { DEFAULT: '#4F7A28', deep: '#2F4A12', soft: '#E9F0D6' },  // logo leaves
       },
       fontFamily: {
         display: ['"Cormorant Garamond"', 'Garamond', 'Georgia', 'serif'],
@@ -22,7 +25,7 @@ module.exports = {
       },
       boxShadow: {
         lift: '0 18px 40px -22px rgba(75, 28, 20, .35)',
-        sheet: '0 -10px 30px -12px rgba(31, 26, 19, .18)',
+        sheet: '0 -10px 30px -12px rgba(42,21,18, .18)',
       },
       maxWidth: { prose: '65ch' },
     },
