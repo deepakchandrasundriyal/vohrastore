@@ -1,0 +1,152 @@
+<script type="application/ld+json">{{p_jsonld}}</script>
+
+<section class="container pt-5 sm:pt-8">
+  <nav class="text-[13px] text-muted" aria-label="Breadcrumb">
+    <a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><a href="shop.html" class="hover:text-ink">Shop</a><span class="mx-1.5">/</span><span class="text-ink">{{p_name}}</span>
+  </nav>
+
+  <div class="mt-5 grid gap-8 lg:grid-cols-[1.08fr_1fr] lg:gap-14">
+    <!-- Gallery -->
+    <div class="lg:sticky lg:top-28 self-start">
+      <div class="relative aspect-square overflow-hidden rounded-[28px]" style="background:radial-gradient(90% 75% at 50% 85%, {{p_tint}} 0%, color-mix(in srgb, {{p_tint}} 40%, #FFFDF8) 60%, #FFFDF8 100%)">
+        <img src="assets/img/props/{{p_prop1}}.webp" alt="" class="pointer-events-none absolute -left-6 bottom-2 w-[34%] opacity-95" loading="lazy">
+        <img src="assets/img/props/{{p_prop2}}.webp" alt="" class="pointer-events-none absolute -right-4 top-4 w-[26%] opacity-90" loading="lazy">
+        <img src="assets/img/products/{{p_slug}}.webp" alt="Vohra's {{p_name}} roasted makhana, 100 g tin" width="358" height="750" class="absolute inset-0 m-auto h-[86%] w-auto max-w-[90%] object-contain drop-shadow-[0_24px_22px_rgba(31,26,19,.3)] transition-opacity duration-200" data-main-img fetchpriority="high">
+      </div>
+      <div class="no-scrollbar mt-3 flex gap-2.5 overflow-x-auto" aria-label="Product images">
+        {{p_thumbs}}
+      </div>
+    </div>
+
+    <!-- Buy box -->
+    <div>
+      <p class="eyebrow">{{p_profile}} · Roasted Makhana</p>
+      <h1 class="mt-2 text-[2.6rem] sm:text-6xl leading-[1.02]">{{p_name}}</h1>
+      <p class="mt-2 font-display italic text-[1.35rem] text-maroon">{{p_tagline}}</p>
+      <div class="mt-4 flex flex-wrap gap-2">{{p_highlights}}</div>
+
+      <div class="mt-6 flex items-baseline gap-3">
+        <p class="text-[2rem] font-semibold num">₹{{p_price}}</p>
+        <p class="text-[13px] text-muted">MRP · Inclusive of all taxes</p>
+      </div>
+
+      <dl class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-line bg-line text-center">
+        <div class="bg-paper px-2 py-3.5"><dt class="text-[11.5px] uppercase tracking-[.14em] text-muted">Protein</dt><dd class="mt-1 font-display text-[1.45rem] leading-none num">{{p_protein}}</dd><dd class="text-[11px] text-muted mt-1">per 100 g</dd></div>
+        <div class="bg-paper px-2 py-3.5"><dt class="text-[11.5px] uppercase tracking-[.14em] text-muted">Energy</dt><dd class="mt-1 font-display text-[1.45rem] leading-none num">{{p_energy_serve}} kcal</dd><dd class="text-[11px] text-muted mt-1">per 28 g serve</dd></div>
+        <div class="bg-paper px-2 py-3.5"><dt class="text-[11.5px] uppercase tracking-[.14em] text-muted">Fibre</dt><dd class="mt-1 font-display text-[1.45rem] leading-none num">{{p_fibre}}</dd><dd class="text-[11px] text-muted mt-1">per 100 g</dd></div>
+        <div class="bg-paper px-2 py-3.5"><dt class="text-[11.5px] uppercase tracking-[.14em] text-muted">Total fat</dt><dd class="mt-1 font-display text-[1.45rem] leading-none num">{{p_fat}}</dd><dd class="text-[11px] text-muted mt-1">per 100 g</dd></div>
+      </dl>
+
+      <fieldset class="mt-6">
+        <legend class="label">Pack size</legend>
+        <div class="flex flex-wrap gap-2">
+          <label class="chip is-active !h-11 !px-4 cursor-pointer"><input type="radio" name="size" value="100g" class="sr-only" checked>100 g tin · ₹{{p_price}}</label>
+        </div>
+      </fieldset>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <div class="qty !h-12" data-qty>
+          <button type="button" data-step="-1" aria-label="Decrease quantity">−</button>
+          <input id="qty-main" type="number" inputmode="numeric" min="1" max="20" value="1" aria-label="Quantity">
+          <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+        </div>
+        <button type="button" class="btn-ink flex-1 min-w-[180px]" data-add="{{p_slug}}" data-qty-from="#qty-main" data-open-cart>{{icon:cart|w-5 h-5}} Add to cart</button>
+        <button type="button" class="btn-gold w-full sm:w-auto" data-buy-now="{{p_slug}}" data-qty-from="#qty-main">Buy now</button>
+      </div>
+
+      <form class="mt-6 rounded-2xl border border-line bg-paper p-4" data-pin-form>
+        <label for="pin" class="label flex items-center gap-2">{{icon:truck|w-[18px] h-[18px] text-gold-deep}} Check delivery to your PIN code</label>
+        <div class="flex gap-2">
+          <input id="pin" class="input !h-11" inputmode="numeric" maxlength="6" placeholder="e.g. 121004" autocomplete="postal-code">
+          <button class="btn-line btn-sm !h-11 shrink-0" type="submit">Check</button>
+        </div>
+        <p class="mt-2 text-[13px] text-muted min-h-[1.25rem]" data-pin-out aria-live="polite"></p>
+      </form>
+
+      <ul class="mt-6 grid grid-cols-3 gap-2 text-center text-[12.5px] text-muted">
+        <li class="flex flex-col items-center gap-1.5">{{icon:flame|w-6 h-6 text-gold-deep}}Roasted, not fried</li>
+        <li class="flex flex-col items-center gap-1.5">{{icon:wheat-off|w-6 h-6 text-gold-deep}}Gluten-free</li>
+        <li class="flex flex-col items-center gap-1.5">{{icon:shield|w-6 h-6 text-gold-deep}}FSSAI licensed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Details tabs -->
+<section class="container mt-14 sm:mt-20">
+  <div class="no-scrollbar flex gap-7 overflow-x-auto border-b border-line" role="tablist" aria-label="Product details">
+    <button type="button" role="tab" class="tab-btn" id="t-desc" aria-controls="p-desc" aria-selected="true">Description</button>
+    <button type="button" role="tab" class="tab-btn" id="t-ing" aria-controls="p-ing" aria-selected="false" tabindex="-1">Ingredients</button>
+    <button type="button" role="tab" class="tab-btn" id="t-nut" aria-controls="p-nut" aria-selected="false" tabindex="-1">Nutrition facts</button>
+    <button type="button" role="tab" class="tab-btn" id="t-all" aria-controls="p-all" aria-selected="false" tabindex="-1">Allergens &amp; storage</button>
+  </div>
+
+  <div class="py-8" id="p-desc" role="tabpanel" aria-labelledby="t-desc">
+    <div class="grid gap-8 md:grid-cols-[1.4fr_1fr]">
+      <div class="max-w-prose">
+        <p class="text-[1.05rem] leading-relaxed">{{p_desc}}</p>
+        <p class="mt-4 text-muted">Crafted from premium lotus seeds and dry-roasted for a light, protein-rich, naturally gluten-free snack. Sealed in a 100 g tin to keep every serving crisp.</p>
+      </div>
+      <dl class="panel divide-y divide-line text-[14px]">
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Net weight</dt><dd>{{p_weight}}</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Serving size</dt><dd>28 g</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Food type</dt><dd class="flex items-center gap-2"><span class="grid place-items-center w-4 h-4 border-2 border-leaf"><span class="w-1.5 h-1.5 rounded-full bg-leaf"></span></span>Vegetarian</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Marketed by</dt><dd class="text-right">{{marketer_name}}, Delhi</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Packed by</dt><dd class="text-right">RPL Dryfruit, Faridabad</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">FSSAI Lic.</dt><dd class="num">{{fssai_marketer}}</dd></div>
+        <div class="flex justify-between gap-4 px-5 py-3"><dt class="text-muted">Origin</dt><dd>Product of India</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="py-8" id="p-ing" role="tabpanel" aria-labelledby="t-ing" hidden>
+    <p class="max-w-prose text-[1.02rem] leading-relaxed">{{p_ingredients}}</p>
+  </div>
+
+  <div class="py-8" id="p-nut" role="tabpanel" aria-labelledby="t-nut" hidden>
+    <div class="grid gap-8 lg:grid-cols-[1.3fr_1fr]">
+      <div class="overflow-x-auto rounded-2xl border border-line bg-paper">
+        <table class="w-full min-w-[460px] text-[14px]">
+          <caption class="px-4 pt-4 pb-2 text-left"><span class="font-display text-2xl">Nutrition facts</span><span class="block text-[12.5px] text-muted">Serving size 28 g · 2.5 servings per pack</span></caption>
+          <thead><tr class="text-[12px] uppercase tracking-[.1em] text-muted"><th scope="col" class="px-4 py-2 text-left font-medium">Nutrient</th><th scope="col" class="px-3 py-2 text-right font-medium">Per 100 g</th><th scope="col" class="px-3 py-2 text-right font-medium">Per 28 g</th><th scope="col" class="px-4 py-2 text-right font-medium">%RDA / serve</th></tr></thead>
+          <tbody class="[&_th]:pl-4 [&_td:last-child]:pr-4">{{p_nutrition_rows}}</tbody>
+        </table>
+        <p class="px-4 py-3 text-[12px] text-muted border-t border-line">%RDA based on the guideline daily amount for an average adult (2,000 kcal diet), as printed on pack.</p>
+      </div>
+      <figure class="rounded-2xl border border-line bg-paper p-3">
+        <img src="assets/img/labels/{{p_slug}}.webp" alt="Back-of-pack label for {{p_name}} with nutrition facts and ingredients" loading="lazy" class="w-full rounded-xl">
+        <figcaption class="mt-2 px-1 text-[12.5px] text-muted">Back-of-pack label.</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="py-8" id="p-all" role="tabpanel" aria-labelledby="t-all" hidden>
+    <div class="grid gap-8 md:grid-cols-2 max-w-4xl">
+      <div><h3 class="text-2xl mb-3">Allergens</h3>{{p_allergens}}</div>
+      <div><h3 class="text-2xl mb-3">Storage</h3><p class="text-[14px] text-muted">Store in a cool, dry and hygienic place, away from direct sunlight and heat. Keep the tin closed to preserve freshness. Batch number, manufacturing date and use-by date are printed on the base of the tin.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Related -->
+<section class="container py-14 sm:py-20">
+  <div class="flex items-end justify-between gap-4">
+    <h2 class="h-section">You may also like</h2>
+    <a href="shop.html" class="hidden sm:inline-flex items-center gap-2 text-[14.5px] font-medium text-maroon">All flavours {{icon:arrow|w-4 h-4}}</a>
+  </div>
+  <div class="mt-8 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+    {{p_related}}
+  </div>
+</section>
+
+<!-- Mobile sticky buy bar -->
+<div class="lg:hidden fixed inset-x-0 z-20 border-t border-line bg-paper/95 backdrop-blur-md shadow-sheet" style="bottom:calc(64px + env(safe-area-inset-bottom,0px))">
+  <div class="container flex items-center gap-3 py-2.5">
+    <div class="qty !h-11 shrink-0" data-qty>
+      <button type="button" data-step="-1" aria-label="Decrease quantity">−</button>
+      <input id="qty-bar" type="number" inputmode="numeric" min="1" max="20" value="1" aria-label="Quantity">
+      <button type="button" data-step="1" aria-label="Increase quantity">+</button>
+    </div>
+    <button type="button" class="btn-ink flex-1 !h-11" data-add="{{p_slug}}" data-qty-from="#qty-bar" data-open-cart>Add to cart · ₹{{p_price}}</button>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<footer class="bg-ink text-cream/75 pb-[76px] lg:pb-0">
+  <div class="container pt-14 sm:pt-16 pb-10">
+    <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+      <div>
+        <img src="assets/img/brand/logo.webp" alt="Vohra's — Distributing Purity" width="520" height="346" class="h-[74px] w-auto" loading="lazy">
+        <p class="mt-5 max-w-xs text-[14.5px] leading-relaxed">Roasted makhana in seven signature flavours, from the dry-fruit lanes of Khari Baoli, Delhi.</p>
+        <div class="mt-5 flex flex-wrap gap-2 text-[12px]">
+          <span class="tag border border-cream/20 text-cream/80">FSSAI Lic. {{fssai_marketer}}</span>
+          <span class="tag border border-cream/20 text-cream/80">Product of India</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-8 lg:contents">
+        <div>
+          <p class="eyebrow !text-gold mb-4">Flavours</p>
+          <ul class="space-y-2.5 text-[14.5px]">{{footer_flavours}}</ul>
+        </div>
+        <div>
+          <p class="eyebrow !text-gold mb-4">Help</p>
+          <ul class="space-y-2.5 text-[14.5px]">
+            <li><a href="about.html" class="hover:text-gold">About us</a></li>
+            <li><a href="services.html" class="hover:text-gold">Our services</a></li>
+            <li><a href="contact.html" class="hover:text-gold">Contact us</a></li>
+            <li><a href="faq.html" class="hover:text-gold">FAQs</a></li>
+            <li><a href="track-order.html" class="hover:text-gold">Track order</a></li>
+            <li><a href="account.html" class="hover:text-gold">My account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-[14px] leading-relaxed">
+        <p class="eyebrow !text-gold mb-4">Reach us</p>
+        <p class="flex gap-3">{{icon:pin|w-5 h-5 shrink-0 text-gold mt-0.5}} <span>{{marketer_name}}<br>{{addr_shop}}</span></p>
+        <p class="mt-3 flex gap-3">{{icon:phone|w-5 h-5 shrink-0 text-gold mt-0.5}} <span><a href="tel:{{phone1_raw}}" class="hover:text-gold">{{phone1}}</a><br><a href="tel:{{phone2_raw}}" class="hover:text-gold">{{phone2}}</a></span></p>
+        <p class="mt-3 flex gap-3 break-all">{{icon:mail|w-5 h-5 shrink-0 text-gold mt-0.5}} <span>{{email}}</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-cream/10">
+    <div class="container flex flex-col gap-3 py-5 text-[12.5px] sm:flex-row sm:items-center sm:justify-between">
+      <p>© {{year}} {{marketer_name}}. All rights reserved.</p>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Policies">
+        <a href="privacy-policy.html" class="hover:text-gold">Privacy</a>
+        <a href="terms.html" class="hover:text-gold">Terms</a>
+        <a href="shipping-policy.html" class="hover:text-gold">Shipping</a>
+        <a href="refund-policy.html" class="hover:text-gold">Returns &amp; refunds</a>
+      </nav>
+    </div>
+    <p class="container pb-5 text-[11.5px] text-cream/45">Design preview. Cart, checkout, accounts and payments are simulated in this browser and no real orders are placed.</p>
+  </div>
+</footer>
+
+<!-- Mobile tab bar -->
+<nav class="lg:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 backdrop-blur-md" style="padding-bottom:env(safe-area-inset-bottom,0px)" aria-label="Quick" data-tabbar>
+  <div class="grid grid-cols-5 h-[64px] text-[10.5px] tracking-wide text-muted">
+    <a href="index.html" data-nav="home" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:home|w-[22px] h-[22px]}}Home</a>
+    <a href="shop.html" data-nav="shop" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:grid|w-[22px] h-[22px]}}Shop</a>
+    <button type="button" data-open="search" class="flex flex-col items-center justify-center gap-1">{{icon:search|w-[22px] h-[22px]}}Search</button>
+    <button type="button" data-open="cart" class="relative flex flex-col items-center justify-center gap-1">
+      <span class="relative">{{icon:cart|w-[22px] h-[22px]}}<span class="absolute -right-2.5 -top-1.5 min-w-[17px] h-[17px] px-1 rounded-full bg-gold text-ink text-[10px] font-semibold leading-[17px] text-center num" data-cart-count hidden>0</span></span>Cart
+    </button>
+    <a href="account.html" data-nav="account" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:user|w-[22px] h-[22px]}}Account</a>
+  </div>
+</nav>
+
+<div class="toast" role="status" aria-live="polite" data-toast>{{icon:check|w-5 h-5 text-gold}}<span data-toast-text></span></div>

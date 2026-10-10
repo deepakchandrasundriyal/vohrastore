@@ -1,0 +1,16 @@
+<!--meta {"title": "Track Your Order", "desc": "Track your Vohra's Store order with your order ID.", "page": "track"} -->
+
+<section class="container max-w-3xl py-10 sm:py-16">
+  <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><span class="text-ink">Track order</span></nav>
+  <h1 class="h-section mt-4">Track your order</h1>
+  <p class="lede mt-3">Enter the order ID from your confirmation email. It starts with VS.</p>
+
+  <form class="mt-8 panel p-5 sm:p-6 flex flex-col sm:flex-row gap-3" data-track-form novalidate>
+    <div class="flex-1"><label for="t-order" class="sr-only">Order ID</label><input id="t-order" name="order" class="input uppercase placeholder:normal-case" placeholder="Order ID, e.g. VS12345678" required data-label="Order ID" autocomplete="off"></div>
+    <button type="submit" class="btn-ink">{{icon:search|w-4 h-4}} Track</button>
+  </form>
+
+  <div class="mt-6" data-track-out aria-live="polite"></div>
+
+  <p class="mt-10 text-[14px] text-muted">Signed in? Every order and its status is also listed under <a href="account.html" class="link">My account</a>.</p>
+</section>

@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Layout concept: a Khari Baoli shopfront — signboard-shaped plates, gold rules, each flavour wearing its tin colour. */
+@layer base {
+  :root { color-scheme: light; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { @apply bg-cream text-ink font-sans antialiased; font-size: 15.5px; line-height: 1.6; }
+  h1, h2, h3, h4 { @apply font-display text-ink; text-wrap: balance; line-height: 1.08; font-weight: 600; font-variant-numeric: lining-nums; }
+  .font-display { font-variant-numeric: lining-nums; }
+  ::selection { background: #F2E2B8; color: #1F1A13; }
+  :focus-visible { outline: 2px solid #C98A1B; outline-offset: 2px; border-radius: 6px; }
+  img { max-width: 100%; height: auto; }
+  [hidden] { display: none !important; }
+  .num { font-variant-numeric: lining-nums tabular-nums; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  /* Type */
+  .eyebrow { @apply text-[11.5px] font-medium uppercase tracking-[.22em] text-gold-deep; }
+  .h-hero { @apply text-[2.6rem] sm:text-6xl lg:text-7xl; letter-spacing: -.01em; }
+  .h-section { @apply text-[2rem] sm:text-[2.6rem] lg:text-5xl; }
+  .lede { @apply text-[1.02rem] sm:text-lg text-muted max-w-prose; }
+
+  /* Brochure ornament: ——•◆— ◆•—— */
+  .ornament { @apply flex items-center gap-2 text-gold; }
+  .ornament::before, .ornament::after { content: ""; @apply h-px flex-1 bg-current opacity-70; }
+  .ornament > span { @apply block w-1.5 h-1.5 rotate-45 bg-current; }
+
+  /* Buttons */
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 h-12 text-[14.5px] font-medium tracking-wide transition duration-200 select-none whitespace-nowrap disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-sm { @apply h-10 px-4 text-[13.5px]; }
+  .btn-ink { @apply btn bg-ink text-cream hover:bg-maroon; }
+  .btn-gold { @apply btn bg-gold text-ink hover:bg-gold-deep hover:text-cream; }
+  .btn-line { @apply btn border border-ink/80 text-ink hover:bg-ink hover:text-cream; }
+  .btn-ghost { @apply btn text-ink hover:bg-sand; }
+  .icon-btn { @apply relative inline-flex items-center justify-center w-11 h-11 rounded-full text-ink hover:bg-sand transition; }
+  .link { @apply underline decoration-gold decoration-2 underline-offset-4 hover:text-maroon; }
+
+  /* Forms */
+  .label { @apply block text-[13px] font-medium text-ink mb-1.5; }
+  .input { @apply block w-full h-12 rounded-xl border border-line bg-paper px-4 text-[15px] text-ink placeholder:text-muted/70 transition focus:border-gold focus:outline-none focus:ring-4 focus:ring-gold/15; }
+  textarea.input { @apply h-auto py-3; }
+  select.input { @apply pr-10 appearance-none bg-no-repeat; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%231F1A13' stroke-width='1.6'/%3E%3C/svg%3E"); background-position: right 1rem center; }
+  .input.is-invalid { @apply border-red-700 ring-4 ring-red-700/10; }
+  .field-error { @apply mt-1 text-[12.5px] text-red-800; }
+  .check { @apply w-5 h-5 rounded border-line text-ink accent-[#1F1A13]; }
+
+  /* Surfaces */
+  .panel { @apply rounded-2xl bg-paper border border-line; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 h-9 text-[13px] text-ink whitespace-nowrap transition hover:border-gold; }
+  .chip[aria-pressed="true"], .chip.is-active { @apply bg-ink text-cream border-ink; }
+  .tag { @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-[11.5px] font-medium tracking-wide; }
+
+  /* Signboard plate — the logo's peaked shop-sign silhouette */
+  .signboard { clip-path: polygon(0 14%, 7% 14%, 7% 8%, 32% 8%, 50% 0, 68% 8%, 93% 8%, 93% 14%, 100% 14%, 100% 92%, 93% 92%, 93% 100%, 7% 100%, 7% 92%, 0 92%); }
+
+  /* Product card */
+  .p-card { @apply relative flex flex-col rounded-[22px] bg-paper border border-line overflow-hidden transition duration-300 hover:shadow-lift hover:-translate-y-0.5; }
+  .p-card__stage { background: radial-gradient(120% 80% at 50% 100%, var(--tint) 0%, color-mix(in srgb, var(--tint) 45%, #FFFDF8) 55%, #FFFDF8 100%); }
+
+  /* Steppers */
+  .qty { @apply inline-flex items-center rounded-full border border-line bg-paper h-11; }
+  .qty button { @apply w-10 h-full grid place-items-center text-lg text-ink hover:text-gold-deep; }
+  .qty input { @apply w-9 text-center bg-transparent text-[15px] font-medium focus:outline-none; -moz-appearance: textfield; }
+  .qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  /* Prose for policy pages */
+  .prose-v { @apply max-w-prose text-[15.5px] text-ink/90; }
+  .prose-v h2 { @apply text-2xl sm:text-3xl mt-10 mb-3; }
+  .prose-v h3 { @apply text-xl mt-6 mb-2; }
+  .prose-v p { @apply mb-4; }
+  .prose-v ul { @apply list-disc pl-5 mb-4 space-y-1.5 marker:text-gold; }
+  .prose-v a { @apply link; }
+
+  /* Drawers & overlays */
+  .scrim { @apply fixed inset-0 z-40 bg-ink/40 opacity-0 pointer-events-none transition-opacity duration-300; }
+  .scrim.is-open { @apply opacity-100 pointer-events-auto; }
+  .drawer { @apply fixed top-0 bottom-0 z-50 w-[min(420px,92vw)] bg-cream shadow-2xl flex flex-col transition-transform duration-300 ease-out; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .drawer--right { @apply right-0 translate-x-full; }
+  .drawer--left { @apply left-0 -translate-x-full; }
+  .drawer.is-open { @apply translate-x-0; }
+
+  .stick-below-header { top: calc(env(safe-area-inset-top, 0px) + 64px); }
+  @media (min-width: 1024px) { .stick-below-header { top: calc(env(safe-area-inset-top, 0px) + 84px); } }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  .toast { @apply fixed left-1/2 z-[60] -translate-x-1/2 flex items-center gap-3 rounded-full bg-ink text-cream px-5 py-3 text-[14px] shadow-lift transition duration-300 opacity-0 translate-y-3 pointer-events-none; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  .toast.is-on { @apply opacity-100 translate-y-0; }
+  @media (min-width: 1024px) { .toast { bottom: 28px; } }
+
+  .tab-btn { @apply relative py-3 text-[14.5px] font-medium text-muted whitespace-nowrap transition hover:text-ink; }
+  .tab-btn[aria-selected="true"] { @apply text-ink; }
+  .tab-btn[aria-selected="true"]::after { content: ""; @apply absolute left-0 right-0 -bottom-px h-0.5 bg-gold; }
+
+  .bar-track { @apply h-2.5 rounded-full bg-sand overflow-hidden; }
+  .bar-fill { @apply h-full rounded-full transition-[width] duration-700 ease-out; }
+
+  details.faq > summary { @apply flex items-center justify-between gap-4 cursor-pointer list-none py-5 text-[16px] font-medium text-ink; }
+  details.faq > summary::-webkit-details-marker { display: none; }
+  details.faq > summary .plus { @apply relative w-4 h-4 shrink-0; }
+  details.faq > summary .plus::before, details.faq > summary .plus::after { content: ""; @apply absolute left-0 right-0 top-1/2 h-[1.5px] bg-ink transition; }
+  details.faq > summary .plus::after { transform: rotate(90deg); }
+  details.faq[open] > summary .plus::after { transform: rotate(0); }
+
+  .float-a { animation: floatA 7s ease-in-out infinite; }
+  .float-b { animation: floatA 9s ease-in-out infinite reverse; }
+  @keyframes floatA { 0%,100% { transform: translateY(0) rotate(0) } 50% { transform: translateY(-10px) rotate(6deg) } }
+}
+
+@layer utilities {
+  @media (max-width: 1023.98px) {
+    body.has-buybar footer { padding-bottom: calc(142px + env(safe-area-inset-bottom, 0px)); }
+    body.no-tabbar [data-tabbar] { display: none; }
+    body.no-tabbar footer { padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
+  }
+}

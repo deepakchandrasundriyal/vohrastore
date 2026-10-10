@@ -1,0 +1,2 @@
+# Application code is never served directly — only through dist/api/*.php
+Require all denied

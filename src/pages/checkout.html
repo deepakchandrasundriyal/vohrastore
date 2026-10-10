@@ -1,0 +1,106 @@
+<!--meta {"title": "Checkout", "desc": "Secure checkout for your Vohra's roasted makhana order.", "page": "checkout", "body_class": "no-tabbar"} -->
+
+<section class="container py-6 sm:py-10" data-checkout>
+  <ol class="flex items-center justify-center gap-2 sm:gap-4 text-[12.5px] sm:text-[13.5px]" aria-label="Checkout steps">
+    <li><a href="cart.html" class="flex items-center gap-2 text-muted hover:text-ink"><span class="grid place-items-center w-6 h-6 rounded-full bg-leaf text-cream">{{icon:check|w-3.5 h-3.5}}</span>Cart</a></li>
+    <li class="w-6 sm:w-12 h-px bg-line" aria-hidden="true"></li>
+    <li class="flex items-center gap-2 font-medium" aria-current="step"><span class="grid place-items-center w-6 h-6 rounded-full bg-ink text-cream num text-[12px]">2</span>Details &amp; payment</li>
+    <li class="w-6 sm:w-12 h-px bg-line" aria-hidden="true"></li>
+    <li class="flex items-center gap-2 text-muted"><span class="grid place-items-center w-6 h-6 rounded-full bg-sand num text-[12px]">3</span>Confirmation</li>
+  </ol>
+
+  <div class="py-16 text-center" data-co-empty hidden>
+    <p class="font-display text-3xl">There's nothing to check out yet</p>
+    <p class="mt-2 text-muted">Add a tin or two and come back.</p>
+    <a href="shop.html" class="btn-ink mt-6">Shop flavours</a>
+  </div>
+
+  <div data-co-main hidden>
+    <!-- Mobile summary toggle -->
+    <div class="lg:hidden mt-6 rounded-2xl border border-line bg-paper">
+      <button type="button" class="flex w-full items-center justify-between px-4 py-3.5 text-[14.5px]" data-summary-toggle aria-expanded="false" aria-controls="m-summary">
+        <span class="flex items-center gap-2 text-maroon">{{icon:cart|w-[18px] h-[18px]}}<span data-summary-toggle-label>Show order summary</span>{{icon:chevron-down|w-4 h-4}}</span>
+        <span class="num font-semibold" data-co-total>₹0</span>
+      </button>
+      <div id="m-summary" class="border-t border-line px-4 pb-4" data-summary-body hidden>
+        <div class="divide-y divide-line" data-co-lines></div>
+        <dl class="mt-3 space-y-2 text-[14px]" data-co-totals></dl>
+      </div>
+      <form class="border-t border-line px-4 py-3.5" data-coupon-form>
+        <label for="coupon-m" class="label">Promo code</label>
+        <div class="flex gap-2"><input id="coupon-m" class="input !h-11 uppercase placeholder:normal-case" placeholder="e.g. VOHRA10" autocomplete="off"><button class="btn-line btn-sm !h-11 shrink-0" type="submit">Apply</button></div>
+        <p class="mt-2 text-[13px]" data-coupon-msg aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="mt-6 sm:mt-10 grid gap-8 lg:grid-cols-[1fr_400px] lg:gap-12 items-start">
+      <form class="space-y-6" data-checkout-form novalidate id="checkout-form">
+        <fieldset class="panel p-5 sm:p-7">
+          <legend class="sr-only">Contact</legend>
+          <div class="flex items-center justify-between gap-3"><h2 class="text-2xl">Contact</h2><a href="login.html" class="text-[13.5px] link">Sign in for faster checkout</a></div>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div><label for="co-email" class="label">Email</label><input id="co-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email" placeholder="you@example.com"></div>
+            <div><label for="co-phone" class="label">Mobile number</label><input id="co-phone" name="phone" type="tel" inputmode="tel" class="input" autocomplete="tel" required data-label="Mobile number" data-rule="phone" placeholder="10-digit mobile"></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="panel p-5 sm:p-7">
+          <legend class="sr-only">Shipping address</legend>
+          <h2 class="text-2xl">Shipping address</h2>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2"><label for="co-name" class="label">Full name</label><input id="co-name" name="name" class="input" autocomplete="name" required data-label="Full name"></div>
+            <div class="sm:col-span-2"><label for="co-line1" class="label">House no., building, street</label><input id="co-line1" name="line1" class="input" autocomplete="address-line1" required data-label="Address"></div>
+            <div class="sm:col-span-2"><label for="co-line2" class="label">Area, landmark <span class="font-normal text-muted">(optional)</span></label><input id="co-line2" name="line2" class="input" autocomplete="address-line2"></div>
+            <div><label for="co-pin" class="label">PIN code</label><input id="co-pin" name="pin" class="input" inputmode="numeric" maxlength="6" autocomplete="postal-code" required data-label="PIN code" data-rule="pin"></div>
+            <div><label for="co-city" class="label">City</label><input id="co-city" name="city" class="input" autocomplete="address-level2" required data-label="City"></div>
+            <div class="sm:col-span-2"><label for="co-state" class="label">State</label>
+              <select id="co-state" name="state" class="input" autocomplete="address-level1" required data-label="State">
+                <option value="">Select state</option>
+                <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option><option>Chandigarh</option><option>Chhattisgarh</option><option>Delhi</option><option>Goa</option><option>Gujarat</option><option>Haryana</option><option>Himachal Pradesh</option><option>Jammu and Kashmir</option><option>Jharkhand</option><option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option><option>Odisha</option><option>Puducherry</option><option>Punjab</option><option>Rajasthan</option><option>Tamil Nadu</option><option>Telangana</option><option>Uttar Pradesh</option><option>Uttarakhand</option><option>West Bengal</option>
+              </select>
+            </div>
+          </div>
+          <label class="mt-4 flex items-center gap-2.5 text-[14px] cursor-pointer"><input type="checkbox" name="save" class="check" checked> Save this address for next time</label>
+        </fieldset>
+
+        <fieldset class="panel p-5 sm:p-7">
+          <legend class="sr-only">Payment</legend>
+          <h2 class="text-2xl">Payment</h2>
+          <p class="mt-1 text-[13.5px] text-muted">All transactions are secure and encrypted.</p>
+          <div class="mt-5 space-y-3">
+            <label class="flex items-start gap-3 rounded-xl border border-line p-4 cursor-pointer has-[:checked]:border-ink has-[:checked]:bg-sand/50">
+              <input type="radio" name="payment" value="razorpay" class="mt-1 accent-[#1F1A13]" checked>
+              <span class="flex-1"><span class="flex items-center gap-2 font-medium">{{icon:card|w-5 h-5}} Pay online</span><span class="block text-[13px] text-muted mt-0.5">UPI, debit and credit cards, net banking and wallets via Razorpay.</span></span>
+            </label>
+            <label class="flex items-start gap-3 rounded-xl border border-line p-4 cursor-pointer has-[:checked]:border-ink has-[:checked]:bg-sand/50">
+              <input type="radio" name="payment" value="cod" class="mt-1 accent-[#1F1A13]">
+              <span class="flex-1"><span class="flex items-center gap-2 font-medium">{{icon:cash|w-5 h-5}} Cash on delivery</span><span class="block text-[13px] text-muted mt-0.5">Pay in cash or UPI when your order arrives.</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-ink w-full !h-14 text-[15.5px] hidden lg:flex" data-place-order>{{icon:lock|w-4 h-4}} Place order · <span class="num" data-co-total>₹0</span></button>
+        <p class="hidden lg:block text-center text-[12.5px] text-muted">By placing your order you agree to our <a href="terms.html" class="link">Terms</a> and <a href="privacy-policy.html" class="link">Privacy Policy</a>.</p>
+      </form>
+
+      <aside class="hidden lg:block panel p-6 sticky top-28" aria-label="Order summary">
+        <h2 class="text-2xl">Order summary</h2>
+        <div class="mt-3 divide-y divide-line max-h-[320px] overflow-y-auto pr-1" data-co-lines></div>
+        <form class="mt-4 border-t border-line pt-4" data-coupon-form>
+          <label for="coupon-d" class="label">Promo code</label>
+          <div class="flex gap-2"><input id="coupon-d" class="input !h-11 uppercase placeholder:normal-case" placeholder="e.g. VOHRA10" autocomplete="off"><button class="btn-line btn-sm !h-11 shrink-0" type="submit">Apply</button></div>
+          <p class="mt-2 text-[13px] min-h-[1.2rem]" data-coupon-msg aria-live="polite"></p>
+        </form>
+        <dl class="mt-3 space-y-2.5 text-[14.5px]" data-co-totals></dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile place-order bar -->
+<div class="lg:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-paper/95 backdrop-blur-md shadow-sheet" style="padding-bottom:env(safe-area-inset-bottom,0px)">
+  <div class="container flex items-center gap-3 py-3">
+    <div class="shrink-0"><p class="text-[11.5px] text-muted leading-none">Total</p><p class="mt-1 text-[1.2rem] font-semibold num leading-none" data-co-total>₹0</p></div>
+    <button type="submit" form="checkout-form" class="btn-ink flex-1" data-place-order>{{icon:lock|w-4 h-4}} Place order</button>
+  </div>
+</div>

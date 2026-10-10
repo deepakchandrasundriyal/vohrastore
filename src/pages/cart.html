@@ -1,0 +1,41 @@
+<!--meta {"title": "Your Cart", "desc": "Review the Vohra's roasted makhana tins in your cart.", "page": "cart"} -->
+
+<section class="container py-8 sm:py-12" data-cart-page>
+  <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><span class="text-ink">Cart</span></nav>
+  <h1 class="h-section mt-3">Your cart</h1>
+
+  <div class="py-16 text-center" data-cart-empty hidden>
+    <img src="assets/img/bowls/cream-onion.webp" alt="" class="mx-auto w-48">
+    <p class="mt-6 font-display text-3xl">Your cart is empty</p>
+    <p class="mt-2 text-muted">Seven flavours of roasted makhana are a tap away.</p>
+    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3"><a href="shop.html" class="btn-ink">Shop flavours</a><button type="button" class="btn-line" data-add-all>Add one of each · {{all_price}}</button></div>
+  </div>
+
+  <div data-cart-full hidden>
+    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_380px] lg:gap-12 items-start">
+      <div>
+        <div data-freeship></div>
+        <div class="mt-2" data-cart-lines></div>
+        <a href="shop.html" class="mt-6 inline-flex items-center gap-2 text-[14px] text-maroon hover:underline underline-offset-4">{{icon:arrow-left|w-4 h-4}} Continue shopping</a>
+      </div>
+
+      <aside class="panel p-5 sm:p-6 lg:sticky lg:top-28" aria-label="Order summary">
+        <h2 class="text-2xl">Order summary</h2>
+        <form class="mt-5" data-coupon-form>
+          <label for="coupon" class="label">Coupon code</label>
+          <div class="flex gap-2"><input id="coupon" class="input !h-11 uppercase placeholder:normal-case" placeholder="e.g. VOHRA10" autocomplete="off"><button class="btn-line btn-sm !h-11 shrink-0" type="submit">Apply</button></div>
+          <p class="mt-2 text-[13px] min-h-[1.2rem]" data-coupon-msg aria-live="polite"></p>
+        </form>
+        <dl class="mt-4 space-y-2.5 text-[14.5px]" data-cart-totals></dl>
+        <a href="checkout.html" class="btn-ink mt-6 w-full">{{icon:lock|w-4 h-4}} Proceed to checkout</a>
+        <p class="mt-4 flex items-center justify-center gap-2 text-[12.5px] text-muted">{{icon:shield|w-4 h-4}} Secure payments by Razorpay · UPI, cards, net banking</p>
+      </aside>
+    </div>
+
+    <section class="mt-16">
+      <h2 class="text-[1.9rem] sm:text-4xl">Complete the set</h2>
+      <p class="mt-1 text-muted">Flavours you haven't added yet.</p>
+      <div class="no-scrollbar mt-6 -mx-4 flex gap-3 overflow-x-auto snap-x px-4 pb-2 sm:mx-0 sm:px-0" data-upsell></div>
+    </section>
+  </div>
+</section>

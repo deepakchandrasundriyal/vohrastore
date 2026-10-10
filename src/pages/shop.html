@@ -1,0 +1,71 @@
+<!--meta {"title": "Shop Roasted Makhana", "desc": "Shop all seven Vohra's roasted makhana flavours. Filter by taste, sort by protein, calories or fibre, and order 100 g tins online.", "page": "shop"} -->
+
+<section class="border-b border-line bg-paper">
+  <div class="container py-8 sm:py-12">
+    <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a> <span class="mx-1.5">/</span> <span class="text-ink">Shop</span></nav>
+    <div class="mt-3 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+      <div>
+        <h1 class="h-section">Roasted Makhana</h1>
+        <p class="lede mt-2">Seven flavours, one 100 g tin each, all at ₹295.</p>
+      </div>
+      <div class="relative w-full lg:w-[340px]">
+        <label for="shop-search" class="sr-only">Search flavours</label>
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted">{{icon:search|w-[18px] h-[18px]}}</span>
+        <input id="shop-search" type="search" class="input !pl-11 !rounded-full" placeholder="Search flavours" data-shop-search autocomplete="off">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sticky stick-below-header z-20 border-b border-line bg-cream/95 backdrop-blur-md">
+  <div class="container flex items-center gap-3 py-3 lg:py-4">
+    <div class="no-scrollbar -mx-4 flex flex-1 gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="group" aria-label="Filter by taste">
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-filter="classic" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#4A2342]"></span>Classic &amp; Light</button>
+      <button type="button" class="chip" data-filter="spicy" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#8E1420]"></span>Spicy &amp; Tangy</button>
+      <button type="button" class="chip" data-filter="creamy" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#C98A12]"></span>Creamy &amp; Cheesy</button>
+      <button type="button" class="chip" data-filter="herby" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#3B4E1E]"></span>Fresh &amp; Herby</button>
+    </div>
+  </div>
+</div>
+
+<section class="container py-6 sm:py-8">
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <p class="text-[14px] text-muted num" data-result-count aria-live="polite">7 of 7 flavours</p>
+    <div class="flex items-center gap-3">
+      <label class="hidden sm:flex items-center gap-2 text-[14px] cursor-pointer select-none"><input type="checkbox" class="check" data-peanut-free id="peanut-free"> Peanut-free only</label>
+      <label for="sort" class="sr-only">Sort by</label>
+      <select id="sort" class="input !h-10 !w-auto !rounded-full !text-[14px] !pl-4" data-sort>
+        <option value="featured">Featured</option>
+        <option value="protein">Protein: high to low</option>
+        <option value="fibre">Fibre: high to low</option>
+        <option value="energy">Calories: low to high</option>
+        <option value="fat">Fat: low to high</option>
+        <option value="name">Name: A to Z</option>
+      </select>
+    </div>
+    <label class="sm:hidden flex w-full items-center gap-2 text-[14px] cursor-pointer select-none"><input type="checkbox" class="check" data-peanut-free id="peanut-free-m"> Peanut-free only</label>
+  </div>
+
+  <div class="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4" data-shop-grid>
+    {{product_cards}}
+    {{all_card}}
+  </div>
+
+  <div class="py-16 text-center" data-shop-empty hidden>
+    <p class="font-display text-3xl">No flavours match</p>
+    <p class="mt-2 text-muted">Try a different search or clear the filters.</p>
+    <button type="button" class="btn-line mt-6" data-reset-filters>Clear filters</button>
+  </div>
+</section>
+
+<section class="container pb-16 sm:pb-24">
+  <div class="panel grid gap-6 p-6 sm:p-10 md:grid-cols-[1fr_auto] md:items-center">
+    <div>
+      <p class="eyebrow">Buying for a shop or an event?</p>
+      <h2 class="mt-2 text-[1.9rem] sm:text-4xl">Bulk, wholesale and gifting orders</h2>
+      <p class="mt-2 text-muted max-w-prose">Tell us the quantity and city, and our team will share trade pricing and dispatch timelines.</p>
+    </div>
+    <a href="services.html#enquiry" class="btn-ink">Send an enquiry {{icon:arrow|w-4 h-4}}</a>
+  </div>
+</section>

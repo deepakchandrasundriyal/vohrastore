@@ -1,0 +1,25 @@
+# Secrets — never commit (encryption key for the Shiprocket password/token)
+backend/storage/
+.env
+
+# Runtime uploads from the admin (product images, props, share images)
+dist/uploads/*
+!dist/uploads/.gitkeep
+
+# Large client source material (keep outside git)
+images/
+*.pdf
+*.zip
+
+# Dependencies / tooling
+node_modules/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Personal Claude Code settings
+.claude/settings.local.json

@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "cream-onion",
+    "name": "Cream & Onion",
+    "tagline": "Classic creamy-onion roast",
+    "profile": "creamy",
+    "color": "#7E9B3A",
+    "tint": "#DCE8B4",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["onion", "cream"],
+    "description": "Our classic. Whole makhana dry-roasted in rice bran oil, then tossed in a creamy, savoury seasoning with a mellow onion finish. Light, crisp and easy to keep reaching for.",
+    "nutrition": {
+      "energy": [459.62, 128.69, "6.46%"], "protein": [9.15, 2.26, "5.12%"], "carbs": [67.82, 18.99, "6.33%"],
+      "sugar": [3.42, 0.96, "1.91%"], "addedSugar": [0, 0, "-"], "fat": [18.86, 4.72, "7.04%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [2068.07, 578.86, "28.94%"], "fibre": [7.16, 2.0, "8.02%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Sugar, Salt, Maltodextrin, Hydrolysed Peanut Protein, Dehydrated Blend of Whey (from Milk), Stabiliser Emulsifier (INS 339), Acidity Regulators (INS 330 & INS 296), Cheese Concentrate, Colour (INS 160c), Nature Identical Flavouring Substance, Flavour Enhancers (INS 627, INS 631). Contains added Natural and Nature Identical Flavouring Substances.",
+    "allergens": ["Peanut", "Milk"]
+  },
+  {
+    "slug": "peri-peri",
+    "name": "Peri Peri",
+    "tagline": "Red chilli, garlic & spice roast",
+    "profile": "spicy",
+    "color": "#8E1420",
+    "tint": "#F2C9C2",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["chilli", "garlic"],
+    "description": "The boldest tin in the range. Red chilli, dried garlic, dried mango, cumin and a long list of whole spices build a slow heat over a light, roasted crunch.",
+    "nutrition": {
+      "energy": [488.01, 136.64, "6.83%"], "protein": [8.56, 2.40, "4.97%"], "carbs": [62.84, 17.60, "5.87%"],
+      "sugar": [3.50, 0.98, "1.96%"], "addedSugar": [0, 0, "-"], "fat": [22.49, 6.30, "9.40%"], "satFat": [5.52, 1.55, "7.73%"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [1824.67, 510.91, "25.54%"], "fibre": [8.11, 2.27, "9.08%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Spices & Condiments (Red Chilli, Dried Garlic, Dried Onion, Cumin, Dried Mango, Coriander Seeds, Dried Ginger, Turmeric, Bishop's Weed, Black Pepper, Cinnamon, Fenugreek Seeds, Nutmeg, Mace), Iodised Salt, Sugar, Maltodextrin, Hydrolysed Vegetable Protein (Peanut), Acidity Regulators (INS 330 & INS 296), Colour (INS 160c), Flavour Enhancers (INS 627, INS 631). Contains added Natural and Nature Identical Flavouring Substances.",
+    "allergens": ["Peanut", "Milk"]
+  },
+  {
+    "slug": "tangy-tomato",
+    "name": "Tangy Tomato",
+    "tagline": "Zesty tomato & tamarind crunch",
+    "profile": "spicy",
+    "color": "#B3391B",
+    "tint": "#F6CDB8",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["tomato", "chilli-flakes"],
+    "description": "Sun-bright tomato with a tamarind and black-salt tang, finished with a touch of clove and cinnamon. The highest-fibre tin in the range.",
+    "nutrition": {
+      "energy": [464.72, 130.12, "6.51%"], "protein": [10.36, 2.96, "5.80%"], "carbs": [66.67, 18.67, "6.22%"],
+      "sugar": [3.54, 0.99, "1.98%"], "addedSugar": [0, 0, "-"], "fat": [17.40, 4.87, "7.27%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [789.93, 221.18, "11.06%"], "fibre": [11.43, 3.20, "12.80%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Sugar, Salt, Maltodextrin, Dehydrated Vegetable Powders (Onion, Garlic), Food Acids (INS 330, INS 296), Sodium Salt (INS 262(i)), Spices & Spice Extracts (Clove, Cinnamon), Black Salt, Tamarind Powder, Anti-caking Agents (INS 341(iii), INS 551), Flavour Enhancers (INS 627 & INS 631), Hydrolysed Vegetable Protein (Soya). Contains added Natural and Nature Identical Flavouring Substances.",
+    "allergens": ["Peanut", "Milk", "Soya"]
+  },
+  {
+    "slug": "mint-pudina",
+    "name": "Mint Pudina",
+    "tagline": "Cooling mint & herb roast",
+    "profile": "herby",
+    "color": "#3B4E1E",
+    "tint": "#D4E3BF",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["mint-leaves", "peppercorns"],
+    "description": "A cool, green pudina roast with a gentle herb finish. Made for chai time and long afternoons.",
+    "nutrition": {
+      "energy": [442.84, 123.99, "6.20%"], "protein": [9.70, 2.74, "5.47%"], "carbs": [71.32, 19.97, "6.66%"],
+      "sugar": [0, 0, "1.91%"], "addedSugar": [0, 0, "-"], "fat": [13.16, 3.68, "5.49%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [2146.32, 600.96, "30.04%"], "fibre": [7.26, 2.03, "8.13%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Sugar, Salt, Maltodextrin, Hydrolysed Peanut Protein, Dehydrated Blend of Whey (from Milk), Stabiliser Emulsifier (INS 339), Acidity Regulators (INS 330 & INS 296), Cheese Concentrate, Colour (INS 160c), Nature Identical Flavouring Substance, Flavour Enhancers (INS 627, INS 631). Contains added Natural and Nature Identical Flavouring Substances.",
+    "allergens": ["Peanut", "Milk"]
+  },
+  {
+    "slug": "cheesy-delight",
+    "name": "Cheesy Delight",
+    "tagline": "Cheese-concentrated savoury roast",
+    "profile": "creamy",
+    "color": "#C98A12",
+    "tint": "#F7DE9E",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["cheese", "chilli-flakes"],
+    "description": "Rich cheese concentrate on a light roasted pop. The highest-protein tin in the range at 11.63 g per 100 g.",
+    "nutrition": {
+      "energy": [438.62, 122.64, "6.12%"], "protein": [11.63, 3.26, "6.51%"], "carbs": [70.51, 19.74, "6.58%"],
+      "sugar": [3.06, 0.86, "6.58%"], "addedSugar": [0, 0, "-"], "fat": [12.16, 3.40, "5.08%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [960.71, 268.99, "13.45%"], "fibre": [10.12, 2.80, "11.43%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Sugar, Salt, Maltodextrin, Hydrolysed Peanut Protein, Dehydrated Blend of Whey (from Milk), Stabiliser Emulsifier (INS 339), Acidity Regulators (INS 330 & INS 296), Cheese Concentrate, Colour (INS 160c), Nature Identical Flavouring Substance, Flavour Enhancers (INS 627, INS 631). Contains added Natural and Nature Identical Flavouring Substances.",
+    "allergens": ["Peanut", "Milk"]
+  },
+  {
+    "slug": "pink-salt",
+    "name": "Pink Salt",
+    "tagline": "3-ingredient Himalayan purity",
+    "profile": "classic",
+    "color": "#4A2342",
+    "tint": "#E7D3E2",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["pink-salt-bowl", "rosemary"],
+    "description": "Three ingredients and nothing else: roasted makhana, rice bran oil and Himalayan pink salt. Ties for the lowest fat in the range at 4.16 g per 100 g.",
+    "nutrition": {
+      "energy": [398.00, 111.44, "5.57%"], "protein": [9.15, 2.56, "5.12%"], "carbs": [80.99, 22.68, "7.56%"],
+      "sugar": [0, 0, "-"], "addedSugar": [0, 0, "-"], "fat": [4.16, 1.16, "1.74%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [644.52, 180.47, "9.02%"], "fibre": [7.19, 2.01, "8.06%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Himalayan Pink Salt.",
+    "allergens": []
+  },
+  {
+    "slug": "pink-salt-black-pepper",
+    "name": "Pink Salt & Black Pepper",
+    "tagline": "Cracked black pepper, pink salt roast",
+    "profile": "classic",
+    "color": "#4E4E4C",
+    "tint": "#DEDCD6",
+    "price": 295, "mrp": 295, "weight": "100 g",
+    "props": ["pepper-bowl", "pink-salt-bowl"],
+    "description": "Cracked black pepper and pink salt with a hint of milk solids. Clean and peppery, with the lowest fat in the range alongside Pink Salt.",
+    "nutrition": {
+      "energy": [398.00, 111.44, "5.57%"], "protein": [9.15, 2.26, "5.12%"], "carbs": [80.99, 22.68, "7.56%"],
+      "sugar": [0, 0, "-"], "addedSugar": [0, 0, "-"], "fat": [4.16, 1.16, "1.74%"], "satFat": [0, 0, "-"],
+      "transFat": [0, 0, "-"], "cholesterol": [0, 0, "-"], "sodium": [644.52, 180.47, "9.02%"], "fibre": [7.19, 2.01, "8.06%"]
+    },
+    "ingredients": "Roasted Makhana, Rice Bran Oil, Black Pepper, Pink Salt, Milk Solids, Maltodextrin, Hydrolysed Vegetable Protein (Peanut), Edible Gum (INS 414), Flavour Enhancer.",
+    "allergens": ["Peanut", "Milk"]
+  }
+]

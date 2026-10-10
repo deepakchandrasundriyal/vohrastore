@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sign In | Vohra's Store</title>
+<meta name="description" content="Sign in or create a Vohra's Store account to track orders and save addresses.">
+<link rel="canonical" href="https://vohrastore.com/login.html">
+<meta name="theme-color" content="#FBF6EA">
+<meta property="og:site_name" content="Vohra's Store">
+<meta property="og:title" content="Sign In | Vohra's Store">
+<meta property="og:description" content="Sign in or create a Vohra's Store account to track orders and save addresses.">
+<meta property="og:image" content="https://vohrastore.com/assets/img/brand/logo.png">
+<link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&text=%E0%A4%AE%E0%A4%96%E0%A4%BE%E0%A4%A8%E0%A4%BE&display=swap">
+<link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="" data-page="account">
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] btn-ink">Skip to content</a>
+<div class="bg-ink text-cream/90 text-[12px] sm:text-[12.5px] tracking-wide">
+  <div class="container flex h-9 items-center justify-center gap-6 overflow-hidden whitespace-nowrap">
+    <span class="flex items-center gap-2"><svg class="w-3.5 h-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.1 0-3.3 2.4-5.4 3.6-7.9.4 1.6 1.3 2.6 2.2 3 0-3 1.6-5.6 3.9-7 .1 3 2.8 5.3 2.8 9.7 0 4.3-2.4 8.3-6 8.3Z"/></svg> Roasted, not fried</span>
+    <span class="hidden sm:flex items-center gap-2"><svg class="w-3.5 h-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21V9M12 9c-2.5 0-4-1.8-4-4 2.5 0 4 1.8 4 4Zm0 0c2.5 0 4-1.8 4-4-2.5 0-4 1.8-4 4ZM12 14c-2.5 0-4-1.8-4-4M12 14c2.5 0 4-1.8 4-4"/><path d="M4 4l16 16"/></svg> Naturally gluten-free</span>
+    <span class="hidden md:flex items-center gap-2"><svg class="w-3.5 h-3.5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5 5 6v5.5c0 4.3 2.9 7.6 7 9 4.1-1.4 7-4.7 7-9V6l-7-2.5Z"/><path d="m9 12 2 2 4-4"/></svg> FSSAI Lic. 13324005000332</span>
+  </div>
+</div>
+
+<header class="sticky z-30 border-b border-line/80 bg-cream/90 backdrop-blur-md" style="top:env(safe-area-inset-top,0px)" data-header>
+  <div class="container flex h-16 lg:h-[84px] items-center gap-2">
+    <button type="button" class="icon-btn -ml-2 lg:hidden" data-open="menu" aria-label="Open menu" aria-controls="menu-drawer"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <a href="index.html" class="flex items-center shrink-0 max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2" aria-label="Vohra's Store home">
+      <img src="assets/img/brand/logo.webp" alt="Vohra's — Distributing Purity" width="520" height="346" class="h-11 lg:h-[60px] w-auto">
+    </a>
+    <nav class="hidden lg:flex flex-1 items-center justify-center gap-1 text-[14.5px]" aria-label="Main">
+      <a href="index.html" data-nav="home" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Home</a>
+      <a href="shop.html" data-nav="shop" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Shop</a>
+      <div class="relative group">
+        <button type="button" class="flex items-center gap-1 px-4 py-2 rounded-full hover:bg-sand" aria-haspopup="true">Flavours <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px]">
+          <div class="panel shadow-lift p-4">
+            <a href="product-cream-onion.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#7E9B3A"></span>Cream &amp; Onion</a>
+<a href="product-peri-peri.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#8E1420"></span>Peri Peri</a>
+<a href="product-tangy-tomato.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#B3391B"></span>Tangy Tomato</a>
+<a href="product-mint-pudina.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#3B4E1E"></span>Mint Pudina</a>
+<a href="product-cheesy-delight.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#C98A12"></span>Cheesy Delight</a>
+<a href="product-pink-salt.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4A2342"></span>Pink Salt</a>
+<a href="product-pink-salt-black-pepper.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4E4E4C"></span>Pink Salt &amp; Black Pepper</a>
+            <a href="shop.html" class="mt-2 flex items-center gap-2 border-t border-line pt-3 text-[14px] font-medium text-maroon">Shop all 7 flavours <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" data-nav="about" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">About</a>
+      <a href="services.html" data-nav="services" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Our Services</a>
+      <a href="contact.html" data-nav="contact" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Contact</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-0.5 -mr-2">
+      <button type="button" class="icon-btn" data-open="search" aria-label="Search flavours"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></button>
+      <a href="account.html" class="icon-btn hidden lg:inline-flex" aria-label="My account"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.3 7.5-5.3s6.3 1.7 7.5 5.3"/></svg></a>
+      <button type="button" class="icon-btn" data-open="cart" aria-label="Open cart" aria-controls="cart-drawer">
+        <svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+        <span class="absolute right-0.5 top-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-ink text-[11px] font-semibold leading-[18px] text-center num" data-cart-count hidden>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Search overlay -->
+<div class="fixed inset-x-0 top-0 z-50 bg-cream border-b border-line shadow-lift -translate-y-full transition-transform duration-300" style="padding-top:env(safe-area-inset-top,0px)" id="search-panel" data-panel="search" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="container py-4 sm:py-6">
+    <form class="flex items-center gap-2" role="search" data-search-form>
+      <label for="search-input" class="sr-only">Search flavours</label>
+      <div class="relative flex-1">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span>
+        <input id="search-input" type="search" class="input !h-14 !pl-12 !text-[16px] !rounded-full" placeholder="Search Peri Peri, Pink Salt, cheesy…" autocomplete="off" data-search-input>
+      </div>
+      <button type="button" class="icon-btn shrink-0" data-close aria-label="Close search"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </form>
+    <div class="mt-4 grid gap-1 sm:grid-cols-2" data-search-results aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- Mobile menu -->
+<aside class="drawer drawer--left" id="menu-drawer" data-panel="menu" aria-label="Menu" aria-hidden="true">
+  <div class="flex items-center justify-between px-5 h-16 border-b border-line">
+    <img src="assets/img/brand/logo.webp" alt="Vohra's" width="520" height="346" class="h-10 w-auto">
+    <button type="button" class="icon-btn -mr-2" data-close aria-label="Close menu"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <nav class="flex-1 overflow-y-auto px-5 py-4" aria-label="Mobile">
+    <ul class="font-display text-[1.65rem] leading-tight">
+      <li><a href="index.html" data-nav="home" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Home <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+      <li><a href="shop.html" data-nav="shop" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Shop all <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+      <li><a href="about.html" data-nav="about" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">About us <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+      <li><a href="services.html" data-nav="services" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Our services <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+      <li><a href="contact.html" data-nav="contact" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Contact <svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+    </ul>
+    <p class="eyebrow mt-7 mb-2">Flavours</p>
+    <a href="product-cream-onion.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#7E9B3A"></span>Cream &amp; Onion</a>
+<a href="product-peri-peri.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#8E1420"></span>Peri Peri</a>
+<a href="product-tangy-tomato.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#B3391B"></span>Tangy Tomato</a>
+<a href="product-mint-pudina.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#3B4E1E"></span>Mint Pudina</a>
+<a href="product-cheesy-delight.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#C98A12"></span>Cheesy Delight</a>
+<a href="product-pink-salt.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4A2342"></span>Pink Salt</a>
+<a href="product-pink-salt-black-pepper.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4E4E4C"></span>Pink Salt &amp; Black Pepper</a>
+    <div class="mt-7 grid grid-cols-2 gap-2 text-[14px]">
+      <a href="account.html" class="chip justify-center !h-11"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.3 7.5-5.3s6.3 1.7 7.5 5.3"/></svg> Account</a>
+      <a href="track-order.html" class="chip justify-center !h-11"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h11v9H3zM14 10h3.8l3.2 3.2v2.3H14"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></svg> Track order</a>
+      <a href="faq.html" class="chip justify-center !h-11">FAQs</a>
+      <a href="shipping-policy.html" class="chip justify-center !h-11">Shipping</a>
+    </div>
+  </nav>
+  <div class="border-t border-line px-5 py-4 text-[13.5px] text-muted">
+    <p class="flex items-center gap-2"><svg class="w-4 h-4 text-gold-deep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg> <a href="tel:+918826269797" class="text-ink">+91 88262 69797</a></p>
+    <p class="mt-1.5 flex items-center gap-2 break-all"><svg class="w-4 h-4 text-gold-deep shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg> vtcdelhi2002@gmail.com</p>
+  </div>
+</aside>
+
+<!-- Cart drawer -->
+<aside class="drawer drawer--right" id="cart-drawer" data-panel="cart" aria-label="Your cart" aria-hidden="true">
+  <div class="flex items-center justify-between px-5 h-16 border-b border-line">
+    <p class="font-display text-2xl">Your cart <span class="font-sans text-[14px] text-muted num" data-cart-label></span></p>
+    <button type="button" class="icon-btn -mr-2" data-close aria-label="Close cart"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="px-5 pt-4" data-freeship></div>
+  <div class="flex-1 overflow-y-auto px-5 py-2" data-mini-items></div>
+  <div class="border-t border-line bg-paper px-5 py-4" data-mini-foot>
+    <div class="flex items-baseline justify-between"><span class="text-muted">Subtotal</span><span class="text-xl font-semibold num" data-mini-subtotal>₹0</span></div>
+    <p class="mt-1 text-[12.5px] text-muted">MRP inclusive of all taxes. Shipping calculated at checkout.</p>
+    <div class="mt-4 grid grid-cols-2 gap-2">
+      <a href="cart.html" class="btn-line btn-sm !h-12">View cart</a>
+      <a href="checkout.html" class="btn-ink btn-sm !h-12">Checkout</a>
+    </div>
+  </div>
+</aside>
+<div class="scrim" data-scrim></div>
+
+<main id="main">
+<section class="container py-10 sm:py-16">
+  <div class="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-line bg-paper lg:grid-cols-2">
+    <div class="relative hidden lg:block bg-ink">
+      <div class="absolute inset-0" style="background:radial-gradient(70% 60% at 50% 75%, rgba(201,138,27,.45), transparent 70%)"></div>
+      <img src="assets/img/bowls/mint-pudina.webp" alt="" class="absolute left-1/2 bottom-[10%] w-[78%] -translate-x-1/2">
+      <div class="relative p-10">
+        <img src="assets/img/brand/logo.webp" alt="Vohra's" class="h-16 w-auto">
+        <p class="mt-8 font-display text-[2.4rem] leading-tight text-cream">Your orders, addresses and favourite flavours in one place.</p>
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-10">
+      <div class="flex gap-6 border-b border-line" role="tablist">
+        <button type="button" class="tab-btn !text-[16px]" role="tab" aria-selected="true" data-auth-tab="login">Sign in</button>
+        <button type="button" class="tab-btn !text-[16px]" role="tab" aria-selected="false" data-auth-tab="register">Create account</button>
+      </div>
+
+      <div data-auth-pane="login" class="pt-7">
+        <h1 class="text-[2.2rem]">Welcome back</h1>
+        <p class="mt-1 text-muted text-[14.5px]">Sign in to track orders and check out faster.</p>
+        <form class="mt-6 space-y-4" data-login-form novalidate>
+          <div><label for="l-email" class="label">Email</label><input id="l-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email"></div>
+          <div>
+            <div class="flex items-center justify-between"><label for="l-pass" class="label">Password</label><a href="#" class="text-[13px] link mb-1.5" onclick="event.preventDefault();window.Vohra&&Vohra.toast('A reset link will be emailed in the live site')">Forgot password?</a></div>
+            <div class="relative"><input id="l-pass" name="password" type="password" class="input pr-16" autocomplete="current-password" required data-label="Password"><button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[13px] text-muted hover:text-ink" data-toggle-pass="#l-pass">Show</button></div>
+          </div>
+          <button type="submit" class="btn-ink w-full">Sign in</button>
+        </form>
+        <div class="my-6 flex items-center gap-3 text-[12.5px] text-muted"><span class="h-px flex-1 bg-line"></span>or<span class="h-px flex-1 bg-line"></span></div>
+        <a href="checkout.html" class="btn-line w-full">Continue as guest</a>
+      </div>
+
+      <div data-auth-pane="register" class="pt-7" hidden>
+        <h1 class="text-[2.2rem]">Create your account</h1>
+        <p class="mt-1 text-muted text-[14.5px]">Save addresses and see every order in one place.</p>
+        <form class="mt-6 space-y-4" data-register-form novalidate>
+          <div><label for="r-name" class="label">Full name</label><input id="r-name" name="name" class="input" autocomplete="name" required data-label="Full name"></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div><label for="r-email" class="label">Email</label><input id="r-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email"></div>
+            <div><label for="r-phone" class="label">Mobile number</label><input id="r-phone" name="phone" type="tel" class="input" autocomplete="tel" required data-label="Mobile number" data-rule="phone"></div>
+          </div>
+          <div><label for="r-pass" class="label">Password</label><div class="relative"><input id="r-pass" name="password" type="password" class="input pr-16" autocomplete="new-password" required data-label="Password" data-rule="password"><button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[13px] text-muted hover:text-ink" data-toggle-pass="#r-pass">Show</button></div><p class="mt-1 text-[12.5px] text-muted">At least 8 characters.</p></div>
+          <label class="flex items-start gap-2.5 text-[13.5px] text-muted cursor-pointer"><input type="checkbox" class="check mt-0.5" checked> Send me new flavour launches and offers by email</label>
+          <button type="submit" class="btn-ink w-full">Create account</button>
+          <p class="text-[12.5px] text-muted">By creating an account you agree to our <a href="terms.html" class="link">Terms</a> and <a href="privacy-policy.html" class="link">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="bg-ink text-cream/75 pb-[76px] lg:pb-0">
+  <div class="container pt-14 sm:pt-16 pb-10">
+    <div class="grid gap-10 lg:grid-cols-[1.3fr_1fr_1fr_1.3fr]">
+      <div>
+        <img src="assets/img/brand/logo.webp" alt="Vohra's — Distributing Purity" width="520" height="346" class="h-[74px] w-auto" loading="lazy">
+        <p class="mt-5 max-w-xs text-[14.5px] leading-relaxed">Roasted makhana in seven signature flavours, from the dry-fruit lanes of Khari Baoli, Delhi.</p>
+        <div class="mt-5 flex flex-wrap gap-2 text-[12px]">
+          <span class="tag border border-cream/20 text-cream/80">FSSAI Lic. 13324005000332</span>
+          <span class="tag border border-cream/20 text-cream/80">Product of India</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 gap-8 lg:contents">
+        <div>
+          <p class="eyebrow !text-gold mb-4">Flavours</p>
+          <ul class="space-y-2.5 text-[14.5px]"><li><a href="product-cream-onion.html" class="hover:text-gold">Cream &amp; Onion</a></li>
+<li><a href="product-peri-peri.html" class="hover:text-gold">Peri Peri</a></li>
+<li><a href="product-tangy-tomato.html" class="hover:text-gold">Tangy Tomato</a></li>
+<li><a href="product-mint-pudina.html" class="hover:text-gold">Mint Pudina</a></li>
+<li><a href="product-cheesy-delight.html" class="hover:text-gold">Cheesy Delight</a></li>
+<li><a href="product-pink-salt.html" class="hover:text-gold">Pink Salt</a></li>
+<li><a href="product-pink-salt-black-pepper.html" class="hover:text-gold">Pink Salt &amp; Black Pepper</a></li></ul>
+        </div>
+        <div>
+          <p class="eyebrow !text-gold mb-4">Help</p>
+          <ul class="space-y-2.5 text-[14.5px]">
+            <li><a href="about.html" class="hover:text-gold">About us</a></li>
+            <li><a href="services.html" class="hover:text-gold">Our services</a></li>
+            <li><a href="contact.html" class="hover:text-gold">Contact us</a></li>
+            <li><a href="faq.html" class="hover:text-gold">FAQs</a></li>
+            <li><a href="track-order.html" class="hover:text-gold">Track order</a></li>
+            <li><a href="account.html" class="hover:text-gold">My account</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-[14px] leading-relaxed">
+        <p class="eyebrow !text-gold mb-4">Reach us</p>
+        <p class="flex gap-3"><svg class="w-5 h-5 shrink-0 text-gold mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.7-6.5-11a6.5 6.5 0 0 1 13 0C18.5 15.3 12 21 12 21Z"/><circle cx="12" cy="10" r="2.3"/></svg> <span>Vohra Trading Company<br>Shop 1, Bombay Wali Gali, Gandhi Gali, Khari Baoli, Delhi 110006</span></p>
+        <p class="mt-3 flex gap-3"><svg class="w-5 h-5 shrink-0 text-gold mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a12 12 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z"/></svg> <span><a href="tel:+918826269797" class="hover:text-gold">+91 88262 69797</a><br><a href="tel:+919953131000" class="hover:text-gold">+91 99531 31000</a></span></p>
+        <p class="mt-3 flex gap-3 break-all"><svg class="w-5 h-5 shrink-0 text-gold mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg> <span>vtcdelhi2002@gmail.com</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-cream/10">
+    <div class="container flex flex-col gap-3 py-5 text-[12.5px] sm:flex-row sm:items-center sm:justify-between">
+      <p>© 2026 Vohra Trading Company. All rights reserved.</p>
+      <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Policies">
+        <a href="privacy-policy.html" class="hover:text-gold">Privacy</a>
+        <a href="terms.html" class="hover:text-gold">Terms</a>
+        <a href="shipping-policy.html" class="hover:text-gold">Shipping</a>
+        <a href="refund-policy.html" class="hover:text-gold">Returns &amp; refunds</a>
+      </nav>
+    </div>
+    <p class="container pb-5 text-[11.5px] text-cream/45">Design preview. Cart, checkout, accounts and payments are simulated in this browser and no real orders are placed.</p>
+  </div>
+</footer>
+
+<!-- Mobile tab bar -->
+<nav class="lg:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 backdrop-blur-md" style="padding-bottom:env(safe-area-inset-bottom,0px)" aria-label="Quick" data-tabbar>
+  <div class="grid grid-cols-5 h-[64px] text-[10.5px] tracking-wide text-muted">
+    <a href="index.html" data-nav="home" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1v-8.5Z"/></svg>Home</a>
+    <a href="shop.html" data-nav="shop" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Shop</a>
+    <button type="button" data-open="search" class="flex flex-col items-center justify-center gap-1"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>Search</button>
+    <button type="button" data-open="cart" class="relative flex flex-col items-center justify-center gap-1">
+      <span class="relative"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h14l-1.2 11.1a2 2 0 0 1-2 1.9H8.2a2 2 0 0 1-2-1.9L5 7Z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg><span class="absolute -right-2.5 -top-1.5 min-w-[17px] h-[17px] px-1 rounded-full bg-gold text-ink text-[10px] font-semibold leading-[17px] text-center num" data-cart-count hidden>0</span></span>Cart
+    </button>
+    <a href="account.html" data-nav="account" aria-current="page" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink"><svg class="w-[22px] h-[22px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.3 7.5-5.3s6.3 1.7 7.5 5.3"/></svg>Account</a>
+  </div>
+</nav>
+
+<div class="toast" role="status" aria-live="polite" data-toast><svg class="w-5 h-5 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg><span data-toast-text></span></div>
+
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

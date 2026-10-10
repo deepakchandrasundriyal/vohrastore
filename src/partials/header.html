@@ -1,0 +1,103 @@
+<div class="bg-ink text-cream/90 text-[12px] sm:text-[12.5px] tracking-wide">
+  <div class="container flex h-9 items-center justify-center gap-6 overflow-hidden whitespace-nowrap">
+    <span class="flex items-center gap-2">{{icon:flame|w-3.5 h-3.5 text-gold}} Roasted, not fried</span>
+    <span class="hidden sm:flex items-center gap-2">{{icon:wheat-off|w-3.5 h-3.5 text-gold}} Naturally gluten-free</span>
+    <span class="hidden md:flex items-center gap-2">{{icon:shield|w-3.5 h-3.5 text-gold}} FSSAI Lic. {{fssai_marketer}}</span>
+  </div>
+</div>
+
+<header class="sticky z-30 border-b border-line/80 bg-cream/90 backdrop-blur-md" style="top:env(safe-area-inset-top,0px)" data-header>
+  <div class="container flex h-16 lg:h-[84px] items-center gap-2">
+    <button type="button" class="icon-btn -ml-2 lg:hidden" data-open="menu" aria-label="Open menu" aria-controls="menu-drawer">{{icon:menu|w-6 h-6}}</button>
+    <a href="index.html" class="flex items-center shrink-0 max-lg:absolute max-lg:left-1/2 max-lg:-translate-x-1/2" aria-label="Vohra's Store home">
+      <img src="assets/img/brand/logo.webp" alt="Vohra's — Distributing Purity" width="520" height="346" class="h-11 lg:h-[60px] w-auto">
+    </a>
+    <nav class="hidden lg:flex flex-1 items-center justify-center gap-1 text-[14.5px]" aria-label="Main">
+      <a href="index.html" data-nav="home" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Home</a>
+      <a href="shop.html" data-nav="shop" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Shop</a>
+      <div class="relative group">
+        <button type="button" class="flex items-center gap-1 px-4 py-2 rounded-full hover:bg-sand" aria-haspopup="true">Flavours {{icon:chevron-down|w-4 h-4}}</button>
+        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px]">
+          <div class="panel shadow-lift p-4">
+            {{nav_flavours}}
+            <a href="shop.html" class="mt-2 flex items-center gap-2 border-t border-line pt-3 text-[14px] font-medium text-maroon">Shop all {{product_count}} flavours {{icon:arrow|w-4 h-4}}</a>
+          </div>
+        </div>
+      </div>
+      <a href="about.html" data-nav="about" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">About</a>
+      <a href="services.html" data-nav="services" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Our Services</a>
+      <a href="contact.html" data-nav="contact" class="px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Contact</a>
+    </nav>
+    <div class="ml-auto flex items-center gap-0.5 -mr-2">
+      <button type="button" class="icon-btn" data-open="search" aria-label="Search flavours">{{icon:search|w-[22px] h-[22px]}}</button>
+      <a href="account.html" class="icon-btn hidden lg:inline-flex" aria-label="My account">{{icon:user|w-[22px] h-[22px]}}</a>
+      <button type="button" class="icon-btn" data-open="cart" aria-label="Open cart" aria-controls="cart-drawer">
+        {{icon:cart|w-[22px] h-[22px]}}
+        <span class="absolute right-0.5 top-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-gold text-ink text-[11px] font-semibold leading-[18px] text-center num" data-cart-count hidden>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Search overlay -->
+<div class="fixed inset-x-0 top-0 z-50 bg-cream border-b border-line shadow-lift -translate-y-full transition-transform duration-300" style="padding-top:env(safe-area-inset-top,0px)" id="search-panel" data-panel="search" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="container py-4 sm:py-6">
+    <form class="flex items-center gap-2" role="search" data-search-form>
+      <label for="search-input" class="sr-only">Search flavours</label>
+      <div class="relative flex-1">
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted">{{icon:search}}</span>
+        <input id="search-input" type="search" class="input !h-14 !pl-12 !text-[16px] !rounded-full" placeholder="Search Peri Peri, Pink Salt, cheesy…" autocomplete="off" data-search-input>
+      </div>
+      <button type="button" class="icon-btn shrink-0" data-close aria-label="Close search">{{icon:close|w-6 h-6}}</button>
+    </form>
+    <div class="mt-4 grid gap-1 sm:grid-cols-2" data-search-results aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- Mobile menu -->
+<aside class="drawer drawer--left" id="menu-drawer" data-panel="menu" aria-label="Menu" aria-hidden="true">
+  <div class="flex items-center justify-between px-5 h-16 border-b border-line">
+    <img src="assets/img/brand/logo.webp" alt="Vohra's" width="520" height="346" class="h-10 w-auto">
+    <button type="button" class="icon-btn -mr-2" data-close aria-label="Close menu">{{icon:close|w-6 h-6}}</button>
+  </div>
+  <nav class="flex-1 overflow-y-auto px-5 py-4" aria-label="Mobile">
+    <ul class="font-display text-[1.65rem] leading-tight">
+      <li><a href="index.html" data-nav="home" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Home {{icon:chevron|w-5 h-5 text-gold}}</a></li>
+      <li><a href="shop.html" data-nav="shop" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Shop all {{icon:chevron|w-5 h-5 text-gold}}</a></li>
+      <li><a href="about.html" data-nav="about" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">About us {{icon:chevron|w-5 h-5 text-gold}}</a></li>
+      <li><a href="services.html" data-nav="services" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Our services {{icon:chevron|w-5 h-5 text-gold}}</a></li>
+      <li><a href="contact.html" data-nav="contact" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Contact {{icon:chevron|w-5 h-5 text-gold}}</a></li>
+    </ul>
+    <p class="eyebrow mt-7 mb-2">Flavours</p>
+    {{nav_flavours}}
+    <div class="mt-7 grid grid-cols-2 gap-2 text-[14px]">
+      <a href="account.html" class="chip justify-center !h-11">{{icon:user|w-4 h-4}} Account</a>
+      <a href="track-order.html" class="chip justify-center !h-11">{{icon:truck|w-4 h-4}} Track order</a>
+      <a href="faq.html" class="chip justify-center !h-11">FAQs</a>
+      <a href="shipping-policy.html" class="chip justify-center !h-11">Shipping</a>
+    </div>
+  </nav>
+  <div class="border-t border-line px-5 py-4 text-[13.5px] text-muted">
+    <p class="flex items-center gap-2">{{icon:phone|w-4 h-4 text-gold-deep}} <a href="tel:{{phone1_raw}}" class="text-ink">{{phone1}}</a></p>
+    <p class="mt-1.5 flex items-center gap-2 break-all">{{icon:mail|w-4 h-4 text-gold-deep shrink-0}} {{email}}</p>
+  </div>
+</aside>
+
+<!-- Cart drawer -->
+<aside class="drawer drawer--right" id="cart-drawer" data-panel="cart" aria-label="Your cart" aria-hidden="true">
+  <div class="flex items-center justify-between px-5 h-16 border-b border-line">
+    <p class="font-display text-2xl">Your cart <span class="font-sans text-[14px] text-muted num" data-cart-label></span></p>
+    <button type="button" class="icon-btn -mr-2" data-close aria-label="Close cart">{{icon:close|w-6 h-6}}</button>
+  </div>
+  <div class="px-5 pt-4" data-freeship></div>
+  <div class="flex-1 overflow-y-auto px-5 py-2" data-mini-items></div>
+  <div class="border-t border-line bg-paper px-5 py-4" data-mini-foot>
+    <div class="flex items-baseline justify-between"><span class="text-muted">Subtotal</span><span class="text-xl font-semibold num" data-mini-subtotal>₹0</span></div>
+    <p class="mt-1 text-[12.5px] text-muted">MRP inclusive of all taxes. Shipping calculated at checkout.</p>
+    <div class="mt-4 grid grid-cols-2 gap-2">
+      <a href="cart.html" class="btn-line btn-sm !h-12">View cart</a>
+      <a href="checkout.html" class="btn-ink btn-sm !h-12">Checkout</a>
+    </div>
+  </div>
+</aside>
+<div class="scrim" data-scrim></div>

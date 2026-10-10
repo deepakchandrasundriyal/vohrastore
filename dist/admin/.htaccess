@@ -1,0 +1,11 @@
+# Admin area: never cached by proxies, never indexed
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow"
+  Header set X-Frame-Options "DENY"
+  Header set Referrer-Policy "same-origin"
+  # Always revalidate the admin app (ES modules are cached aggressively otherwise, so updates would not show up).
+  <FilesMatch "\.(js|css|html)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+AcceptPathInfo On

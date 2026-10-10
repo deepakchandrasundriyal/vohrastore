@@ -1,0 +1,20 @@
+{
+  "domain": "vohrastore.com",
+  "brand": "Vohra's",
+  "marketer_name": "Vohra Trading Company",
+  "packer_name": "RPL Dryfruit (RPL Telecom)",
+  "addr_shop": "Shop 1, Bombay Wali Gali, Gandhi Gali, Khari Baoli, Delhi 110006",
+  "addr_om": "0/4, Om Market, Ishwar Bhawan, Khari Baoli, Delhi 110006",
+  "addr_packer": "D-931 Chawla Colony, Ballabgarh, Faridabad, Haryana 121004",
+  "phone1": "+91 88262 69797",
+  "phone1_raw": "+918826269797",
+  "phone2": "+91 99531 31000",
+  "phone2_raw": "+919953131000",
+  "email": "vtcdelhi2002@gmail.com",
+  "fssai_marketer": "13324005000332",
+  "fssai_packer": "20820003000649",
+  "year": "2026",
+  "shipping": { "freeAbove": 499, "flat": 49, "note": "ASSUMPTION — confirm with client" },
+  "coupons": { "VOHRA10": { "type": "percent", "value": 10, "label": "10% off your order" } },
+  "company": { "name": "Vohra Trading Company", "phone": "+91 88262 69797", "email": "vtcdelhi2002@gmail.com" }
+}

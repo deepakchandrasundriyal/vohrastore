@@ -1,0 +1,52 @@
+<!--meta {"title": "Sign In", "desc": "Sign in or create a Vohra's Store account to track orders and save addresses.", "page": "account"} -->
+
+<section class="container py-10 sm:py-16">
+  <div class="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-line bg-paper lg:grid-cols-2">
+    <div class="relative hidden lg:block bg-ink">
+      <div class="absolute inset-0" style="background:radial-gradient(70% 60% at 50% 75%, rgba(201,138,27,.45), transparent 70%)"></div>
+      <img src="assets/img/bowls/mint-pudina.webp" alt="" class="absolute left-1/2 bottom-[10%] w-[78%] -translate-x-1/2">
+      <div class="relative p-10">
+        <img src="assets/img/brand/logo.webp" alt="Vohra's" class="h-16 w-auto">
+        <p class="mt-8 font-display text-[2.4rem] leading-tight text-cream">Your orders, addresses and favourite flavours in one place.</p>
+      </div>
+    </div>
+
+    <div class="p-6 sm:p-10">
+      <div class="flex gap-6 border-b border-line" role="tablist">
+        <button type="button" class="tab-btn !text-[16px]" role="tab" aria-selected="true" data-auth-tab="login">Sign in</button>
+        <button type="button" class="tab-btn !text-[16px]" role="tab" aria-selected="false" data-auth-tab="register">Create account</button>
+      </div>
+
+      <div data-auth-pane="login" class="pt-7">
+        <h1 class="text-[2.2rem]">Welcome back</h1>
+        <p class="mt-1 text-muted text-[14.5px]">Sign in to track orders and check out faster.</p>
+        <form class="mt-6 space-y-4" data-login-form novalidate>
+          <div><label for="l-email" class="label">Email</label><input id="l-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email"></div>
+          <div>
+            <div class="flex items-center justify-between"><label for="l-pass" class="label">Password</label><a href="#" class="text-[13px] link mb-1.5" onclick="event.preventDefault();window.Vohra&&Vohra.toast('A reset link will be emailed in the live site')">Forgot password?</a></div>
+            <div class="relative"><input id="l-pass" name="password" type="password" class="input pr-16" autocomplete="current-password" required data-label="Password"><button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[13px] text-muted hover:text-ink" data-toggle-pass="#l-pass">Show</button></div>
+          </div>
+          <button type="submit" class="btn-ink w-full">Sign in</button>
+        </form>
+        <div class="my-6 flex items-center gap-3 text-[12.5px] text-muted"><span class="h-px flex-1 bg-line"></span>or<span class="h-px flex-1 bg-line"></span></div>
+        <a href="checkout.html" class="btn-line w-full">Continue as guest</a>
+      </div>
+
+      <div data-auth-pane="register" class="pt-7" hidden>
+        <h1 class="text-[2.2rem]">Create your account</h1>
+        <p class="mt-1 text-muted text-[14.5px]">Save addresses and see every order in one place.</p>
+        <form class="mt-6 space-y-4" data-register-form novalidate>
+          <div><label for="r-name" class="label">Full name</label><input id="r-name" name="name" class="input" autocomplete="name" required data-label="Full name"></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div><label for="r-email" class="label">Email</label><input id="r-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email"></div>
+            <div><label for="r-phone" class="label">Mobile number</label><input id="r-phone" name="phone" type="tel" class="input" autocomplete="tel" required data-label="Mobile number" data-rule="phone"></div>
+          </div>
+          <div><label for="r-pass" class="label">Password</label><div class="relative"><input id="r-pass" name="password" type="password" class="input pr-16" autocomplete="new-password" required data-label="Password" data-rule="password"><button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-[13px] text-muted hover:text-ink" data-toggle-pass="#r-pass">Show</button></div><p class="mt-1 text-[12.5px] text-muted">At least 8 characters.</p></div>
+          <label class="flex items-start gap-2.5 text-[13.5px] text-muted cursor-pointer"><input type="checkbox" class="check mt-0.5" checked> Send me new flavour launches and offers by email</label>
+          <button type="submit" class="btn-ink w-full">Create account</button>
+          <p class="text-[12.5px] text-muted">By creating an account you agree to our <a href="terms.html" class="link">Terms</a> and <a href="privacy-policy.html" class="link">Privacy Policy</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
