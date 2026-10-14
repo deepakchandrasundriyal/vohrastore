@@ -150,6 +150,76 @@
   }
   .v-card.is-playing .v-cover { @apply opacity-0 pointer-events-none; }
 
+  /* ---------- Alternate home (home-2.html) ---------- */
+  /* Horizontal product rail (reuses .p-card) */
+  .product-rail { @apply flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2; }
+  .product-rail > .p-card { @apply shrink-0 snap-start w-[230px] sm:w-[250px]; }
+  .rail-btn { @apply grid place-items-center w-11 h-11 rounded-full border border-ink/20 bg-paper text-ink transition hover:bg-ink hover:text-cream; }
+
+  /* Category tiles */
+  .cat-tile { @apply relative flex flex-col justify-end min-h-[220px] sm:min-h-[280px] rounded-[22px] p-5 sm:p-7 overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-lift; }
+  .cat-tile__tag { @apply absolute left-4 top-4 sm:left-6 sm:top-6 tag; }
+  .cat-tile__img { @apply absolute right-[-8%] top-[4%] w-[78%] sm:w-[62%] drop-shadow-[0_16px_16px_rgba(20,16,16,.3)] transition duration-500; }
+  .cat-tile:hover .cat-tile__img { @apply -rotate-6 scale-105; }
+  .cat-tile__art { @apply absolute right-4 top-6 sm:right-7 w-20 sm:w-28 opacity-40; }
+  .cat-tile__name { @apply relative font-display text-[1.6rem] sm:text-[2.1rem] leading-[1.05] font-semibold; }
+  .cat-tile__cta { @apply relative mt-1.5 inline-flex items-center gap-1.5 text-[13.5px] font-medium; }
+
+  /* Fading lifestyle slideshow */
+  .slides { @apply relative mx-auto w-full max-w-[540px] aspect-square rounded-[28px] overflow-hidden shadow-lift bg-sand; }
+  .slide { @apply absolute inset-0 w-full h-full object-cover opacity-0 scale-[1.03] transition duration-1000 ease-out; }
+  .slide.is-active { @apply opacity-100 scale-100; }
+  .slides__dots { @apply absolute inset-x-0 bottom-4 flex justify-center gap-2; }
+  .slides__dots button { @apply w-2.5 h-2.5 rounded-full bg-cream/60 ring-1 ring-ink/20 transition-all; }
+  .slides__dots button[aria-current="true"] { @apply w-7 bg-mustard; }
+
+  /* Feature cards */
+  .diff-card { @apply rounded-[22px] border border-line bg-paper p-6 sm:p-7 transition duration-300 hover:-translate-y-0.5 hover:shadow-lift hover:border-mustard; }
+  .diff-card__icon { @apply grid place-items-center w-12 h-12 rounded-full bg-mustard text-cocoa; }
+  .diff-card__title { @apply mt-5 text-[1.55rem] leading-tight; }
+  .diff-card__text { @apply mt-2 text-[14.5px] text-muted; }
+
+  /* 3D-ish rotating flavour carousel: JS sets data-pos -3..3 on each item */
+  .flow { @apply relative mx-auto max-w-[900px]; }
+  .flow__stage { @apply relative h-[300px] sm:h-[380px]; }
+  .flow__item { @apply absolute left-1/2 bottom-0 w-[130px] sm:w-[175px] transition-all duration-700 ease-out; transform: translateX(-50%) scale(.5); opacity: 0; pointer-events: none; }
+  .flow__item img { @apply w-full h-auto drop-shadow-[0_22px_20px_rgba(0,0,0,.45)]; }
+  .flow__item[data-pos="0"] { transform: translateX(-50%) scale(1); opacity: 1; z-index: 5; pointer-events: auto; }
+  .flow__item[data-pos="-1"] { transform: translateX(calc(-50% - 118%)) scale(.74); opacity: .85; z-index: 4; pointer-events: auto; }
+  .flow__item[data-pos="1"] { transform: translateX(calc(-50% + 118%)) scale(.74); opacity: .85; z-index: 4; pointer-events: auto; }
+  .flow__item[data-pos="-2"] { transform: translateX(calc(-50% - 205%)) scale(.54); opacity: .45; z-index: 3; }
+  .flow__item[data-pos="2"] { transform: translateX(calc(-50% + 205%)) scale(.54); opacity: .45; z-index: 3; }
+  /* home-2 is multi-snack: hide the makhana Flavours menu (desktop dropdown + mobile drawer list) */
+  .no-flavours-nav [data-nav-flavours] { display: none; }
+
+  /* Row variant (home-2 hero): smaller tins so the centre one clears the button above */
+  .flow--row { --tin: 112px; }
+  @media (min-width: 640px) { .flow--row { --tin: 138px; } }
+  @media (min-width: 1024px) { .flow--row { --tin: 150px; } }
+  .flow--row .flow__item { width: var(--tin); transform-origin: 50% 100%; }  /* shrink towards the floor so all tins share a baseline */
+  .flow--row .flow__stage { height: calc(var(--tin) * 2.2); }  /* tins are ~2.1:1, so the centre one never rises into the button */
+  /* Hero variant (home-2): three tins in the gold arch, like index.html, rotating through flavours */
+  .flow--hero .flow__stage { @apply absolute inset-0 h-auto; }
+  .flow--hero .flow__item { @apply w-auto; height: 60%; bottom: 30%; }
+  .flow--hero .flow__item img { @apply h-full w-auto drop-shadow-[0_18px_16px_rgba(20,16,16,.3)]; }
+  .flow--hero .flow__item[data-pos="0"] { transform: translateX(-50%); }
+  .flow--hero .flow__item[data-pos="-1"] { height: 66%; bottom: 8%; opacity: 1; transform: translateX(calc(-50% - 122%)) rotate(-7deg); }
+  .flow--hero .flow__item[data-pos="1"] { height: 66%; bottom: 8%; opacity: 1; transform: translateX(calc(-50% + 122%)) rotate(7deg); }
+  .flow--hero .flow__item[data-pos="-2"] { height: 50%; bottom: 8%; opacity: 0; transform: translateX(calc(-50% - 200%)) rotate(-12deg); }
+  .flow--hero .flow__item[data-pos="2"] { height: 50%; bottom: 8%; opacity: 0; transform: translateX(calc(-50% + 200%)) rotate(12deg); }
+  .flow__btn { @apply absolute top-1/2 -translate-y-1/2 z-10 !bg-cream/10 !text-cream !border-cream/30 hover:!bg-cream hover:!text-ink; }
+
+  /* Business cards */
+  .biz-card { @apply flex flex-col items-center text-center gap-2 rounded-[22px] bg-[#F2F2F2] px-6 py-10 transition duration-300 hover:-translate-y-1 hover:shadow-lift; }
+  .biz-card__icon { @apply grid place-items-center w-20 h-20 rounded-full bg-cocoa text-mustard mb-3; }
+  .biz-card__title { @apply font-display text-[1.6rem] leading-tight font-semibold text-ink; }
+
+  .gift-card { @apply flex flex-col items-center text-center rounded-[26px] bg-paper p-6 sm:p-8 shadow-lift; }
+  .gift-card__art { @apply flex items-end justify-center gap-0 w-full h-[190px] rounded-2xl pt-4 overflow-hidden; }
+  .gift-card__art img { @apply w-auto drop-shadow-[0_10px_10px_rgba(20,16,16,.25)]; }
+
+  .scatter { @apply absolute pointer-events-none drop-shadow-[0_8px_8px_rgba(20,16,16,.18)]; }
+
   .float-a { animation: floatA 4s ease-in-out infinite; }
   .float-b { animation: floatA 5s ease-in-out infinite reverse; }
   @keyframes floatA { 0%,100% { transform: translateY(0) rotate(0) } 50% { transform: translateY(-10px) rotate(6deg) } }

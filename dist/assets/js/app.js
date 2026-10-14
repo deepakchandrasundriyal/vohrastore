@@ -606,6 +606,59 @@
   });
   $$('[data-video] video').forEach(v => v.addEventListener('ended', () => { v.currentTime = 0; v.closest('[data-video]').classList.remove('is-playing'); }));
 
+  /* ---------------- alternate home (home-2.html) ---------------- */
+  /* horizontal rails: arrows scroll by roughly one card */
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-rail-prev],[data-rail-next]'); if (!b) return;
+    const rail = $(b.dataset.railPrev || b.dataset.railNext); if (!rail) return;
+    const card = rail.firstElementChild, step = card ? card.getBoundingClientRect().width + 16 : 260;
+    rail.scrollBy({ left: b.hasAttribute('data-rail-prev') ? -step : step, behavior: 'smooth' });
+  });
+
+  /* fading slideshow with dots; auto-advances unless the visitor prefers reduced motion */
+  $$('[data-slides]').forEach(box => {
+    const slides = $$('.slide', box), dots = $('[data-slide-dots]', box);
+    if (slides.length < 2) return;
+    let i = 0, timer;
+    dots.innerHTML = slides.map((_, k) => `<button type="button" aria-label="Show image ${k + 1}"></button>`).join('');
+    const btns = $$('button', dots);
+    const show = k => {
+      i = (k + slides.length) % slides.length;
+      slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      btns.forEach((d, n) => d.setAttribute('aria-current', n === i ? 'true' : 'false'));
+    };
+    const play = () => { if (!calm) { clearInterval(timer); timer = setInterval(() => show(i + 1), 4000); } };
+    btns.forEach((d, n) => d.addEventListener('click', () => { show(n); play(); }));
+    box.addEventListener('mouseenter', () => clearInterval(timer));
+    box.addEventListener('mouseleave', play);
+    show(0); play();
+  });
+
+  /* rotating flavour carousel: centre item is data-pos="0", neighbours ±1, ±2 */
+  $$('[data-flow]').forEach(flow => {
+    const items = $$('[data-flow-item]', flow), n = items.length;
+    const sec = flow.closest('section'), nameEl = $('[data-flow-name]', sec), addBtn = $('[data-flow-add]', sec);
+    let i = 0, timer;
+    const show = k => {
+      i = (k + n) % n;
+      items.forEach((it, idx) => {
+        let d = idx - i; if (d > n / 2) d -= n; if (d < -n / 2) d += n;
+        it.dataset.pos = Math.abs(d) <= 2 ? d : 'off';
+        it.tabIndex = d === 0 ? 0 : -1;
+      });
+      if (nameEl) nameEl.textContent = items[i].dataset.name;
+      if (addBtn) addBtn.dataset.add = items[i].dataset.slug;
+    };
+    const play = () => { if (!calm) { clearInterval(timer); timer = setInterval(() => show(i + 1), 3500); } };
+    const prev = $('[data-flow-prev]', flow), next = $('[data-flow-next]', flow);
+    if (prev) prev.addEventListener('click', () => { show(i - 1); play(); });
+    if (next) next.addEventListener('click', () => { show(i + 1); play(); });
+    items.forEach((it, idx) => it.addEventListener('click', e => { if (idx !== i) { e.preventDefault(); show(idx); play(); } }));
+    flow.addEventListener('mouseenter', () => clearInterval(timer));
+    flow.addEventListener('mouseleave', play);
+    show(0); play();
+  });
+
   /* ---------------- boot ---------------- */
   function renderAll() { renderCounts(); renderMini(); renderCartPage(); renderCheckout(); }
   renderAll(); renderSuccess(); initShop(); initCompare(); initProduct(); initAuth(); initAccount(); initTrack();

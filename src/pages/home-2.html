@@ -1,0 +1,328 @@
+<!--meta {"title": "Healthy Snacks, Honestly Made", "desc": "Vohra's healthy snacks: roasted, never fried and made with real ingredients. Shop wholesome, flavour-packed snacks in sturdy 100 g tins.", "page": "home", "body_class": "no-flavours-nav"} -->
+
+<!-- ALTERNATE HOME (multi-snack). Same theme as index.html; sections modelled on the client's reference. -->
+
+<!-- HERO: text on the left, rotating products on the right (stacked on mobile) -->
+<section class="relative overflow-hidden text-cream" style="background:radial-gradient(70% 85% at 75% 55%, #4A2416 0%, #2B140C 55%, #140805 100%), #2B140C">
+  <div class="container relative grid items-center gap-6 lg:grid-cols-[1fr_1.1fr] pt-12 sm:pt-14 pb-8 lg:py-20">
+    <div class="relative z-10 text-center lg:text-left">
+    <p class="eyebrow !text-mustard">Vohra's Healthy Snacks</p>
+    <h1 class="mt-3 text-[2.6rem] sm:text-[3.8rem] lg:text-[4.2rem] leading-[1.05] !text-cream">Snack better,<br><span class="text-[#E9B949]">the healthy way.</span></h1>
+    <div class="ornament mx-auto lg:mx-0 mt-6 max-w-[260px]" aria-hidden="true"><span></span><span></span></div>
+    <p class="lede mt-5 mx-auto lg:mx-0 lg:max-w-[36ch] !text-cream/75">Wholesome snacks made with real ingredients, roasted and never fried.</p>
+    <a href="shop.html" class="btn-ink mt-7 relative z-10">Explore our range {{icon:arrow|w-4 h-4}}</a>
+    </div>
+
+    <div class="flow flow--row w-full" data-flow>
+      <div class="flow__stage">
+        <a href="product-pink-salt.html" class="flow__item" data-flow-item data-name="Pink Salt"><img src="assets/img/products/pink-salt.webp" alt="Pink Salt tin" width="358" height="760" fetchpriority="high"></a>
+        <a href="product-peri-peri.html" class="flow__item" data-flow-item data-name="Peri Peri"><img src="assets/img/products/peri-peri.webp" alt="Peri Peri tin" width="347" height="704"></a>
+        <a href="product-cheesy-delight.html" class="flow__item" data-flow-item data-name="Cheesy Delight"><img src="assets/img/products/cheesy-delight.webp" alt="Cheesy Delight tin" width="351" height="723"></a>
+        <a href="product-mint-pudina.html" class="flow__item" data-flow-item data-name="Mint Pudina"><img src="assets/img/products/mint-pudina.webp" alt="Mint Pudina tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-tangy-tomato.html" class="flow__item" data-flow-item data-name="Tangy Tomato"><img src="assets/img/products/tangy-tomato.webp" alt="Tangy Tomato tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-cream-onion.html" class="flow__item" data-flow-item data-name="Cream &amp; Onion"><img src="assets/img/products/cream-onion.webp" alt="Cream &amp; Onion tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-pink-salt-black-pepper.html" class="flow__item" data-flow-item data-name="Pink Salt &amp; Black Pepper"><img src="assets/img/products/pink-salt-black-pepper.webp" alt="Pink Salt &amp; Black Pepper tin" width="358" height="750" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NO COMPROMISES + product rail -->
+<section class="py-14 sm:py-20">
+  <div class="container">
+    <div class="rounded-[28px] bg-[#F2F2F2] p-6 sm:p-10 lg:p-12 grid gap-10 lg:grid-cols-[.8fr_1.6fr] lg:items-center overflow-hidden">
+      <div>
+        <p class="eyebrow">Why snack with us</p>
+        <h2 class="h-section mt-2">Healthy snacking, without the compromises.</h2>
+        <div class="ornament mt-5 max-w-[200px]" aria-hidden="true"><span></span><span></span></div>
+        <p class="lede mt-5">A flavour-first approach for Indian taste buds.</p>
+        <ul class="mt-5 divide-y divide-line border-y border-line text-[15px]">
+          <li class="flex items-center gap-3 py-3"><span class="text-maroon">{{icon:flame|w-5 h-5}}</span>Roasted, never fried</li>
+          <li class="flex items-center gap-3 py-3"><span class="text-maroon">{{icon:dumbbell|w-5 h-5}}</span>Protein-packed</li>
+          <li class="flex items-center gap-3 py-3"><span class="text-maroon">{{icon:wheat-off|w-5 h-5}}</span>Naturally gluten-free</li>
+          <li class="flex items-center gap-3 py-3"><span class="text-maroon">{{icon:shield|w-5 h-5}}</span>FSSAI licensed</li>
+        </ul>
+        <a href="shop.html" class="btn-ink mt-7 relative z-10">Explore our range {{icon:arrow|w-4 h-4}}</a>
+      </div>
+      <div class="min-w-0">
+        <div class="flex justify-end gap-2 mb-4">
+          <button type="button" class="rail-btn" data-rail-prev="#rail-products" aria-label="Previous products">{{icon:arrow-left|w-5 h-5}}</button>
+          <button type="button" class="rail-btn" data-rail-next="#rail-products" aria-label="Next products">{{icon:arrow|w-5 h-5}}</button>
+        </div>
+        <div id="rail-products" class="product-rail no-scrollbar">
+          {{product_cards}}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="pb-14 sm:pb-20" id="categories">
+  <div class="container">
+    <div class="text-center">
+      <p class="eyebrow">Shop by category</p>
+      <h2 class="h-section mt-2">One pantry, many good snacks</h2>
+      <div class="ornament ornament-center mt-4 max-w-[240px]" aria-hidden="true"><span></span><span></span></div>
+      <p class="lede mx-auto mt-4">Good-for-you snacks for every craving, with new ranges on the way.</p>
+    </div>
+    <div class="mt-10 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+      <a href="shop.html" class="cat-tile bg-mustard text-ink">
+        <span class="cat-tile__tag bg-ink text-mustard">7 flavours</span>
+        <img src="assets/img/bowls/cheesy-delight.webp" alt="" loading="lazy" class="cat-tile__img">
+        <span class="cat-tile__name">Roasted Makhana</span>
+        <span class="cat-tile__cta">Shop now {{icon:arrow|w-4 h-4}}</span>
+      </a>
+      <div class="cat-tile bg-plum text-cream">
+        <span class="cat-tile__tag bg-cream/15 text-cream">Coming soon</span>
+        <svg class="cat-tile__art" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M60 18c-17 12-26 30-26 46 0 19 12 34 26 34s26-15 26-34c0-16-9-34-26-46Z"/><path d="M60 30c-6 18-6 44 0 62" opacity=".55"/><path d="M30 90c-10-8-12-22-5-31 6 3 11 12 10 22M92 88c9-7 11-20 5-29-6 3-10 11-9 20" opacity=".7"/></svg>
+        <span class="cat-tile__name">Roasted Nuts</span>
+        <span class="cat-tile__cta opacity-70">Almonds, cashews &amp; more</span>
+      </div>
+      <div class="cat-tile bg-maroon text-cream">
+        <span class="cat-tile__tag bg-cream/15 text-cream">Coming soon</span>
+        <svg class="cat-tile__art" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><ellipse cx="42" cy="48" rx="9" ry="14" transform="rotate(-25 42 48)"/><ellipse cx="74" cy="40" rx="9" ry="14" transform="rotate(20 74 40)"/><ellipse cx="58" cy="76" rx="9" ry="14" transform="rotate(-5 58 76)"/><ellipse cx="88" cy="74" rx="7" ry="11" transform="rotate(35 88 74)"/><ellipse cx="30" cy="80" rx="7" ry="11" transform="rotate(-40 30 80)"/><circle cx="64" cy="58" r="3" fill="currentColor"/><circle cx="46" cy="64" r="2.5" fill="currentColor"/><circle cx="78" cy="60" r="2.5" fill="currentColor"/></svg>
+        <span class="cat-tile__name">Seeds &amp; Trail Mix</span>
+        <span class="cat-tile__cta opacity-70">Pumpkin, flax &amp; sunflower</span>
+      </div>
+      <div class="cat-tile bg-leaf-deep text-cream">
+        <span class="cat-tile__tag bg-cream/15 text-cream">Coming soon</span>
+        <svg class="cat-tile__art" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M60 104V40"/><path d="M60 46c-10-2-16-10-16-20 10 2 16 10 16 20Zm0 0c10-2 16-10 16-20-10 2-16 10-16 20ZM60 66c-10-2-16-10-16-20 10 2 16 10 16 20Zm0 0c10-2 16-10 16-20-10 2-16 10-16 20ZM60 86c-10-2-16-10-16-20 10 2 16 10 16 20Zm0 0c10-2 16-10 16-20-10 2-16 10-16 20Z"/><path d="M60 26V14"/></svg>
+        <span class="cat-tile__name">Millet Snacks</span>
+        <span class="cat-tile__cta opacity-70">Ragi, jowar &amp; bajra bites</span>
+      </div>
+      <div class="cat-tile bg-cocoa text-cream">
+        <span class="cat-tile__tag bg-cream/15 text-cream">Coming soon</span>
+        <svg class="cat-tile__art" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M36 40c10-12 30-12 38 2 8 14-2 34-20 38-16 4-28-8-26-22 1-7 4-13 8-18Z"/><path d="M44 52c6 2 12 8 14 16" opacity=".6"/><circle cx="84" cy="80" r="12"/><circle cx="92" cy="50" r="8"/><path d="M80 76c3 1 5 4 6 7M90 47c2 1 3 3 4 5" opacity=".6"/></svg>
+        <span class="cat-tile__name">Dry Fruits</span>
+        <span class="cat-tile__cta opacity-70">From the lanes of Khari Baoli</span>
+      </div>
+      <div class="cat-tile bg-gold text-ink">
+        <span class="cat-tile__tag bg-ink text-gold-soft">Coming soon</span>
+        <svg class="cat-tile__art" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="22" y="44" width="76" height="34" rx="8" transform="rotate(-12 60 61)"/><path d="M40 52l6 26M58 48l6 26M76 44l6 26" opacity=".6" transform="rotate(-12 60 61)"/><path d="M30 96h60" opacity=".5"/></svg>
+        <span class="cat-tile__name">Healthy Bites</span>
+        <span class="cat-tile__cta opacity-70">Chikki &amp; energy bars</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFESTYLE SLIDESHOW -->
+<section class="py-14 sm:py-20 bg-[#F2F2F2]">
+  <div class="container grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+    <div class="text-center lg:text-left">
+      <p class="eyebrow">Made for your day</p>
+      <h2 class="h-section mt-2">Pure crunch. Real goodness.</h2>
+      <div class="ornament mx-auto lg:mx-0 mt-5 max-w-[220px]" aria-hidden="true"><span></span><span></span></div>
+      <p class="lede mt-5 mx-auto lg:mx-0">Light, crunchy and naturally nourishing. From the work desk to evening chai, there's a Vohra's tin for every moment.</p>
+      <a href="shop.html" class="btn-ink mt-8">Shop now {{icon:arrow|w-4 h-4}}</a>
+    </div>
+    <div class="slides" data-slides>
+      <img src="assets/img/lifestyle/light-crunchy-delight.webp" alt="A woman enjoying Vohra's Cream &amp; Onion roasted makhana" width="1000" height="1000" class="slide is-active">
+      <img src="assets/img/lifestyle/snack-smart-cheesy.webp" alt="Vohra's Cheesy Delight tin with a bowl of makhana" width="1000" height="1000" loading="lazy" class="slide">
+      <img src="assets/img/lifestyle/mint-desk.webp" alt="Snacking on Mint Pudina makhana at a work desk" width="1000" height="1000" loading="lazy" class="slide">
+      <img src="assets/img/lifestyle/cream-onion-kitchen.webp" alt="Vohra's Cream &amp; Onion tin in a kitchen" width="1000" height="1000" loading="lazy" class="slide">
+      <img src="assets/img/lifestyle/mint-flatlay.webp" alt="Mint Pudina makhana with a cup of tea" width="1000" height="1000" loading="lazy" class="slide">
+      <div class="slides__dots" data-slide-dots></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES US DIFFERENT -->
+<section class="py-14 sm:py-20">
+  <div class="container">
+    <div class="text-center">
+      <p class="eyebrow">Why Vohra's</p>
+      <h2 class="h-section mt-2">What makes us different</h2>
+      <div class="ornament ornament-center mt-4 max-w-[240px]" aria-hidden="true"><span></span><span></span></div>
+    </div>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="diff-card"><span class="diff-card__icon">{{icon:flame|w-6 h-6}}</span><h3 class="diff-card__title">Roasted, not fried</h3><p class="diff-card__text">Dry-roasted with a little rice bran oil for a lighter, cleaner crunch.</p></div>
+      <div class="diff-card"><span class="diff-card__icon">{{icon:star|w-6 h-6}}</span><h3 class="diff-card__title">Indian flavours</h3><p class="diff-card__text">Peri peri, mint pudina, tangy tomato: spice blends made for the Indian palate.</p></div>
+      <div class="diff-card"><span class="diff-card__icon">{{icon:leaf|w-6 h-6}}</span><h3 class="diff-card__title">Quality ingredients</h3><p class="diff-card__text">Premium raw ingredients and real seasonings, sourced with care for purity.</p></div>
+      <div class="diff-card"><span class="diff-card__icon">{{icon:shield|w-6 h-6}}</span><h3 class="diff-card__title">FSSAI licensed</h3><p class="diff-card__text">Licensed marketer and packer, with full nutrition labelling on every tin.</p></div>
+      <div class="diff-card"><span class="diff-card__icon">{{icon:box|w-6 h-6}}</span><h3 class="diff-card__title">Integrated facility</h3><p class="diff-card__text">Packed in an integrated nuts and dried-fruit processing unit in Faridabad.</p></div>
+      <div class="diff-card"><span class="diff-card__icon">{{icon:tag|w-6 h-6}}</span><h3 class="diff-card__title">Affordably premium</h3><p class="diff-card__text">A sturdy 100 g tin that keeps every bite crisp, at an honest ₹295.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOLD FLAVOURS (hidden: the hero now rotates the same tins) -->
+<section hidden class="relative overflow-hidden bg-cocoa text-cream py-14 sm:py-20">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(50% 60% at 50% 70%, rgba(247,197,49,.22), transparent 70%)" aria-hidden="true"></div>
+  <div class="container relative text-center">
+    <p class="eyebrow !text-mustard">Seven signature flavours</p>
+    <h2 class="h-section mt-2 !text-cream">Bold flavours, everyday moments</h2>
+    <div class="ornament ornament-center mt-4 max-w-[240px] !text-mustard" aria-hidden="true"><span></span><span></span></div>
+    <p class="lede mx-auto mt-4 !text-cream/75">Inspired by Indian spices and everyday snacking habits. Pick a mood.</p>
+
+    <div class="flow mt-8" data-flow>
+      <button type="button" class="rail-btn flow__btn left-0" data-flow-prev aria-label="Previous flavour">{{icon:arrow-left|w-5 h-5}}</button>
+      <div class="flow__stage">
+        <a href="product-pink-salt.html" class="flow__item" data-flow-item data-name="Pink Salt" data-slug="pink-salt"><img src="assets/img/products/pink-salt.webp" alt="Pink Salt tin" width="358" height="760" loading="lazy"></a>
+        <a href="product-peri-peri.html" class="flow__item" data-flow-item data-name="Peri Peri" data-slug="peri-peri"><img src="assets/img/products/peri-peri.webp" alt="Peri Peri tin" width="347" height="704" loading="lazy"></a>
+        <a href="product-cheesy-delight.html" class="flow__item" data-flow-item data-name="Cheesy Delight" data-slug="cheesy-delight"><img src="assets/img/products/cheesy-delight.webp" alt="Cheesy Delight tin" width="351" height="723" loading="lazy"></a>
+        <a href="product-mint-pudina.html" class="flow__item" data-flow-item data-name="Mint Pudina" data-slug="mint-pudina"><img src="assets/img/products/mint-pudina.webp" alt="Mint Pudina tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-tangy-tomato.html" class="flow__item" data-flow-item data-name="Tangy Tomato" data-slug="tangy-tomato"><img src="assets/img/products/tangy-tomato.webp" alt="Tangy Tomato tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-cream-onion.html" class="flow__item" data-flow-item data-name="Cream &amp; Onion" data-slug="cream-onion"><img src="assets/img/products/cream-onion.webp" alt="Cream &amp; Onion tin" width="358" height="750" loading="lazy"></a>
+        <a href="product-pink-salt-black-pepper.html" class="flow__item" data-flow-item data-name="Pink Salt &amp; Black Pepper" data-slug="pink-salt-black-pepper"><img src="assets/img/products/pink-salt-black-pepper.webp" alt="Pink Salt &amp; Black Pepper tin" width="358" height="750" loading="lazy"></a>
+      </div>
+      <button type="button" class="rail-btn flow__btn right-0" data-flow-next aria-label="Next flavour">{{icon:arrow|w-5 h-5}}</button>
+    </div>
+    <p class="mt-6 font-display text-[1.9rem] leading-none" data-flow-name aria-live="polite">Pink Salt</p>
+    <p class="mt-2 text-cream/70 text-[14px]">100 g tin · ₹295</p>
+    <button type="button" class="btn-ink mt-6 !bg-mustard !text-ink hover:!bg-cream" data-add="pink-salt" data-flow-add>{{icon:plus|w-4 h-4}} Add to cart</button>
+  </div>
+</section>
+
+<!-- BULK & WHOLESALE (hidden for now: remove the "hidden" attribute to show it again) -->
+<section hidden class="relative overflow-hidden py-14 sm:py-20">
+  <div class="container relative">
+    <div class="text-center">
+      <p class="eyebrow">For businesses</p>
+      <h2 class="h-section mt-2">Bulk, wholesale &amp; retail partners</h2>
+      <div class="ornament ornament-center mt-4 max-w-[240px]" aria-hidden="true"><span></span><span></span></div>
+    </div>
+    <div class="relative mx-auto mt-10 max-w-[760px]">
+      <svg class="absolute -inset-x-16 -inset-y-10 w-[calc(100%+8rem)] h-[calc(100%+5rem)] pointer-events-none hidden sm:block" viewBox="0 0 800 400" fill="none" preserveAspectRatio="none" aria-hidden="true"><path d="M30 230C60 400 520 420 700 300S780 40 700 10" stroke="#B3261E" stroke-width="2.5" stroke-dasharray="2 12" stroke-linecap="round"/></svg>
+      <div class="relative grid gap-4 sm:grid-cols-2">
+        <a href="services.html#wholesale" class="biz-card">
+          <span class="biz-card__icon">{{icon:store|w-10 h-10}}</span>
+          <span class="biz-card__title">Wholesale &amp; distribution</span>
+          <span class="text-[14px] text-muted">Trade pricing for retailers and distributors.</span>
+        </a>
+        <a href="services.html#gifting" class="biz-card">
+          <span class="biz-card__icon">{{icon:box|w-10 h-10}}</span>
+          <span class="biz-card__title">Bulk &amp; custom orders</span>
+          <span class="text-[14px] text-muted">Large quantities and assortments for events and teams.</span>
+        </a>
+      </div>
+    </div>
+    <p class="relative mx-auto mt-10 max-w-[60ch] text-center text-muted">Looking to stock Vohra's or order in bulk? We offer custom solutions for bulk purchases, gifting and retail partnerships. Call <a href="tel:{{phone1_raw}}" class="link num whitespace-nowrap">{{phone1}}</a>.</p>
+  </div>
+</section>
+
+<!-- GIFTING -->
+<section class="relative overflow-hidden bg-mustard py-14 sm:py-20">
+  <div class="container relative">
+    <div class="text-center">
+      <p class="eyebrow !text-ink/70">Share joy</p>
+      <h2 class="h-section mt-2">Gift perfect</h2>
+      <p class="lede mx-auto mt-3 !text-ink/75">Thoughtful snack gifts for every occasion, delivered with care.</p>
+    </div>
+    <div class="mt-10 mx-auto max-w-[920px] grid gap-5 md:grid-cols-2">
+      <div class="gift-card">
+        <div class="gift-card__art bg-[#F2F2F2]">
+          <img src="assets/img/products/cheesy-delight.webp" alt="" loading="lazy" class="h-[78%] -rotate-[8deg] translate-x-4">
+          <img src="assets/img/products/pink-salt.webp" alt="" loading="lazy" class="h-[88%] relative z-10">
+          <img src="assets/img/products/peri-peri.webp" alt="" loading="lazy" class="h-[78%] rotate-[8deg] -translate-x-4">
+        </div>
+        <h3 class="mt-5 text-[1.7rem]">Personal gifting</h3>
+        <p class="mt-1 text-[14.5px] text-muted">Birthdays, Diwali and thank-yous: a tin of every flavour in one tap.</p>
+        <button type="button" class="btn-ink mt-5" data-add-all>Add the set · {{all_price}}</button>
+      </div>
+      <div class="gift-card">
+        <div class="gift-card__art bg-[#F2F2F2] !gap-1">
+          <img src="assets/img/products/mint-pudina.webp" alt="" loading="lazy" class="h-[70%]">
+          <img src="assets/img/products/tangy-tomato.webp" alt="" loading="lazy" class="h-[80%]">
+          <img src="assets/img/products/cream-onion.webp" alt="" loading="lazy" class="h-[88%] relative z-10">
+          <img src="assets/img/products/pink-salt-black-pepper.webp" alt="" loading="lazy" class="h-[80%]">
+          <img src="assets/img/products/peri-peri.webp" alt="" loading="lazy" class="h-[70%]">
+        </div>
+        <h3 class="mt-5 text-[1.7rem]">Corporate gifting</h3>
+        <p class="mt-1 text-[14.5px] text-muted">Bulk assortments for clients and teams, for festivals and events.</p>
+        <a href="services.html#gifting" class="btn-line mt-5">Explore packages {{icon:arrow|w-4 h-4}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLAVOUR PHILOSOPHY -->
+<section class="py-14 sm:py-20 bg-[#F2F2F2]">
+  <div class="container">
+    <div class="text-center">
+      <p class="eyebrow">Our flavour philosophy</p>
+      <h2 class="h-section mt-2">Snacking should never be boring</h2>
+      <div class="ornament ornament-center mt-4 max-w-[240px]" aria-hidden="true"><span></span><span></span></div>
+      <p class="lede mx-auto mt-4">Inspired by India's culinary heritage, we pair simple, wholesome snacks with spice blends that honour traditional flavours while keeping health first.</p>
+    </div>
+    <div class="relative mt-10 rounded-[28px] bg-paper overflow-hidden grid items-center lg:grid-cols-2 min-h-[420px]">
+      <div class="relative z-10 p-7 sm:p-12">
+        <h3 class="text-[2rem] sm:text-[2.6rem] leading-[1.08]">Bold flavours for everyday moments</h3>
+        <p class="mt-4 text-muted max-w-prose">From the 4 pm slump to late-night cravings, reach for a crunch you can feel good about.</p>
+        <a href="shop.html" class="btn-ink mt-7">Shop snacks {{icon:arrow|w-4 h-4}}</a>
+      </div>
+      <div class="relative h-[360px] lg:h-full">
+        <img src="assets/img/props/rosemary.webp" alt="" loading="lazy" class="scatter float-a left-[8%] top-[10%] w-14 rotate-12">
+        <img src="assets/img/props/chilli.webp" alt="" loading="lazy" class="scatter float-b right-[10%] top-[6%] w-16">
+        <img src="assets/img/props/peppercorns.webp" alt="" loading="lazy" class="scatter float-b left-[4%] bottom-[14%] w-16 -rotate-12">
+        <img src="assets/img/props/mint-leaves.webp" alt="" loading="lazy" class="scatter float-a right-[6%] bottom-[10%] w-14">
+        <img src="assets/img/props/garlic.webp" alt="" loading="lazy" class="scatter float-a left-[30%] top-[2%] w-10 opacity-80">
+                <img src="assets/img/products/peri-peri.webp" alt="Vohra's Peri Peri roasted makhana tin" width="347" height="704" loading="lazy" class="absolute left-1/2 top-1/2 h-[82%] w-auto -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_24px_22px_rgba(20,16,16,.3)]">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WATCH & SNACK (YouTube reels, autoplay muted on view) -->
+<section class="relative overflow-hidden bg-plum bg-dots text-cream py-14 sm:py-20" id="videos">
+  <div class="container relative">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <p class="eyebrow !text-mustard">Watch &amp; snack</p>
+        <h2 class="h-section mt-2 !text-cream">Snack hacks, in motion</h2>
+        <div class="ornament mt-5 max-w-[220px] !text-mustard" aria-hidden="true"><span></span><span></span></div>
+      </div>
+      <p class="lede sm:text-right sm:max-w-[34ch] !text-cream/80">Our latest flavour drops and snack ideas. Reels play on their own; tap the speaker for sound.</p>
+    </div>
+  </div>
+  <div class="relative mt-9 no-scrollbar flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 px-4 sm:px-5 lg:mx-auto lg:max-w-[1240px] lg:px-4 lg:grid lg:grid-cols-4 lg:overflow-visible">
+    <figure class="v-card" data-video data-yt="K6FVhKiCuR8">
+      <button type="button" class="v-cover bg-gold-soft" data-video-play aria-label="Play video: Dry-roasted, never fried">
+        <img src="assets/img/bowls/pink-salt-black-pepper.webp" alt="" loading="lazy" class="v-poster">
+        <span class="v-play"><svg viewBox="0 0 24 24" class="w-6 h-6 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg></span>
+        <span class="v-cap"><span class="v-kicker">The roast</span><span class="v-title">Dry-roasted, never fried</span></span>
+      </button>
+    </figure>
+    <figure class="v-card" data-video data-yt="DUhX2RJxJZo">
+      <button type="button" class="v-cover bg-[#EFE4E6]" data-video-play aria-label="Play video: Five easy snack ideas">
+        <img src="assets/img/bowls/pink-salt.webp" alt="" loading="lazy" class="v-poster">
+        <span class="v-play"><svg viewBox="0 0 24 24" class="w-6 h-6 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg></span>
+        <span class="v-cap"><span class="v-kicker">Recipes</span><span class="v-title">Five easy snack ideas</span></span>
+      </button>
+    </figure>
+    <figure class="v-card" data-video data-yt="23ovBYnFefg">
+      <button type="button" class="v-cover bg-[#F4DCCB]" data-video-play aria-label="Play video: Peri Peri, unboxed">
+        <img src="assets/img/bowls/peri-peri.webp" alt="" loading="lazy" class="v-poster">
+        <span class="v-play"><svg viewBox="0 0 24 24" class="w-6 h-6 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg></span>
+        <span class="v-cap"><span class="v-kicker">Spicy</span><span class="v-title">Peri Peri, unboxed</span></span>
+      </button>
+    </figure>
+    <figure class="v-card" data-video data-yt="DzRcdcOhqbw">
+      <button type="button" class="v-cover bg-leaf-soft" data-video-play aria-label="Play video: Tea-time, sorted">
+        <img src="assets/img/bowls/mint-pudina.webp" alt="" loading="lazy" class="v-poster">
+        <span class="v-play"><svg viewBox="0 0 24 24" class="w-6 h-6 translate-x-px" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.9l10.4-6.5a1 1 0 0 0 0-1.8L9.5 4.6A1 1 0 0 0 8 5.5Z"/></svg></span>
+        <span class="v-cap"><span class="v-kicker">Everyday</span><span class="v-title">Tea-time, sorted</span></span>
+      </button>
+    </figure>
+  </div>
+</section>
+
+<!-- FAQ TEASER -->
+<section class="py-14 sm:py-20">
+  <div class="container grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
+    <div>
+      <p class="eyebrow">Good to know</p>
+      <h2 class="h-section mt-2">Questions, answered</h2>
+      <div class="ornament mt-4 max-w-[200px]" aria-hidden="true"><span></span><span></span></div>
+      <p class="lede mt-4">Can't find what you need? Call us on <a href="tel:{{phone1_raw}}" class="link num whitespace-nowrap">{{phone1}}</a>.</p>
+      <a href="faq.html" class="btn-line mt-6">All FAQs {{icon:arrow|w-4 h-4}}</a>
+    </div>
+    <div class="divide-y divide-line border-y border-line">
+      <details class="faq"><summary>What is makhana?<span class="plus"></span></summary><p class="pb-5 text-muted max-w-prose">Makhana, also called fox nut or phool makhana, is the popped seed of the lotus plant. Roasted, it becomes a light, crunchy snack that is naturally gluten-free.</p></details>
+      <details class="faq"><summary>Are your makhana fried?<span class="plus"></span></summary><p class="pb-5 text-muted max-w-prose">No. Every flavour is dry-roasted with a little rice bran oil, never deep-fried.</p></details>
+      <details class="faq"><summary>Which flavour has no peanut or milk?<span class="plus"></span></summary><p class="pb-5 text-muted max-w-prose">Pink Salt is made with just three ingredients: roasted makhana, rice bran oil and Himalayan pink salt. It is produced in a facility where tree nuts and dairy may be present.</p></details>
+      <details class="faq"><summary>How should I store an opened tin?<span class="plus"></span></summary><p class="pb-5 text-muted max-w-prose">Keep the lid closed and store the tin in a cool, dry place away from direct sunlight and heat to keep the makhana crisp.</p></details>
+    </div>
+  </div>
+</section>
