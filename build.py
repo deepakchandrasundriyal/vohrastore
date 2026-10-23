@@ -16,6 +16,7 @@ SRC, DIST = ROOT / "src", ROOT / "dist"
 SITE = json.loads((SRC / "data/site.json").read_text())
 PRODUCTS = json.loads((SRC / "data/products.json").read_text())
 BY_SLUG = {p["slug"]: p for p in PRODUCTS}
+BLOGS = sorted(json.loads((SRC / "data/blogs.json").read_text()), key=lambda b: b["date"], reverse=True)
 PROFILES = {"classic": "Classic & Light", "spicy": "Spicy & Tangy", "creamy": "Creamy & Cheesy", "herby": "Fresh & Herby"}
 
 # ---------------------------------------------------------------- icons (24px stroke set)
@@ -149,6 +150,33 @@ def nav_flavours():
 def footer_flavours():
     return "\n".join(f'<li><a href="product-{p["slug"]}.html" class="hover:text-gold">{esc(p["name"])}</a></li>' for p in PRODUCTS)
 
+def blog_card(b):
+    return f'''<article class="group flex flex-col overflow-hidden rounded-[22px] border border-line bg-paper transition duration-300 hover:shadow-lift hover:-translate-y-0.5">
+  <a href="blog-{b["slug"]}.html" class="block aspect-[16/10] overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
+    <img src="{b["image"]}" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]">
+  </a>
+  <div class="flex flex-1 flex-col gap-2 p-5">
+    <p class="text-[11px] uppercase tracking-[.18em] text-muted">{esc(b["category"])} · {esc(b["read"])}</p>
+    <h3 class="text-[1.45rem] leading-tight"><a href="blog-{b["slug"]}.html" class="hover:text-maroon">{esc(b["title"])}</a></h3>
+    <p class="text-[14px] text-muted leading-snug line-clamp-3">{esc(b["excerpt"])}</p>
+    <p class="mt-auto pt-3 flex items-center justify-between text-[13px]"><time datetime="{b["date"]}" class="text-muted">{esc(b["date_label"])}</time><a href="blog-{b["slug"]}.html" class="inline-flex items-center gap-1.5 font-medium text-maroon">Read {icon("arrow","w-4 h-4")}</a></p>
+  </div>
+</article>'''
+
+def blog_featured(b):
+    return f'''<article class="group grid overflow-hidden rounded-[22px] border border-line bg-paper lg:grid-cols-[1.2fr_1fr]">
+  <a href="blog-{b["slug"]}.html" class="block aspect-[16/10] lg:aspect-auto overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
+    <img src="{b["image"]}" alt="" decoding="async" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]">
+  </a>
+  <div class="flex flex-col justify-center gap-3 p-6 sm:p-10">
+    <span class="tag self-start bg-gold-soft text-ink">Latest · {esc(b["category"])}</span>
+    <h2 class="text-[1.9rem] sm:text-[2.4rem] leading-tight"><a href="blog-{b["slug"]}.html" class="hover:text-maroon">{esc(b["title"])}</a></h2>
+    <p class="text-[15px] text-muted leading-relaxed">{esc(b["excerpt"])}</p>
+    <p class="text-[13px] text-muted"><time datetime="{b["date"]}">{esc(b["date_label"])}</time> · {esc(b["read"])}</p>
+    <div class="pt-2"><a href="blog-{b["slug"]}.html" class="btn-ink btn-sm">Read the story {icon("arrow","w-4 h-4")}</a></div>
+  </div>
+</article>'''
+
 def nutrition_compare_rows():
     """Server-rendered rows for the home-page comparison; JS only switches the metric."""
     rows = []
@@ -213,6 +241,7 @@ def render_page(body, meta):
         "flavour_rail": flavour_rail(), "nav_flavours": nav_flavours(), "footer_flavours": footer_flavours(),
         "compare_rows": nutrition_compare_rows(), "product_count": len(PRODUCTS),
         "all_price": f'₹{sum(p["price"] for p in PRODUCTS):,}', "all_card": all_card(),
+        "blog_featured": blog_featured(BLOGS[0]), "blog_cards": "\n".join(blog_card(b) for b in BLOGS[1:]),
     })
     ctx["canonical"] = f'https://{SITE["domain"]}/{meta["file"] if meta["file"] != "index.html" else ""}'
     shell = PARTIALS["layout"].replace("<!--HEADER-->", PARTIALS["header"]).replace("<!--FOOTER-->", PARTIALS["footer"]).replace("<!--BODY-->", body)
@@ -265,6 +294,20 @@ def main():
         }
         body = fill(tpl, ctx)
         (DIST / meta["file"]).write_text(render_page(body, meta)); count += 1
+
+    tpl = (SRC / "templates/blog.html").read_text()
+    for b in BLOGS:
+        meta = {"file": f'blog-{b["slug"]}.html', "page": "blogs", "title": b["title"], "desc": b["excerpt"]}
+        ctx = {
+            "b_title": esc(b["title"]), "b_category": esc(b["category"]), "b_date": b["date"], "b_date_label": esc(b["date_label"]),
+            "b_read": esc(b["read"]), "b_image": b["image"], "b_body": b["body"],
+            "b_related": "\n".join(blog_card(o) for o in [o for o in BLOGS if o["slug"] != b["slug"]][:3]),
+            "b_jsonld": json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": b["title"], "description": b["excerpt"],
+                                    "datePublished": b["date"], "image": f'https://{SITE["domain"]}/{b["image"]}',
+                                    "author": {"@type": "Organization", "name": SITE["marketer_name"]},
+                                    "url": f'https://{SITE["domain"]}/blog-{b["slug"]}.html'}, ensure_ascii=False),
+        }
+        (DIST / meta["file"]).write_text(render_page(fill(tpl, ctx), meta)); count += 1
 
     # SEO helpers
     urls = [f.name for f in sorted(DIST.glob("*.html")) if f.name not in ("404.html", "order-success.html", "account.html", "cart.html", "checkout.html")]
