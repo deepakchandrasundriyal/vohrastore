@@ -15,7 +15,10 @@
   const catName = slug => (CATS[slug] && CATS[slug].name) || '';
   const money = n => '₹' + Math.round(n).toLocaleString('en-IN');
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const page = document.body.dataset.page || '';
+  // Page-level timers/observers register a cleanup here; the AJAX router runs them before swapping <main>.
+  let cleanups = [];
+  const onLeave = fn => cleanups.push(fn);
+  const go = href => (window.Vohra && window.Vohra.go ? window.Vohra.go(href) : (location.href = href));
 
   /* ---------------- storage (safe) ---------------- */
   const mem = {};
@@ -132,8 +135,8 @@
   const sForm = $('[data-search-form]');
   sForm && sForm.addEventListener('submit', e => {
     e.preventDefault(); const list = matchProducts(sInput.value, searchCat);
-    if (list.length === 1) location.href = `product-${list[0].slug}.html`;
-    else { Store.set('vohra_q', sInput.value); location.href = 'shop.html' + (searchCat !== 'all' ? '?category=' + searchCat : ''); }
+    if (list.length === 1) go(`product-${list[0].slug}.html`);
+    else { Store.set('vohra_q', sInput.value); go('shop.html' + (searchCat !== 'all' ? '?category=' + searchCat : '')); }
   });
 
   /* ---------------- add to cart (event delegation) ---------------- */
@@ -149,7 +152,7 @@
     const all = e.target.closest('[data-add-all]');
     if (all) { PRODUCTS.forEach(p => Cart.add(p.slug, 1)); open('cart'); return; }
     const bn = e.target.closest('[data-buy-now]');
-    if (bn) { const qtyEl = $(bn.dataset.qtyFrom); Cart.add(bn.dataset.buyNow, Math.max(1, parseInt(qtyEl && qtyEl.value, 10) || 1)); location.href = 'checkout.html'; }
+    if (bn) { const qtyEl = $(bn.dataset.qtyFrom); Cart.add(bn.dataset.buyNow, Math.max(1, parseInt(qtyEl && qtyEl.value, 10) || 1)); go('checkout.html'); }
   });
   function pulse(el) { el.animate && el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.94)' }, { transform: 'scale(1)' }], { duration: 260 }); }
 
@@ -334,8 +337,8 @@
     else { btn.disabled = false; btn.innerHTML = btn.dataset.label; }
   }
 
-  const coForm = $('[data-checkout-form]');
-  if (coForm) {
+  function initCheckout() {
+    const coForm = $('[data-checkout-form]'); if (!coForm) return;
     const u = Store.get('vohra_user', null);
     if (u) ['name', 'email', 'phone'].forEach(k => { const el = coForm.elements[k]; if (el && !el.value) el.value = u[k] || ''; });
     const addr = Store.get('vohra_address', null);
@@ -357,7 +360,7 @@
         const orders = Store.get('vohra_orders', []); orders.unshift(order); Store.set('vohra_orders', orders);
         Store.set('vohra_last_order', id);
         if (fd.get('save')) Store.set('vohra_address', { name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'), line1: fd.get('line1'), line2: fd.get('line2'), city: fd.get('city'), state: fd.get('state'), pin: fd.get('pin') });
-        Cart.clear(); location.href = 'order-success.html';
+        Cart.clear(); go('order-success.html');
       }, 1100);
     };
     coForm.addEventListener('submit', submit);
@@ -425,7 +428,7 @@
     const setCat = v => {
       state.cat = CATS[v] ? v : 'all'; setCatPressed(catBar, state.cat);
       const u = new URL(location.href); state.cat === 'all' ? u.searchParams.delete('category') : u.searchParams.set('category', state.cat);
-      history.replaceState(null, '', u);
+      history.replaceState(history.state, '', u);
     };
     catBar && catBar.addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (b) { setCat(b.dataset.cat); apply(); } });
     $$('[data-filter]').forEach(b => b.addEventListener('click', () => { state.profile = b.dataset.filter; setPressed(state.profile); apply(); }));
@@ -510,14 +513,14 @@
       const email = login.elements.email.value.trim(); const reg = Store.get('vohra_registered', {}) || {};
       const known = reg[email.toLowerCase()];
       Store.set('vohra_user', known || { name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), email, phone: '' });
-      busy($('button[type=submit]', login), true, 'Signing in'); setTimeout(() => location.href = 'account.html', 600);
+      busy($('button[type=submit]', login), true, 'Signing in'); setTimeout(() => go('account.html'), 600);
     });
     const regF = $('[data-register-form]');
     regF && regF.addEventListener('submit', e => {
       e.preventDefault(); if (!validate(regF)) return;
       const u = { name: regF.elements.name.value.trim(), email: regF.elements.email.value.trim(), phone: regF.elements.phone.value.trim() };
       const reg = Store.get('vohra_registered', {}) || {}; reg[u.email.toLowerCase()] = u; Store.set('vohra_registered', reg);
-      Store.set('vohra_user', u); busy($('button[type=submit]', regF), true, 'Creating account'); setTimeout(() => location.href = 'account.html', 600);
+      Store.set('vohra_user', u); busy($('button[type=submit]', regF), true, 'Creating account'); setTimeout(() => go('account.html'), 600);
     });
     $$('[data-toggle-pass]').forEach(b => b.addEventListener('click', () => {
       const i = $(b.dataset.togglePass); i.type = i.type === 'password' ? 'text' : 'password'; b.textContent = i.type === 'password' ? 'Show' : 'Hide';
@@ -621,16 +624,20 @@
     const v = $('video', c); if (v) v.pause();
     c.classList.remove('is-playing');
   }
-  const reelSection = $('#videos');
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reelSection && !calm && 'IntersectionObserver' in window) {
-    new IntersectionObserver(([en]) => {
-      $$('[data-video][data-yt]', reelSection).forEach(card => {
-        const f = $('iframe.v-media', card);
-        if (en.isIntersecting) { if (f) ytCmd(f, 'playVideo'); else ytFrame(card, true); }
-        else if (f) ytCmd(f, 'pauseVideo');
-      });
-    }, { threshold: 0.25 }).observe(reelSection);
+  function initReels() {
+    const reelSection = $('#videos');
+    if (reelSection && !calm && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([en]) => {
+        $$('[data-video][data-yt]', reelSection).forEach(card => {
+          const f = $('iframe.v-media', card);
+          if (en.isIntersecting) { if (f) ytCmd(f, 'playVideo'); else ytFrame(card, true); }
+          else if (f) ytCmd(f, 'pauseVideo');
+        });
+      }, { threshold: 0.25 });
+      io.observe(reelSection); onLeave(() => io.disconnect());
+    }
+    $$('[data-video] video').forEach(v => v.addEventListener('ended', () => { v.currentTime = 0; v.closest('[data-video]').classList.remove('is-playing'); }));
   }
   document.addEventListener('click', e => {
     const b = e.target.closest('[data-video-play]'); if (!b) return;
@@ -641,7 +648,6 @@
     const v = $('video', card), p = v.play();
     if (p && p.catch) p.catch(() => { card.classList.remove('is-playing'); toast('This video is coming soon'); });
   });
-  $$('[data-video] video').forEach(v => v.addEventListener('ended', () => { v.currentTime = 0; v.closest('[data-video]').classList.remove('is-playing'); }));
 
   /* ---------------- alternate home (home-2.html) ---------------- */
   /* horizontal rails: arrows scroll by roughly one card */
@@ -653,10 +659,10 @@
   });
 
   /* fading slideshow with dots; auto-advances unless the visitor prefers reduced motion */
-  $$('[data-slides]').forEach(box => {
+  const initSlides = () => $$('[data-slides]').forEach(box => {
     const slides = $$('.slide', box), dots = $('[data-slide-dots]', box);
     if (slides.length < 2) return;
-    let i = 0, timer;
+    let i = 0, timer; onLeave(() => clearInterval(timer));
     dots.innerHTML = slides.map((_, k) => `<button type="button" aria-label="Show image ${k + 1}"></button>`).join('');
     const btns = $$('button', dots);
     const show = k => {
@@ -672,10 +678,10 @@
   });
 
   /* rotating flavour carousel: centre item is data-pos="0", neighbours ±1, ±2 */
-  $$('[data-flow]').forEach(flow => {
+  const initFlow = () => $$('[data-flow]').forEach(flow => {
     const items = $$('[data-flow-item]', flow), n = items.length;
     const sec = flow.closest('section'), nameEl = $('[data-flow-name]', sec), addBtn = $('[data-flow-add]', sec);
-    let i = 0, timer;
+    let i = 0, timer; onLeave(() => clearInterval(timer));
     const show = k => {
       i = (k + n) % n;
       items.forEach((it, idx) => {
@@ -696,9 +702,92 @@
     show(0); play();
   });
 
+  /* ---------------- AJAX page navigation ----------------
+     Internal .html links load without a full refresh: fetch the page, swap <main>, update the title,
+     meta tags, body class and active nav, then re-run the page initialisers. Header, footer, drawers
+     and the cart stay mounted. Any failure falls back to a normal page load. */
+  const PAGE_CACHE = new Map(), CACHE_MS = 60000;
+  const dirOf = p => p.replace(/[^/]*$/, '');
+  function routable(a) {
+    if (!a || !a.href || (a.target && a.target !== '_self') || a.hasAttribute('download') || a.hasAttribute('data-no-ajax')) return null;
+    const u = new URL(a.href, location.href);
+    if (u.origin !== location.origin || !/\.html$/.test(u.pathname) || dirOf(u.pathname) !== dirOf(location.pathname)) return null;
+    if (u.pathname === location.pathname && u.search === location.search && u.hash) return null; // same-page anchor
+    return u;
+  }
+  function fetchPage(u) {
+    const key = u.pathname + u.search, hit = PAGE_CACHE.get(key);
+    if (hit && Date.now() - hit.t < CACHE_MS) return hit.p;
+    const p = fetch(key, { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } }).then(r => {
+      if (!r.ok || !(r.headers.get('content-type') || '').includes('text/html')) throw new Error('not a page');
+      return r.text();
+    });
+    PAGE_CACHE.set(key, { t: Date.now(), p }); p.catch(() => PAGE_CACHE.delete(key));
+    return p;
+  }
+  const bar = document.createElement('div'); bar.className = 'nav-progress'; bar.setAttribute('aria-hidden', 'true'); document.body.appendChild(bar);
+  const progress = on => { bar.className = 'nav-progress ' + (on ? 'is-on' : 'is-done'); };
+
+  function swap(doc) {
+    const next = doc.getElementById('main'); if (!next) throw new Error('no main');
+    cleanups.splice(0).forEach(f => { try { f(); } catch (e) { /* ignore */ } });
+    $('#main').replaceWith(document.adoptNode(next));
+    document.title = doc.title;
+    ['meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'link[rel="canonical"]'].forEach(sel => {
+      const a = $(sel), b = doc.querySelector(sel); if (!a || !b) return;
+      a.setAttribute(a.tagName === 'LINK' ? 'href' : 'content', b.getAttribute(a.tagName === 'LINK' ? 'href' : 'content'));
+    });
+    document.body.className = doc.body.className;
+    const pg = doc.body.dataset.page || ''; document.body.dataset.page = pg;
+    $$('[data-nav]').forEach(a => { if (pg && a.dataset.nav === pg) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    initPage();
+  }
+
+  let navSeq = 0, shownPath = location.pathname;
+  const ajaxOK = !!(window.fetch && window.DOMParser && history.pushState);
+  async function navigate(u, push = true) {
+    const seq = ++navSeq; close(); progress(true);
+    try {
+      const doc = new DOMParser().parseFromString(await fetchPage(u), 'text/html');
+      if (seq !== navSeq) return;
+      if (push) { history.replaceState({ ...(history.state || {}), y: scrollY }, ''); history.pushState({ y: 0 }, '', u.href); }
+      swap(doc); shownPath = location.pathname;
+      const target = u.hash && document.getElementById(decodeURIComponent(u.hash.slice(1)));
+      if (push) target ? target.scrollIntoView() : scrollTo(0, 0);
+      else scrollTo(0, (history.state && history.state.y) || 0);
+      const m = $('#main'); m.setAttribute('tabindex', '-1'); m.focus({ preventScroll: true });
+    } catch (e) {
+      if (seq === navSeq) location.href = u.href;
+    } finally {
+      if (seq === navSeq) progress(false);
+    }
+  }
+
+  if (ajaxOK) {
+    history.scrollRestoration = 'manual';
+    history.replaceState({ ...(history.state || {}), y: scrollY }, '');
+    document.addEventListener('click', e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const u = routable(e.target.closest('a[href]')); if (!u) return;
+      e.preventDefault(); navigate(u);
+    });
+    window.addEventListener('popstate', () => {
+      if (location.pathname === shownPath) return; // hash-only or ?category change on the same page
+      navigate(new URL(location.href), false);
+    });
+    // Warm the cache when a visitor points at or touches a link, so the swap feels instant.
+    const warm = e => { const u = routable(e.target.closest && e.target.closest('a[href]')); if (u && u.pathname !== location.pathname) fetchPage(u).catch(() => {}); };
+    document.addEventListener('mouseover', warm, { passive: true });
+    document.addEventListener('touchstart', warm, { passive: true });
+  }
+
   /* ---------------- boot ---------------- */
   function renderAll() { renderCounts(); renderMini(); renderCartPage(); renderCheckout(); }
-  renderAll(); renderSuccess(); initShop(); initCompare(); initProduct(); initAuth(); initAccount(); initTrack();
+  function initPage() {
+    renderAll(); renderSuccess(); initShop(); initCompare(); initProduct(); initAuth(); initAccount(); initTrack();
+    initCheckout(); initReels(); initSlides(); initFlow();
+  }
+  initPage();
   window.addEventListener('storage', e => { if (e.key === 'vohra_cart') renderAll(); });
-  window.Vohra = { Cart, Store, open, close, toast };
+  window.Vohra = { Cart, Store, open, close, toast, go: href => { const u = new URL(href, location.href); return ajaxOK && routable({ href: u.href, hasAttribute: () => false }) ? navigate(u) : (location.href = u.href); } };
 })();

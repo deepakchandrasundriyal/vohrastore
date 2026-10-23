@@ -103,6 +103,12 @@
 
   .toast { @apply fixed left-1/2 z-[60] -translate-x-1/2 flex items-center gap-3 rounded-full bg-ink text-cream px-5 py-3 text-[14px] shadow-lift transition duration-300 opacity-0 translate-y-3 pointer-events-none; bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
   .toast.is-on { @apply opacity-100 translate-y-0; }
+
+  /* AJAX page navigation: thin loading bar + no focus ring on the swapped <main> */
+  .nav-progress { @apply fixed left-0 top-0 z-[80] h-[3px] w-0 bg-maroon opacity-0 pointer-events-none; }
+  .nav-progress.is-on { @apply opacity-100; width: 80%; transition: width 8s cubic-bezier(.1, .7, .2, 1), opacity .15s; }
+  .nav-progress.is-done { width: 100%; transition: width .2s ease-out, opacity .35s .2s; }
+  #main:focus { outline: none; }
   @media (min-width: 1024px) { .toast { bottom: 28px; } }
 
   .tab-btn { @apply relative py-3 text-[14.5px] font-medium text-muted whitespace-nowrap transition hover:text-ink; }
