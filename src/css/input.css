@@ -109,6 +109,16 @@
   .nav-progress.is-on { @apply opacity-100; width: 80%; transition: width 8s cubic-bezier(.1, .7, .2, 1), opacity .15s; }
   .nav-progress.is-done { width: 100%; transition: width .2s ease-out, opacity .35s .2s; }
   #main:focus { outline: none; }
+
+  /* Skeleton screen while a page loads (YouTube-style shimmer) */
+  .skel { @apply relative overflow-hidden rounded-lg bg-[#ECE9E6]; }
+  .skel::after { content: ""; @apply absolute inset-0; transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.65) 50%, transparent 100%);
+    animation: skel-shimmer 1.3s ease-in-out infinite; }
+  @keyframes skel-shimmer { to { transform: translateX(100%); } }
+  .skel-page { animation: skel-in .2s ease-out both; }
+  @keyframes skel-in { from { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .skel::after { animation: none; } }
   @media (min-width: 1024px) { .toast { bottom: 28px; } }
 
   .tab-btn { @apply relative py-3 text-[14.5px] font-medium text-muted whitespace-nowrap transition hover:text-ink; }

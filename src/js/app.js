@@ -745,18 +745,58 @@
 
   let navSeq = 0, shownPath = location.pathname;
   const ajaxOK = !!(window.fetch && window.DOMParser && history.pushState);
+  /* Skeleton screen (YouTube-style shimmer) shaped like the page being opened.
+     Shown on every navigation (after SKEL_DELAY ms) and kept for at least SKEL_MIN ms so it never flickers. */
+  const SKEL_DELAY = 0, SKEL_MIN = 300;
+  const sk = (cls = '') => `<div class="skel ${cls}"></div>`;
+  const skLines = (n, last = 'w-2/3') => Array.from({ length: n }, (_, i) => sk(`h-3.5 ${i === n - 1 ? last : 'w-full'}`)).join('');
+  const skCard = () => `<div class="rounded-[22px] border border-line overflow-hidden">${sk('aspect-[4/5] !rounded-none')}<div class="p-4 space-y-2.5">${sk('h-2.5 w-1/2')}${sk('h-5 w-3/4')}${sk('h-3 w-full')}<div class="flex items-center justify-between pt-2">${sk('h-5 w-14')}${sk('h-9 w-20 !rounded-full')}</div></div></div>`;
+  const skPost = () => `<div class="rounded-[22px] border border-line overflow-hidden">${sk('aspect-[16/10] !rounded-none')}<div class="p-5 space-y-2.5">${sk('h-2.5 w-1/3')}${sk('h-5 w-5/6')}${skLines(2)}</div></div>`;
+  const skHead = (title = 'w-2/3 sm:w-1/2') => `<section class="border-b border-line"><div class="container py-10 sm:py-14 space-y-4">${sk('h-3 w-32')}${sk('h-3 w-24 mt-6')}${sk('h-10 sm:h-14 ' + title)}<div class="max-w-xl space-y-2.5">${skLines(2)}</div></div></section>`;
+  function skeletonHTML(u) {
+    const f = u.pathname.split('/').pop() || 'index.html';
+    if (/^product-/.test(f)) return `<section class="container pt-6 sm:pt-8 pb-16"><div>${sk('h-3 w-56')}</div>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[1.08fr_1fr] lg:gap-14"><div>${sk('aspect-square !rounded-[28px]')}<div class="mt-3 flex gap-2.5">${sk('w-20 h-20 !rounded-xl')}${sk('w-20 h-20 !rounded-xl')}${sk('w-20 h-20 !rounded-xl')}</div></div>
+      <div class="space-y-4">${sk('h-3 w-48')}${sk('h-12 sm:h-16 w-3/4')}${sk('h-6 w-1/2')}<div class="flex gap-2">${sk('h-6 w-24 !rounded-full')}${sk('h-6 w-20 !rounded-full')}</div>${sk('h-9 w-28 mt-6')}${sk('h-24 w-full !rounded-2xl')}${sk('h-10 w-40 !rounded-full')}<div class="flex gap-3 pt-2">${sk('h-12 w-28 !rounded-full')}${sk('h-12 flex-1 !rounded-full')}${sk('h-12 w-28 !rounded-full')}</div>${sk('h-28 w-full !rounded-2xl')}</div></div></section>`;
+    if (f === 'shop.html') return `${skHead('w-1/2 sm:w-1/3')}<div class="border-b border-line"><div class="container py-4 space-y-3"><div class="flex gap-2 overflow-hidden">${Array.from({ length: 6 }, () => sk('h-9 w-32 shrink-0 !rounded-full')).join('')}</div><div class="flex gap-2 overflow-hidden">${Array.from({ length: 5 }, () => sk('h-9 w-28 shrink-0 !rounded-full')).join('')}</div></div></div>
+      <section class="container py-8"><div class="flex justify-between">${sk('h-4 w-28')}${sk('h-10 w-40 !rounded-full')}</div><div class="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">${Array.from({ length: 8 }, skCard).join('')}</div></section>`;
+    if (/^blog-/.test(f)) return `${skHead()}<section class="container py-10"><div class="mx-auto max-w-4xl">${sk('aspect-[16/9] !rounded-[22px]')}</div><div class="mx-auto mt-10 max-w-prose space-y-3">${skLines(4)}${sk('h-7 w-1/2 mt-8')}${skLines(5, 'w-1/2')}</div></section>`;
+    if (f === 'blogs.html') return `${skHead()}<section class="container py-12"><div class="grid lg:grid-cols-[1.2fr_1fr] rounded-[22px] border border-line overflow-hidden">${sk('aspect-[16/10] !rounded-none')}<div class="p-8 space-y-4">${sk('h-6 w-32 !rounded-full')}${sk('h-10 w-5/6')}${skLines(3)}</div></div><div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">${Array.from({ length: 3 }, skPost).join('')}</div></section>`;
+    if (f === 'index.html' || f === 'home-2.html') return `<section class="container py-6">${sk('h-[58vh] min-h-[360px] !rounded-[28px]')}</section>
+      <section class="container py-10"><div class="space-y-3">${sk('h-3 w-28')}${sk('h-10 w-64')}</div><div class="mt-8 flex gap-5 overflow-hidden">${Array.from({ length: 7 }, () => `<div class="shrink-0 space-y-3">${sk('w-[112px] h-[112px] sm:w-[128px] sm:h-[128px] !rounded-full')}${sk('h-4 w-24 mx-auto')}</div>`).join('')}</div></section>
+      <section class="container pb-16"><div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">${Array.from({ length: 4 }, skCard).join('')}</div></section>`;
+    return `${skHead()}<section class="container py-12 sm:py-16"><div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">${Array.from({ length: 3 }, () => `<div class="rounded-2xl border border-line p-6 space-y-3">${sk('w-11 h-11 !rounded-full')}${sk('h-6 w-1/2')}${skLines(2)}</div>`).join('')}</div>
+      <div class="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr]"><div class="rounded-2xl border border-line p-6 sm:p-8 space-y-4">${sk('h-7 w-1/2')}${skLines(5, 'w-1/3')}</div><div class="rounded-2xl border border-line p-6 space-y-3">${sk('h-6 w-1/3')}${skLines(4)}</div></div></section>`;
+  }
+  function showSkeleton(u) {
+    const m = $('#main'); if (!m) return;
+    m.setAttribute('aria-busy', 'true');
+    m.innerHTML = `<div class="skel-page" role="status" aria-label="Loading page">${skeletonHTML(u)}</div>`;
+    scrollTo(0, 0);
+    // Highlight the destination in the nav straight away (swap() sets the exact value from the loaded page).
+    const f = (u.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
+    const pg = /^product-/.test(f) ? 'shop' : /^blog/.test(f) ? 'blogs' : /^(index|home-2)$/.test(f) ? 'home' : f;
+    $$('[data-nav]').forEach(a => { if (a.dataset.nav === pg) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  }
+
   async function navigate(u, push = true) {
-    const seq = ++navSeq; close(); progress(true);
+    const seq = ++navSeq, fromY = scrollY; close(); progress(true);
+    let skelAt = 0;
+    const skelTimer = setTimeout(() => { if (seq === navSeq) { skelAt = Date.now(); showSkeleton(u); } }, SKEL_DELAY);
     try {
-      const doc = new DOMParser().parseFromString(await fetchPage(u), 'text/html');
+      const html = await fetchPage(u);
+      clearTimeout(skelTimer);
+      if (skelAt) await new Promise(r => setTimeout(r, Math.max(0, SKEL_MIN - (Date.now() - skelAt))));
+      const doc = new DOMParser().parseFromString(html, 'text/html');
       if (seq !== navSeq) return;
-      if (push) { history.replaceState({ ...(history.state || {}), y: scrollY }, ''); history.pushState({ y: 0 }, '', u.href); }
+      if (push) { history.replaceState({ ...(history.state || {}), y: fromY }, ''); history.pushState({ y: 0 }, '', u.href); }
       swap(doc); shownPath = location.pathname;
       const target = u.hash && document.getElementById(decodeURIComponent(u.hash.slice(1)));
       if (push) target ? target.scrollIntoView() : scrollTo(0, 0);
       else scrollTo(0, (history.state && history.state.y) || 0);
       const m = $('#main'); m.setAttribute('tabindex', '-1'); m.focus({ preventScroll: true });
     } catch (e) {
+      clearTimeout(skelTimer);
       if (seq === navSeq) location.href = u.href;
     } finally {
       if (seq === navSeq) progress(false);
