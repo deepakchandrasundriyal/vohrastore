@@ -242,6 +242,7 @@ def render_page(body, meta):
         "compare_rows": nutrition_compare_rows(), "product_count": len(PRODUCTS),
         "all_price": f'₹{sum(p["price"] for p in PRODUCTS):,}', "all_card": all_card(),
         "blog_featured": blog_featured(BLOGS[0]), "blog_cards": "\n".join(blog_card(b) for b in BLOGS[1:]),
+        "blog_latest": "\n".join(blog_card(b) for b in BLOGS[:3]),
     })
     ctx["canonical"] = f'https://{SITE["domain"]}/{meta["file"] if meta["file"] != "index.html" else ""}'
     shell = PARTIALS["layout"].replace("<!--HEADER-->", PARTIALS["header"]).replace("<!--FOOTER-->", PARTIALS["footer"]).replace("<!--BODY-->", body)
