@@ -11,6 +11,8 @@
   const PRODUCTS = window.VOHRA_PRODUCTS || [];
   const CFG = window.VOHRA_CONFIG || { shipping: { freeAbove: 499, flat: 49 }, coupons: {} };
   const BY = Object.fromEntries(PRODUCTS.map(p => [p.slug, p]));
+  const CATS = Object.fromEntries((window.VOHRA_CATEGORIES || []).map(c => [c.slug, c]));
+  const catName = slug => (CATS[slug] && CATS[slug].name) || '';
   const money = n => '₹' + Math.round(n).toLocaleString('en-IN');
   const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const page = document.body.dataset.page || '';
@@ -94,28 +96,44 @@
 
   /* ---------------- search ---------------- */
   const PROFILE_WORDS = { classic: 'classic light salt', spicy: 'spicy tangy hot chilli', creamy: 'creamy cheesy cheese', herby: 'herby mint fresh' };
-  function matchProducts(q) {
-    q = q.trim().toLowerCase(); if (!q) return PRODUCTS;
-    return PRODUCTS.filter(p => (p.name + ' ' + p.tagline + ' ' + PROFILE_WORDS[p.profile]).toLowerCase().includes(q));
+  // Search text covers name, tagline, taste words and the category name, so "makhana" finds the whole range.
+  const searchText = p => (p.name + ' ' + p.tagline + ' ' + (PROFILE_WORDS[p.profile] || '') + ' ' + catName(p.category)).toLowerCase();
+  function matchProducts(q, cat = 'all') {
+    q = q.trim().toLowerCase();
+    return PRODUCTS.filter(p => (cat === 'all' || p.category === cat) && (!q || searchText(p).includes(q)));
   }
+  const setCatPressed = (scope, v) => $$('[data-cat]', scope).forEach(x => x.setAttribute('aria-pressed', String(x.dataset.cat === v)));
+  const soonText = cat => `${catName(cat)} ${CATS[cat] && CATS[cat].name.endsWith('s') ? 'are' : 'is'} coming soon.`;
+  let searchCat = 'all';
   function renderSearch(q) {
     const box = $('[data-search-results]'); if (!box) return;
-    const list = matchProducts(q);
+    const list = matchProducts(q, searchCat);
+    const soon = searchCat !== 'all' && CATS[searchCat] && CATS[searchCat].status !== 'live';
     box.innerHTML = list.length ? list.map(p => `
       <a href="product-${p.slug}.html" class="flex items-center gap-4 rounded-2xl p-2.5 hover:bg-paper">
         <span class="grid place-items-center w-16 h-16 rounded-xl shrink-0" style="background:${p.tint}"><img src="assets/img/products/${p.slug}.webp" alt="" class="h-14 w-auto"></span>
-        <span class="min-w-0 flex-1"><span class="block font-display text-xl leading-tight">${escapeHtml(p.name)}</span><span class="block text-[13px] text-muted truncate">${escapeHtml(p.tagline)}</span></span>
+        <span class="min-w-0 flex-1"><span class="block text-[11px] uppercase tracking-[.16em] text-muted">${escapeHtml(catName(p.category))}</span><span class="block font-display text-xl leading-tight">${escapeHtml(p.name)}</span><span class="block text-[13px] text-muted truncate">${escapeHtml(p.tagline)}</span></span>
         <span class="num font-medium">${money(p.price)}</span>
       </a>`).join('')
-      : `<p class="py-6 text-muted">No flavour matches “${escapeHtml(q)}”. Try “salt”, “spicy” or “cheese”.</p>`;
+      : soon ? `<p class="py-6 text-muted">${escapeHtml(soonText(searchCat))} Meanwhile, try our <button type="button" class="link" data-cat-jump="makhana">roasted makhana</button>.</p>`
+      : `<p class="py-6 text-muted">Nothing matches “${escapeHtml(q)}”${searchCat !== 'all' ? ' in ' + escapeHtml(catName(searchCat)) : ''}. Try “makhana”, “spicy” or “cheese”.</p>`;
   }
   const sInput = $('[data-search-input]');
   sInput && sInput.addEventListener('input', () => renderSearch(sInput.value));
+  const sCats = $('[data-search-cats]');
+  sCats && sCats.addEventListener('click', e => {
+    const b = e.target.closest('[data-cat]'); if (!b) return;
+    searchCat = b.dataset.cat; setCatPressed(sCats, searchCat); renderSearch(sInput.value);
+  });
+  document.addEventListener('click', e => {
+    const j = e.target.closest('[data-cat-jump]'); if (!j || !sCats) return;
+    searchCat = j.dataset.catJump; setCatPressed(sCats, searchCat); renderSearch(sInput.value);
+  });
   const sForm = $('[data-search-form]');
   sForm && sForm.addEventListener('submit', e => {
-    e.preventDefault(); const list = matchProducts(sInput.value);
+    e.preventDefault(); const list = matchProducts(sInput.value, searchCat);
     if (list.length === 1) location.href = `product-${list[0].slug}.html`;
-    else { Store.set('vohra_q', sInput.value); location.href = 'shop.html'; }
+    else { Store.set('vohra_q', sInput.value); location.href = 'shop.html' + (searchCat !== 'all' ? '?category=' + searchCat : ''); }
   });
 
   /* ---------------- add to cart (event delegation) ---------------- */
@@ -372,35 +390,54 @@
     const grid = $('[data-shop-grid]'); if (!grid) return;
     const cards = $$('[data-card]:not([data-allcard])', grid);
     const allCard = $('[data-allcard]', grid);
-    const state = { profile: 'all', sort: 'featured', q: Store.get('vohra_q', '') || '', peanutFree: false };
+    const state = { cat: 'all', profile: 'all', sort: 'featured', q: Store.get('vohra_q', '') || '', peanutFree: false };
     Store.del('vohra_q');
     const q = $('[data-shop-search]'); if (q) q.value = state.q;
     const pfs = $$('[data-peanut-free]');
+    const catBar = $('[data-shop-cats]');
     const setPressed = v => $$('[data-filter]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.filter === v)));
+    const title = $('[data-shop-title]'), lede = $('[data-shop-lede]'), defaultLede = lede ? lede.textContent : '';
     const apply = () => {
       const shown = cards.filter(c => {
-        const hay = (c.dataset.name + ' ' + PROFILE_WORDS[c.dataset.profile]).toLowerCase();
-        return (state.profile === 'all' || c.dataset.profile === state.profile)
+        const hay = (c.dataset.name + ' ' + PROFILE_WORDS[c.dataset.profile] + ' ' + c.dataset.categoryName).toLowerCase();
+        return (state.cat === 'all' || c.dataset.category === state.cat)
+          && (state.profile === 'all' || c.dataset.profile === state.profile)
           && (!state.q || hay.includes(state.q.toLowerCase()))
           && (!state.peanutFree || !c.dataset.allergens.includes('peanut'));
       });
+      const cat = CATS[state.cat];
+      if (title) title.textContent = cat ? cat.name : 'All snacks';
+      if (lede) lede.textContent = cat ? (cat.status === 'live' ? `${cards.filter(c => c.dataset.category === state.cat).length} ${cat.item}s to choose from.` : soonText(state.cat)) : defaultLede;
+      const soon = cat && cat.status !== 'live';
+      $('[data-empty-title]').textContent = soon ? 'Coming soon' : 'Nothing matches';
+      $('[data-empty-text]').textContent = soon ? `We're working on ${cat.name}. Meanwhile, try our roasted makhana.` : 'Try a different search or clear the filters.';
+      const tasteRow = $('[data-taste-row]'); if (tasteRow) tasteRow.hidden = !!soon;
       const key = { protein: ['protein', -1], fibre: ['fibre', -1], energy: ['energy', 1], fat: ['fat', 1] }[state.sort];
       const ordered = [...cards];
       if (key) ordered.sort((a, b) => (parseFloat(a.dataset[key[0]]) - parseFloat(b.dataset[key[0]])) * key[1]);
       else if (state.sort === 'name') ordered.sort((a, b) => a.dataset.name.localeCompare(b.dataset.name));
       ordered.forEach(c => { grid.appendChild(c); c.hidden = !shown.includes(c); });
-      const unfiltered = state.profile === 'all' && !state.q && !state.peanutFree;
+      const unfiltered = (state.cat === 'all' || state.cat === 'makhana') && state.profile === 'all' && !state.q && !state.peanutFree;
       if (allCard) { grid.appendChild(allCard); allCard.hidden = !unfiltered; }
-      $('[data-result-count]').textContent = `${shown.length} of ${cards.length} flavours`;
+      $('[data-result-count]').textContent = `${shown.length} of ${cards.length} products`;
       $('[data-shop-empty]').hidden = shown.length > 0;
     };
+    const setCat = v => {
+      state.cat = CATS[v] ? v : 'all'; setCatPressed(catBar, state.cat);
+      const u = new URL(location.href); state.cat === 'all' ? u.searchParams.delete('category') : u.searchParams.set('category', state.cat);
+      history.replaceState(null, '', u);
+    };
+    catBar && catBar.addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (b) { setCat(b.dataset.cat); apply(); } });
     $$('[data-filter]').forEach(b => b.addEventListener('click', () => { state.profile = b.dataset.filter; setPressed(state.profile); apply(); }));
     const s = $('[data-sort]'); s && s.addEventListener('change', () => { state.sort = s.value; apply(); });
     pfs.forEach(pf => pf.addEventListener('change', () => { state.peanutFree = pf.checked; pfs.forEach(x => x.checked = pf.checked); apply(); }));
     let t; q && q.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => { state.q = q.value.trim(); apply(); }, 220); });
     $$('[data-reset-filters]').forEach(b => b.addEventListener('click', () => {
-      Object.assign(state, { profile: 'all', q: '', peanutFree: false }); if (q) q.value = ''; pfs.forEach(x => x.checked = false); setPressed('all'); apply();
+      Object.assign(state, { profile: 'all', q: '', peanutFree: false }); if (q) q.value = ''; pfs.forEach(x => x.checked = false); setPressed('all');
+      if (CATS[state.cat] && CATS[state.cat].status !== 'live') setCat('makhana');
+      apply();
     }));
+    setCat(new URLSearchParams(location.search).get('category') || 'all');
     const hashProfile = location.hash.replace('#', '');
     if (['classic', 'spicy', 'creamy', 'herby'].includes(hashProfile)) { state.profile = hashProfile; setPressed(hashProfile); }
     apply();

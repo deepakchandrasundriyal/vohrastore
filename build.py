@@ -16,6 +16,8 @@ SRC, DIST = ROOT / "src", ROOT / "dist"
 SITE = json.loads((SRC / "data/site.json").read_text())
 PRODUCTS = json.loads((SRC / "data/products.json").read_text())
 BY_SLUG = {p["slug"]: p for p in PRODUCTS}
+CATEGORIES = json.loads((SRC / "data/categories.json").read_text())
+CAT = {c["slug"]: c for c in CATEGORIES}
 BLOGS = sorted(json.loads((SRC / "data/blogs.json").read_text()), key=lambda b: b["date"], reverse=True)
 PROFILES = {"classic": "Classic & Light", "spicy": "Spicy & Tangy", "creamy": "Creamy & Cheesy", "herby": "Fresh & Herby"}
 
@@ -91,13 +93,14 @@ def product_card(p, eager=False):
     nut = p["nutrition"]
     hl = HL[p["slug"]]
     badge = f'<span class="tag absolute z-10 left-3 top-3 bg-paper/90 text-ink border border-line">{esc(hl[0])}</span>' if hl else ""
-    return f'''<article class="p-card group" style="--tint:{p["tint"]}" data-card data-slug="{p["slug"]}" data-name="{esc(p["name"])}" data-profile="{p["profile"]}" data-protein="{nut["protein"][0]}" data-energy="{nut["energy"][0]}" data-fat="{nut["fat"][0]}" data-fibre="{nut["fibre"][0]}" data-allergens="{",".join(p["allergens"]).lower() or "none"}">
+    cat = CAT[p["category"]]
+    return f'''<article class="p-card group" style="--tint:{p["tint"]}" data-card data-slug="{p["slug"]}" data-name="{esc(p["name"])}" data-category="{cat["slug"]}" data-category-name="{esc(cat["name"])}" data-profile="{p["profile"]}" data-protein="{nut["protein"][0]}" data-energy="{nut["energy"][0]}" data-fat="{nut["fat"][0]}" data-fibre="{nut["fibre"][0]}" data-allergens="{",".join(p["allergens"]).lower() or "none"}">
   <a href="product-{p["slug"]}.html" class="p-card__stage relative block aspect-[4/5]" aria-label="{esc(p["name"])} Roasted Makhana">
     {badge}
     <img src="assets/img/products/{p["slug"]}.webp" alt="Vohra's {esc(p["name"])} roasted makhana, 100 g tin" width="358" height="750" {"" if eager else 'loading="lazy"'} decoding="async" class="absolute left-1/2 bottom-[7%] h-[84%] w-auto -translate-x-1/2 drop-shadow-[0_18px_18px_rgba(20,16,16,.28)] transition duration-500 group-hover:-translate-y-1 group-hover:rotate-[-2deg]">
   </a>
   <div class="flex flex-1 flex-col gap-1.5 p-3.5 sm:p-5">
-    <p class="text-[10.5px] sm:text-[11px] uppercase tracking-[.18em] text-muted">Roasted Makhana · {p["weight"]}</p>
+    <p class="text-[10.5px] sm:text-[11px] uppercase tracking-[.18em] text-muted">{esc(cat["name"])} · {p["weight"]}</p>
     <h3 class="text-[1.3rem] sm:text-[1.6rem] leading-tight"><a href="product-{p["slug"]}.html" class="hover:text-maroon">{esc(p["name"])}</a></h3>
     <p class="text-[13px] sm:text-sm text-muted leading-snug line-clamp-2">{esc(p["tagline"])}</p>
     <p class="text-[12px] text-muted num">{fmt(nut["protein"][0], "g")} protein · {nut["energy"][1]:g} kcal/serve</p>
@@ -146,6 +149,15 @@ def nav_flavours():
     return "\n".join(
         f'<a href="product-{p["slug"]}.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:{p["color"]}"></span>{esc(p["name"])}</a>'
         for p in PRODUCTS)
+
+def category_chips():
+    """Category filter chips (shop page and search overlay). Coming-soon categories stay selectable and show a 'Soon' note."""
+    out = ['<button type="button" class="chip" data-cat="all" aria-pressed="true">All</button>']
+    for c in CATEGORIES:
+        n = sum(1 for p in PRODUCTS if p["category"] == c["slug"])
+        note = f'<span class="num text-muted">{n}</span>' if c["status"] == "live" else '<span class="text-[11px] text-muted">Soon</span>'
+        out.append(f'<button type="button" class="chip" data-cat="{c["slug"]}" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:{c["color"]}"></span>{esc(c["name"])} {note}</button>')
+    return "\n".join(out)
 
 def footer_flavours():
     return "\n".join(f'<li><a href="product-{p["slug"]}.html" class="hover:text-gold">{esc(p["name"])}</a></li>' for p in PRODUCTS)
@@ -241,6 +253,7 @@ def render_page(body, meta):
         "flavour_rail": flavour_rail(), "nav_flavours": nav_flavours(), "footer_flavours": footer_flavours(),
         "compare_rows": nutrition_compare_rows(), "product_count": len(PRODUCTS),
         "all_price": f'₹{sum(p["price"] for p in PRODUCTS):,}', "all_card": all_card(),
+        "category_chips": category_chips(),
         "blog_featured": blog_featured(BLOGS[0]), "blog_cards": "\n".join(blog_card(b) for b in BLOGS[1:]),
         "blog_latest": "\n".join(blog_card(b) for b in BLOGS[:3]),
     })
@@ -252,17 +265,22 @@ def render_page(body, meta):
     return out
 
 def main():
-    if DIST.exists(): shutil.rmtree(DIST)
+    # Only clear what this script generates: dist/ also holds the admin app, API, go.php and runtime uploads.
+    DIST.mkdir(exist_ok=True)
+    for f in DIST.glob("*.html"): f.unlink()
+    if (DIST / "assets").exists(): shutil.rmtree(DIST / "assets")
     shutil.copytree(SRC / "assets", DIST / "assets")
     (DIST / "assets/js").mkdir(parents=True, exist_ok=True)
     shutil.copy(SRC / "js/app.js", DIST / "assets/js/app.js")
 
     # Product feed for the browser-side demo cart (becomes GET /api/products later)
-    feed = [{k: p[k] for k in ("slug", "name", "tagline", "price", "mrp", "weight", "color", "tint", "profile")} for p in PRODUCTS]
+    feed = [{k: p[k] for k in ("slug", "name", "tagline", "price", "mrp", "weight", "color", "tint", "category", "profile")} for p in PRODUCTS]
+    cats = [{k: c[k] for k in ("slug", "name", "item", "status")} for c in CATEGORIES]
     cfg = {k: SITE[k] for k in ("shipping", "coupons", "company")}
     (DIST / "assets/js/products.js").write_text(
         "/* Generated by build.py from src/data/products.json — replaced by the PHP API in the dynamic build. */\n"
-        f"window.VOHRA_PRODUCTS = {json.dumps(feed, ensure_ascii=False)};\nwindow.VOHRA_CONFIG = {json.dumps(cfg, ensure_ascii=False)};\n")
+        f"window.VOHRA_PRODUCTS = {json.dumps(feed, ensure_ascii=False)};\nwindow.VOHRA_CATEGORIES = {json.dumps(cats, ensure_ascii=False)};\n"
+        f"window.VOHRA_CONFIG = {json.dumps(cfg, ensure_ascii=False)};\n")
 
     count = 0
     for f in sorted((SRC / "pages").glob("*.html")):
@@ -281,6 +299,7 @@ def main():
             "p_slug": p["slug"], "p_name": esc(p["name"]), "p_tagline": esc(p["tagline"]), "p_desc": esc(p["description"]),
             "p_price": p["price"], "p_mrp": p["mrp"], "p_weight": p["weight"], "p_tint": p["tint"], "p_color": p["color"],
             "p_profile": PROFILES[p["profile"]], "p_profile_key": p["profile"],
+            "p_category": esc(CAT[p["category"]]["name"]), "p_category_slug": p["category"],
             "p_protein": fmt(n["protein"][0], "g"), "p_energy_serve": f'{n["energy"][1]:g}', "p_fibre": fmt(n["fibre"][0], "g"),
             "p_fat": fmt(n["fat"][0], "g"),
             "p_ingredients": esc(p["ingredients"]), "p_nutrition_rows": nutrition_table(p), "p_allergens": allergen_block(p),

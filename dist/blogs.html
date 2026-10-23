@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Blogs | Vohra's Store</title>
-<meta name="description" content="Stories, guides and snacking ideas from Vohra&#x27;s: all about roasted makhana, our flavours and festive gifting.">
+<meta name="description" content="Stories, guides and snacking ideas from Vohra's: all about roasted makhana, our flavours and festive gifting.">
 <link rel="canonical" href="https://vohrastore.com/blogs.html">
 <meta name="theme-color" content="#FFFFFF">
 <meta property="og:site_name" content="Vohra's Store">
 <meta property="og:title" content="Blogs | Vohra's Store">
-<meta property="og:description" content="Stories, guides and snacking ideas from Vohra&#x27;s: all about roasted makhana, our flavours and festive gifting.">
+<meta property="og:description" content="Stories, guides and snacking ideas from Vohra's: all about roasted makhana, our flavours and festive gifting.">
 <meta property="og:image" content="https://vohrastore.com/assets/img/brand/logo.png">
 <link rel="icon" type="image/png" href="assets/img/brand/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
 <a href="product-cheesy-delight.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#C98A12"></span>Cheesy Delight</a>
 <a href="product-pink-salt.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4A2342"></span>Pink Salt</a>
 <a href="product-pink-salt-black-pepper.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:#4E4E4C"></span>Pink Salt &amp; Black Pepper</a>
-            <a href="shop.html" class="mt-2 flex items-center gap-2 border-t border-line pt-3 text-[14px] font-medium text-maroon">Shop all 7 flavours <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="shop.html?category=makhana" class="mt-2 flex items-center gap-2 border-t border-line pt-3 text-[14px] font-medium text-maroon">Shop all 7 flavours <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
       </div>
@@ -75,10 +75,19 @@
       <label for="search-input" class="sr-only">Search flavours</label>
       <div class="relative flex-1">
         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span>
-        <input id="search-input" type="search" class="input !h-14 !pl-12 !text-[16px] !rounded-full" placeholder="Search Peri Peri, Pink Salt, cheesy…" autocomplete="off" data-search-input>
+        <input id="search-input" type="search" class="input !h-14 !pl-12 !text-[16px] !rounded-full" placeholder="Search makhana, Peri Peri, cheesy…" autocomplete="off" data-search-input>
       </div>
       <button type="button" class="icon-btn shrink-0" data-close aria-label="Close search"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     </form>
+    <div class="no-scrollbar mt-3 -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="group" aria-label="Search in category" data-search-cats>
+      <button type="button" class="chip" data-cat="all" aria-pressed="true">All</button>
+<button type="button" class="chip" data-cat="makhana" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#F7C531"></span>Roasted Makhana <span class="num text-muted">7</span></button>
+<button type="button" class="chip" data-cat="roasted-nuts" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#3E1F3A"></span>Roasted Nuts <span class="text-[11px] text-muted">Soon</span></button>
+<button type="button" class="chip" data-cat="seeds-trail-mix" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#B3261E"></span>Seeds &amp; Trail Mix <span class="text-[11px] text-muted">Soon</span></button>
+<button type="button" class="chip" data-cat="millet-snacks" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#2F4A12"></span>Millet Snacks <span class="text-[11px] text-muted">Soon</span></button>
+<button type="button" class="chip" data-cat="dry-fruits" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#2B140C"></span>Dry Fruits <span class="text-[11px] text-muted">Soon</span></button>
+<button type="button" class="chip" data-cat="healthy-bites" aria-pressed="false"><span class="w-2 h-2 rounded-full" style="background:#B8862B"></span>Healthy Bites <span class="text-[11px] text-muted">Soon</span></button>
+    </div>
     <div class="mt-4 grid gap-1 sm:grid-cols-2" data-search-results aria-live="polite"></div>
   </div>
 </div>

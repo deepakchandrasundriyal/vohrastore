@@ -1,0 +1,8 @@
+[
+  { "slug": "makhana", "name": "Roasted Makhana", "item": "flavour", "blurb": "Seven signature flavours in 100 g tins", "status": "live", "color": "#F7C531" },
+  { "slug": "roasted-nuts", "name": "Roasted Nuts", "item": "product", "blurb": "Almonds, cashews & more", "status": "soon", "color": "#3E1F3A" },
+  { "slug": "seeds-trail-mix", "name": "Seeds & Trail Mix", "item": "product", "blurb": "Pumpkin, flax & sunflower", "status": "soon", "color": "#B3261E" },
+  { "slug": "millet-snacks", "name": "Millet Snacks", "item": "product", "blurb": "Ragi, jowar & bajra bites", "status": "soon", "color": "#2F4A12" },
+  { "slug": "dry-fruits", "name": "Dry Fruits", "item": "product", "blurb": "From the lanes of Khari Baoli", "status": "soon", "color": "#2B140C" },
+  { "slug": "healthy-bites", "name": "Healthy Bites", "item": "product", "blurb": "Chikki & energy bars", "status": "soon", "color": "#B8862B" }
+]

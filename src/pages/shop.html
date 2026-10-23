@@ -1,26 +1,33 @@
-<!--meta {"title": "Shop Roasted Makhana", "desc": "Shop all seven Vohra's roasted makhana flavours. Filter by taste, sort by protein, calories or fibre, and order 100 g tins online.", "page": "shop"} -->
+<!--meta {"title": "Shop Healthy Snacks", "desc": "Shop Vohra's healthy snacks by category, starting with seven roasted makhana flavours. Filter by category or taste, sort by protein, calories or fibre, and order online.", "page": "shop"} -->
 
 <section class="border-b border-line bg-paper">
   <div class="container py-8 sm:py-12">
     <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a> <span class="mx-1.5">/</span> <span class="text-ink">Shop</span></nav>
     <div class="mt-3 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
       <div>
-        <h1 class="h-section">Roasted Makhana</h1>
-        <p class="lede mt-2">Seven flavours, one 100 g tin each, all at ₹295.</p>
+        <h1 class="h-section" data-shop-title>All snacks</h1>
+        <p class="lede mt-2" data-shop-lede>Pick a category, then filter by taste. Roasted makhana is in stock now, with more ranges on the way.</p>
       </div>
       <div class="relative w-full lg:w-[340px]">
-        <label for="shop-search" class="sr-only">Search flavours</label>
+        <label for="shop-search" class="sr-only">Search products</label>
         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-muted">{{icon:search|w-[18px] h-[18px]}}</span>
-        <input id="shop-search" type="search" class="input !pl-11 !rounded-full" placeholder="Search flavours" data-shop-search autocomplete="off">
+        <input id="shop-search" type="search" class="input !pl-11 !rounded-full" placeholder="Search products or categories" data-shop-search autocomplete="off">
       </div>
     </div>
   </div>
 </section>
 
 <div class="sticky stick-below-header z-20 border-b border-line bg-cream/95 backdrop-blur-md">
-  <div class="container flex items-center gap-3 py-3 lg:py-4">
+  <div class="container flex items-center gap-3 pt-3 lg:pt-4">
+    <span class="hidden sm:block shrink-0 w-16 text-[12px] uppercase tracking-[.16em] text-muted">Category</span>
+    <div class="no-scrollbar -mx-4 flex flex-1 gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="group" aria-label="Filter by category" data-shop-cats>
+      {{category_chips}}
+    </div>
+  </div>
+  <div class="container flex items-center gap-3 py-3 lg:pb-4" data-taste-row>
+    <span class="hidden sm:block shrink-0 w-16 text-[12px] uppercase tracking-[.16em] text-muted">Taste</span>
     <div class="no-scrollbar -mx-4 flex flex-1 gap-2 overflow-x-auto px-4 sm:mx-0 sm:px-0" role="group" aria-label="Filter by taste">
-      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All tastes</button>
       <button type="button" class="chip" data-filter="classic" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#4A2342]"></span>Classic &amp; Light</button>
       <button type="button" class="chip" data-filter="spicy" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#8E1420]"></span>Spicy &amp; Tangy</button>
       <button type="button" class="chip" data-filter="creamy" aria-pressed="false"><span class="w-2 h-2 rounded-full bg-[#C98A12]"></span>Creamy &amp; Cheesy</button>
@@ -31,7 +38,7 @@
 
 <section class="container py-6 sm:py-8">
   <div class="flex flex-wrap items-center justify-between gap-3">
-    <p class="text-[14px] text-muted num" data-result-count aria-live="polite">7 of 7 flavours</p>
+    <p class="text-[14px] text-muted num" data-result-count aria-live="polite">{{product_count}} of {{product_count}} products</p>
     <div class="flex items-center gap-3">
       <label class="hidden sm:flex items-center gap-2 text-[14px] cursor-pointer select-none"><input type="checkbox" class="check" data-peanut-free id="peanut-free"> Peanut-free only</label>
       <label for="sort" class="sr-only">Sort by</label>
@@ -53,8 +60,8 @@
   </div>
 
   <div class="py-16 text-center" data-shop-empty hidden>
-    <p class="font-display text-3xl">No flavours match</p>
-    <p class="mt-2 text-muted">Try a different search or clear the filters.</p>
+    <p class="font-display text-3xl" data-empty-title>Nothing matches</p>
+    <p class="mt-2 text-muted" data-empty-text>Try a different search or clear the filters.</p>
     <button type="button" class="btn-line mt-6" data-reset-filters>Clear filters</button>
   </div>
 </section>

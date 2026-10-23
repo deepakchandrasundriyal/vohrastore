@@ -2,7 +2,7 @@
 
 <section class="container pt-5 sm:pt-8">
   <nav class="text-[13px] text-muted" aria-label="Breadcrumb">
-    <a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><a href="shop.html" class="hover:text-ink">Shop</a><span class="mx-1.5">/</span><span class="text-ink">{{p_name}}</span>
+    <a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><a href="shop.html" class="hover:text-ink">Shop</a><span class="mx-1.5">/</span><a href="shop.html?category={{p_category_slug}}" class="hover:text-ink">{{p_category}}</a><span class="mx-1.5">/</span><span class="text-ink">{{p_name}}</span>
   </nav>
 
   <div class="mt-5 grid gap-8 lg:grid-cols-[1.08fr_1fr] lg:gap-14">
@@ -20,7 +20,7 @@
 
     <!-- Buy box -->
     <div>
-      <p class="eyebrow">{{p_profile}} · Roasted Makhana</p>
+      <p class="eyebrow">{{p_profile}} · {{p_category}}</p>
       <h1 class="mt-2 text-[2.6rem] sm:text-6xl leading-[1.02]">{{p_name}}</h1>
       <p class="mt-2 font-display italic text-[1.35rem] text-maroon">{{p_tagline}}</p>
       <div class="mt-4 flex flex-wrap gap-2">{{p_highlights}}</div>
