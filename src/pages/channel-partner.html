@@ -1,0 +1,55 @@
+<!--meta {"title": "Channel Partner", "desc": "Become a Vohra's channel partner. Distributors, retailers and modern-trade stores can send us a partnership enquiry.", "page": "channel-partner"} -->
+
+<section class="border-b border-line bg-paper">
+  <div class="container py-12 sm:py-16">
+    <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><span class="text-ink">Channel partner</span></nav>
+    <p class="eyebrow mt-6">Partner with us</p>
+    <h1 class="h-hero mt-3">Become a Vohra's channel partner</h1>
+    <p class="lede mt-4">Stock seven signature flavours of roasted makhana in your city. Tell us a little about your business and our team will get in touch.</p>
+  </div>
+</section>
+
+<section class="container py-12 sm:py-16">
+  <div class="grid gap-4 sm:grid-cols-3">
+    <div class="panel p-6">
+      <span class="grid place-items-center w-11 h-11 rounded-full bg-gold-soft text-maroon">{{icon:truck}}</span>
+      <h2 class="mt-4 text-2xl">Distributors</h2>
+      <p class="mt-2 text-[14.5px] text-muted">Take Vohra's to retailers across your city or region.</p>
+    </div>
+    <div class="panel p-6">
+      <span class="grid place-items-center w-11 h-11 rounded-full bg-gold-soft text-maroon">{{icon:store}}</span>
+      <h2 class="mt-4 text-2xl">Retailers</h2>
+      <p class="mt-2 text-[14.5px] text-muted">Kirana, dry-fruit and gourmet stores looking to stock our tins.</p>
+    </div>
+    <div class="panel p-6">
+      <span class="grid place-items-center w-11 h-11 rounded-full bg-gold-soft text-maroon">{{icon:box}}</span>
+      <h2 class="mt-4 text-2xl">Modern trade</h2>
+      <p class="mt-2 text-[14.5px] text-muted">Supermarkets, chains and online sellers.</p>
+    </div>
+  </div>
+
+  <div class="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+    <form class="panel p-5 sm:p-8 grid gap-4 sm:grid-cols-2" data-enquiry-form novalidate>
+      <h2 class="sm:col-span-2 text-[1.9rem]">Partnership enquiry</h2>
+      <div><label for="p-name" class="label">Your name</label><input id="p-name" name="name" class="input" autocomplete="name" required data-label="Your name"></div>
+      <div><label for="p-business" class="label">Business name</label><input id="p-business" name="business" class="input" autocomplete="organization" required data-label="Business name"></div>
+      <div><label for="p-phone" class="label">Mobile number</label><input id="p-phone" name="phone" type="tel" class="input" autocomplete="tel" required data-label="Mobile number" data-rule="phone"></div>
+      <div><label for="p-email" class="label">Email</label><input id="p-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email"></div>
+      <div><label for="p-city" class="label">City</label><input id="p-city" name="city" class="input" autocomplete="address-level2" required data-label="City"></div>
+      <div><label for="p-type" class="label">Partner type</label>
+        <select id="p-type" name="type" class="input" required data-label="Partner type">
+          <option value="">Select one</option><option>Distributor</option><option>Retailer</option><option>Modern trade</option><option>Other</option>
+        </select></div>
+      <div class="sm:col-span-2"><label for="p-msg" class="label">Your query <span class="font-normal text-muted">(optional)</span></label><textarea id="p-msg" name="message" rows="4" class="input" placeholder="Tell us about your business, area and expected volumes"></textarea></div>
+      <div class="sm:col-span-2"><button type="submit" class="btn-ink w-full sm:w-auto">Send enquiry</button></div>
+    </form>
+
+    <div class="panel p-6 self-start">
+      <h2 class="text-2xl">Prefer to talk?</h2>
+      <p class="mt-2 text-[14.5px] text-muted">Call or email our trade team directly.</p>
+      <p class="mt-4 flex gap-3 text-[15px] num">{{icon:phone|w-5 h-5 shrink-0 text-gold-deep mt-0.5}} <span><a href="tel:{{phone1_raw}}" class="link">{{phone1}}</a><br><a href="tel:{{phone2_raw}}" class="link">{{phone2}}</a></span></p>
+      <p class="mt-3 flex gap-3 text-[15px] break-all">{{icon:mail|w-5 h-5 shrink-0 text-gold-deep mt-0.5}} <span>{{email}}</span></p>
+      <p class="mt-3 flex gap-3 text-[14.5px] text-muted">{{icon:pin|w-5 h-5 shrink-0 text-gold-deep mt-0.5}} <span>{{marketer_name}}<br>{{addr_shop}}</span></p>
+    </div>
+  </div>
+</section>
