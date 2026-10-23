@@ -16,15 +16,6 @@
       <a href="index.html" data-nav="home" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Home</a>
       <a href="about.html" data-nav="about" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">About</a>
       <a href="services.html" data-nav="services" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Services</a>
-      <div class="relative group" data-nav-flavours>
-        <button type="button" class="flex items-center gap-1 px-3 xl:px-4 py-2 rounded-full hover:bg-sand" aria-haspopup="true">Flavours {{icon:chevron-down|w-4 h-4}}</button>
-        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 transition absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[300px]">
-          <div class="panel shadow-lift p-4">
-            {{nav_flavours}}
-            <a href="shop.html?category=makhana" class="mt-2 flex items-center gap-2 border-t border-line pt-3 text-[14px] font-medium text-maroon">Shop all {{product_count}} flavours {{icon:arrow|w-4 h-4}}</a>
-          </div>
-        </div>
-      </div>
       <a href="shop.html" data-nav="shop" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Shop</a>
       <a href="channel-partner.html" data-nav="channel-partner" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Channel partner</a>
       <a href="contact.html" data-nav="contact" class="px-3 xl:px-4 py-2 rounded-full hover:bg-sand aria-[current=page]:text-maroon aria-[current=page]:font-medium">Contact</a>
@@ -73,10 +64,6 @@
       <li><a href="channel-partner.html" data-nav="channel-partner" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Channel partner {{icon:chevron|w-5 h-5 text-gold}}</a></li>
       <li><a href="contact.html" data-nav="contact" class="flex items-center justify-between py-2.5 aria-[current=page]:text-maroon">Contact {{icon:chevron|w-5 h-5 text-gold}}</a></li>
     </ul>
-    <div data-nav-flavours>
-    <p class="eyebrow mt-7 mb-2">Flavours</p>
-    {{nav_flavours}}
-    </div>
     <div class="mt-7 grid grid-cols-2 gap-2 text-[14px]">
       <a href="account.html" class="chip justify-center !h-11">{{icon:user|w-4 h-4}} Account</a>
       <a href="track-order.html" class="chip justify-center !h-11">{{icon:truck|w-4 h-4}} Track order</a>
