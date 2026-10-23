@@ -95,13 +95,13 @@ def product_card(p, eager=False):
     badge = f'<span class="tag absolute z-10 left-3 top-3 bg-paper/90 text-ink border border-line">{esc(hl[0])}</span>' if hl else ""
     cat = CAT[p["category"]]
     return f'''<article class="p-card group" style="--tint:{p["tint"]}" data-card data-slug="{p["slug"]}" data-name="{esc(p["name"])}" data-category="{cat["slug"]}" data-category-name="{esc(cat["name"])}" data-profile="{p["profile"]}" data-protein="{nut["protein"][0]}" data-energy="{nut["energy"][0]}" data-fat="{nut["fat"][0]}" data-fibre="{nut["fibre"][0]}" data-allergens="{",".join(p["allergens"]).lower() or "none"}">
-  <a href="product-{p["slug"]}.html" class="p-card__stage relative block aspect-[4/5]" aria-label="{esc(p["name"])} Roasted Makhana">
+  <a href="product-{p["slug"]}" class="p-card__stage relative block aspect-[4/5]" aria-label="{esc(p["name"])} Roasted Makhana">
     {badge}
     <img src="assets/img/products/{p["slug"]}.webp" alt="Vohra's {esc(p["name"])} roasted makhana, 100 g tin" width="358" height="750" {"" if eager else 'loading="lazy"'} decoding="async" class="absolute left-1/2 bottom-[7%] h-[84%] w-auto -translate-x-1/2 drop-shadow-[0_18px_18px_rgba(20,16,16,.28)] transition duration-500 group-hover:-translate-y-1 group-hover:rotate-[-2deg]">
   </a>
   <div class="flex flex-1 flex-col gap-1.5 p-3.5 sm:p-5">
     <p class="text-[10.5px] sm:text-[11px] uppercase tracking-[.18em] text-muted">{esc(cat["name"])} · {p["weight"]}</p>
-    <h3 class="text-[1.3rem] sm:text-[1.6rem] leading-tight"><a href="product-{p["slug"]}.html" class="hover:text-maroon">{esc(p["name"])}</a></h3>
+    <h3 class="text-[1.3rem] sm:text-[1.6rem] leading-tight"><a href="product-{p["slug"]}" class="hover:text-maroon">{esc(p["name"])}</a></h3>
     <p class="text-[13px] sm:text-sm text-muted leading-snug line-clamp-2">{esc(p["tagline"])}</p>
     <p class="text-[12px] text-muted num">{fmt(nut["protein"][0], "g")} protein · {nut["energy"][1]:g} kcal/serve</p>
     <div class="mt-auto flex items-center justify-between gap-2 pt-3">
@@ -137,7 +137,7 @@ def all_card():
 def flavour_rail():
     items = []
     for p in PRODUCTS:
-        items.append(f'''<a href="product-{p["slug"]}.html" class="group snap-start shrink-0 w-[132px] sm:w-[150px] text-center">
+        items.append(f'''<a href="product-{p["slug"]}" class="group snap-start shrink-0 w-[132px] sm:w-[150px] text-center">
   <span class="relative mx-auto grid place-items-center w-[112px] h-[112px] sm:w-[128px] sm:h-[128px] rounded-full transition group-hover:scale-[1.04]" style="background:{p["tint"]}">
     <img src="assets/img/bowls/{p["slug"]}.webp" alt="" width="200" height="180" loading="lazy" class="w-[86%] h-auto drop-shadow-[0_10px_10px_rgba(20,16,16,.2)]">
   </span>
@@ -147,7 +147,7 @@ def flavour_rail():
 
 def nav_flavours():
     return "\n".join(
-        f'<a href="product-{p["slug"]}.html" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:{p["color"]}"></span>{esc(p["name"])}</a>'
+        f'<a href="product-{p["slug"]}" class="flex items-center gap-3 py-2 text-[15px] text-ink hover:text-maroon"><span class="w-3 h-3 rounded-full shrink-0" style="background:{p["color"]}"></span>{esc(p["name"])}</a>'
         for p in PRODUCTS)
 
 def category_chips():
@@ -160,32 +160,32 @@ def category_chips():
     return "\n".join(out)
 
 def footer_flavours():
-    return "\n".join(f'<li><a href="product-{p["slug"]}.html" class="hover:text-gold">{esc(p["name"])}</a></li>' for p in PRODUCTS)
+    return "\n".join(f'<li><a href="product-{p["slug"]}" class="hover:text-gold">{esc(p["name"])}</a></li>' for p in PRODUCTS)
 
 def blog_card(b):
     return f'''<article class="group flex flex-col overflow-hidden rounded-[22px] border border-line bg-paper transition duration-300 hover:shadow-lift hover:-translate-y-0.5">
-  <a href="blog-{b["slug"]}.html" class="block aspect-[16/10] overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
+  <a href="blog-{b["slug"]}" class="block aspect-[16/10] overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
     <img src="{b["image"]}" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]">
   </a>
   <div class="flex flex-1 flex-col gap-2 p-5">
     <p class="text-[11px] uppercase tracking-[.18em] text-muted">{esc(b["category"])} · {esc(b["read"])}</p>
-    <h3 class="text-[1.45rem] leading-tight"><a href="blog-{b["slug"]}.html" class="hover:text-maroon">{esc(b["title"])}</a></h3>
+    <h3 class="text-[1.45rem] leading-tight"><a href="blog-{b["slug"]}" class="hover:text-maroon">{esc(b["title"])}</a></h3>
     <p class="text-[14px] text-muted leading-snug line-clamp-3">{esc(b["excerpt"])}</p>
-    <p class="mt-auto pt-3 flex items-center justify-between text-[13px]"><time datetime="{b["date"]}" class="text-muted">{esc(b["date_label"])}</time><a href="blog-{b["slug"]}.html" class="inline-flex items-center gap-1.5 font-medium text-maroon">Read {icon("arrow","w-4 h-4")}</a></p>
+    <p class="mt-auto pt-3 flex items-center justify-between text-[13px]"><time datetime="{b["date"]}" class="text-muted">{esc(b["date_label"])}</time><a href="blog-{b["slug"]}" class="inline-flex items-center gap-1.5 font-medium text-maroon">Read {icon("arrow","w-4 h-4")}</a></p>
   </div>
 </article>'''
 
 def blog_featured(b):
     return f'''<article class="group grid overflow-hidden rounded-[22px] border border-line bg-paper lg:grid-cols-[1.2fr_1fr]">
-  <a href="blog-{b["slug"]}.html" class="block aspect-[16/10] lg:aspect-auto overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
+  <a href="blog-{b["slug"]}" class="block aspect-[16/10] lg:aspect-auto overflow-hidden bg-sand" tabindex="-1" aria-hidden="true">
     <img src="{b["image"]}" alt="" decoding="async" class="w-full h-full object-cover transition duration-500 group-hover:scale-[1.03]">
   </a>
   <div class="flex flex-col justify-center gap-3 p-6 sm:p-10">
     <span class="tag self-start bg-gold-soft text-ink">Latest · {esc(b["category"])}</span>
-    <h2 class="text-[1.9rem] sm:text-[2.4rem] leading-tight"><a href="blog-{b["slug"]}.html" class="hover:text-maroon">{esc(b["title"])}</a></h2>
+    <h2 class="text-[1.9rem] sm:text-[2.4rem] leading-tight"><a href="blog-{b["slug"]}" class="hover:text-maroon">{esc(b["title"])}</a></h2>
     <p class="text-[15px] text-muted leading-relaxed">{esc(b["excerpt"])}</p>
     <p class="text-[13px] text-muted"><time datetime="{b["date"]}">{esc(b["date_label"])}</time> · {esc(b["read"])}</p>
-    <div class="pt-2"><a href="blog-{b["slug"]}.html" class="btn-ink btn-sm">Read the story {icon("arrow","w-4 h-4")}</a></div>
+    <div class="pt-2"><a href="blog-{b["slug"]}" class="btn-ink btn-sm">Read the story {icon("arrow","w-4 h-4")}</a></div>
   </div>
 </article>'''
 
@@ -195,7 +195,7 @@ def nutrition_compare_rows():
     for p in PRODUCTS:
         n = p["nutrition"]
         rows.append(f'''<li class="grid grid-cols-[minmax(0,8.5rem)_1fr_auto] sm:grid-cols-[11rem_1fr_5.5rem] items-center gap-3" data-row data-protein="{n["protein"][0]}" data-energy="{n["energy"][0]}" data-fat="{n["fat"][0]}" data-fibre="{n["fibre"][0]}" data-sodium="{n["sodium"][0]}">
-  <a href="product-{p["slug"]}.html" class="truncate text-[14px] sm:text-[15px] text-ink hover:text-maroon">{esc(p["name"])}</a>
+  <a href="product-{p["slug"]}" class="truncate text-[14px] sm:text-[15px] text-ink hover:text-maroon">{esc(p["name"])}</a>
   <div class="bar-track"><div class="bar-fill" style="background:{p["color"]};width:0%"></div></div>
   <span class="num text-right text-[13.5px] font-medium text-ink" data-val></span>
 </li>''')
@@ -245,6 +245,10 @@ def fill(tpl, ctx):
         raise KeyError(f"Unknown placeholder {{{{{k}}}}}")
     return re.sub(r"\{\{([\w.]+)\}\}", rep, tpl)
 
+def clean_url(file):
+    """Public URL path for a built page: dist/.htaccess serves "about" from about.html, and "" is index.html."""
+    return "" if file == "index.html" else file.removesuffix(".html")
+
 def render_page(body, meta):
     ctx = dict(meta)
     ctx.setdefault("body_class", "")
@@ -257,7 +261,7 @@ def render_page(body, meta):
         "blog_featured": blog_featured(BLOGS[0]), "blog_cards": "\n".join(blog_card(b) for b in BLOGS[1:]),
         "blog_latest": "\n".join(blog_card(b) for b in BLOGS[:3]),
     })
-    ctx["canonical"] = f'https://{SITE["domain"]}/{meta["file"] if meta["file"] != "index.html" else ""}'
+    ctx["canonical"] = f'https://{SITE["domain"]}/{clean_url(meta["file"])}'
     shell = PARTIALS["layout"].replace("<!--HEADER-->", PARTIALS["header"]).replace("<!--FOOTER-->", PARTIALS["footer"]).replace("<!--BODY-->", body)
     out = fill(shell, ctx)
     page = meta.get("page", "")
@@ -310,7 +314,7 @@ def main():
                                     "image": f'https://{SITE["domain"]}/assets/img/products/{p["slug"]}.webp', "description": p["description"],
                                     "brand": {"@type": "Brand", "name": "Vohra's"}, "weight": p["weight"],
                                     "offers": {"@type": "Offer", "priceCurrency": "INR", "price": p["price"], "availability": "https://schema.org/InStock",
-                                               "url": f'https://{SITE["domain"]}/product-{p["slug"]}.html'}}, ensure_ascii=False),
+                                               "url": f'https://{SITE["domain"]}/product-{p["slug"]}'}}, ensure_ascii=False),
         }
         body = fill(tpl, ctx)
         (DIST / meta["file"]).write_text(render_page(body, meta)); count += 1
@@ -325,15 +329,15 @@ def main():
             "b_jsonld": json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": b["title"], "description": b["excerpt"],
                                     "datePublished": b["date"], "image": f'https://{SITE["domain"]}/{b["image"]}',
                                     "author": {"@type": "Organization", "name": SITE["marketer_name"]},
-                                    "url": f'https://{SITE["domain"]}/blog-{b["slug"]}.html'}, ensure_ascii=False),
+                                    "url": f'https://{SITE["domain"]}/blog-{b["slug"]}'}, ensure_ascii=False),
         }
         (DIST / meta["file"]).write_text(render_page(fill(tpl, ctx), meta)); count += 1
 
     # SEO helpers
     urls = [f.name for f in sorted(DIST.glob("*.html")) if f.name not in ("404.html", "order-success.html", "account.html", "cart.html", "checkout.html")]
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-        "".join(f'  <url><loc>https://{SITE["domain"]}/{"" if u == "index.html" else u}</loc></url>\n' for u in urls) + "</urlset>\n")
-    (DIST / "robots.txt").write_text(f"User-agent: *\nDisallow: /cart.html\nDisallow: /checkout.html\nDisallow: /account.html\nSitemap: https://{SITE['domain']}/sitemap.xml\n")
+        "".join(f'  <url><loc>https://{SITE["domain"]}/{clean_url(u)}</loc></url>\n' for u in urls) + "</urlset>\n")
+    (DIST / "robots.txt").write_text(f"User-agent: *\nDisallow: /cart\nDisallow: /checkout\nDisallow: /account\nSitemap: https://{SITE['domain']}/sitemap.xml\n")
     print(f"Built {count} pages into {DIST}")
 
 if __name__ == "__main__":

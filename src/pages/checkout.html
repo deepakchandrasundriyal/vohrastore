@@ -2,7 +2,7 @@
 
 <section class="container py-6 sm:py-10" data-checkout>
   <ol class="flex items-center justify-center gap-2 sm:gap-4 text-[12.5px] sm:text-[13.5px]" aria-label="Checkout steps">
-    <li><a href="cart.html" class="flex items-center gap-2 text-muted hover:text-ink"><span class="grid place-items-center w-6 h-6 rounded-full bg-leaf text-cream">{{icon:check|w-3.5 h-3.5}}</span>Cart</a></li>
+    <li><a href="cart" class="flex items-center gap-2 text-muted hover:text-ink"><span class="grid place-items-center w-6 h-6 rounded-full bg-leaf text-cream">{{icon:check|w-3.5 h-3.5}}</span>Cart</a></li>
     <li class="w-6 sm:w-12 h-px bg-line" aria-hidden="true"></li>
     <li class="flex items-center gap-2 font-medium" aria-current="step"><span class="grid place-items-center w-6 h-6 rounded-full bg-ink text-cream num text-[12px]">2</span>Details &amp; payment</li>
     <li class="w-6 sm:w-12 h-px bg-line" aria-hidden="true"></li>
@@ -12,7 +12,7 @@
   <div class="py-16 text-center" data-co-empty hidden>
     <p class="font-display text-3xl">There's nothing to check out yet</p>
     <p class="mt-2 text-muted">Add a tin or two and come back.</p>
-    <a href="shop.html" class="btn-ink mt-6">Shop flavours</a>
+    <a href="shop" class="btn-ink mt-6">Shop flavours</a>
   </div>
 
   <div data-co-main hidden>
@@ -37,7 +37,7 @@
       <form class="space-y-6" data-checkout-form novalidate id="checkout-form">
         <fieldset class="panel p-5 sm:p-7">
           <legend class="sr-only">Contact</legend>
-          <div class="flex items-center justify-between gap-3"><h2 class="text-2xl">Contact</h2><a href="login.html" class="text-[13.5px] link">Sign in for faster checkout</a></div>
+          <div class="flex items-center justify-between gap-3"><h2 class="text-2xl">Contact</h2><a href="login" class="text-[13.5px] link">Sign in for faster checkout</a></div>
           <div class="mt-5 grid gap-4 sm:grid-cols-2">
             <div><label for="co-email" class="label">Email</label><input id="co-email" name="email" type="email" class="input" autocomplete="email" required data-label="Email" data-rule="email" placeholder="you@example.com"></div>
             <div><label for="co-phone" class="label">Mobile number</label><input id="co-phone" name="phone" type="tel" inputmode="tel" class="input" autocomplete="tel" required data-label="Mobile number" data-rule="phone" placeholder="10-digit mobile"></div>
@@ -80,7 +80,7 @@
         </fieldset>
 
         <button type="submit" class="btn-ink w-full !h-14 text-[15.5px] hidden lg:flex" data-place-order>{{icon:lock|w-4 h-4}} Place order · <span class="num" data-co-total>₹0</span></button>
-        <p class="hidden lg:block text-center text-[12.5px] text-muted">By placing your order you agree to our <a href="terms.html" class="link">Terms</a> and <a href="privacy-policy.html" class="link">Privacy Policy</a>.</p>
+        <p class="hidden lg:block text-center text-[12.5px] text-muted">By placing your order you agree to our <a href="terms" class="link">Terms</a> and <a href="privacy-policy" class="link">Privacy Policy</a>.</p>
       </form>
 
       <aside class="hidden lg:block panel p-6 sticky top-28" aria-label="Order summary">

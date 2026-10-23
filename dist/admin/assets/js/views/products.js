@@ -114,7 +114,7 @@ export async function render({ el, query, setQuery }) {
       const p = items.find(x => x.id === +m.dataset.menu);
       openMenu(m, [
         { label: 'Edit', icon: 'edit', onClick: () => navigate(`/products/${p.id}`) },
-        { label: 'View in store', icon: 'external', onClick: () => window.open(`../product-${p.slug}.html`, '_blank', 'noopener') },
+        { label: 'View in store', icon: 'external', onClick: () => window.open(`../product-${p.slug}`, '_blank', 'noopener') },
         '-',
         { label: 'Delete', icon: 'trash', danger: true, onClick: () => remove(p) },
       ]);

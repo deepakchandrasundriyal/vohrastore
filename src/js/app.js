@@ -113,7 +113,7 @@
     const list = matchProducts(q, searchCat);
     const soon = searchCat !== 'all' && CATS[searchCat] && CATS[searchCat].status !== 'live';
     box.innerHTML = list.length ? list.map(p => `
-      <a href="product-${p.slug}.html" class="flex items-center gap-4 rounded-2xl p-2.5 hover:bg-paper">
+      <a href="product-${p.slug}" class="flex items-center gap-4 rounded-2xl p-2.5 hover:bg-paper">
         <span class="grid place-items-center w-16 h-16 rounded-xl shrink-0" style="background:${p.tint}"><img src="assets/img/products/${p.slug}.webp" alt="" class="h-14 w-auto"></span>
         <span class="min-w-0 flex-1"><span class="block text-[11px] uppercase tracking-[.16em] text-muted">${escapeHtml(catName(p.category))}</span><span class="block font-display text-xl leading-tight">${escapeHtml(p.name)}</span><span class="block text-[13px] text-muted truncate">${escapeHtml(p.tagline)}</span></span>
         <span class="num font-medium">${money(p.price)}</span>
@@ -135,8 +135,8 @@
   const sForm = $('[data-search-form]');
   sForm && sForm.addEventListener('submit', e => {
     e.preventDefault(); const list = matchProducts(sInput.value, searchCat);
-    if (list.length === 1) go(`product-${list[0].slug}.html`);
-    else { Store.set('vohra_q', sInput.value); go('shop.html' + (searchCat !== 'all' ? '?category=' + searchCat : '')); }
+    if (list.length === 1) go(`product-${list[0].slug}`);
+    else { Store.set('vohra_q', sInput.value); go('shop' + (searchCat !== 'all' ? '?category=' + searchCat : '')); }
   });
 
   /* ---------------- add to cart (event delegation) ---------------- */
@@ -152,7 +152,7 @@
     const all = e.target.closest('[data-add-all]');
     if (all) { PRODUCTS.forEach(p => Cart.add(p.slug, 1)); open('cart'); return; }
     const bn = e.target.closest('[data-buy-now]');
-    if (bn) { const qtyEl = $(bn.dataset.qtyFrom); Cart.add(bn.dataset.buyNow, Math.max(1, parseInt(qtyEl && qtyEl.value, 10) || 1)); go('checkout.html'); }
+    if (bn) { const qtyEl = $(bn.dataset.qtyFrom); Cart.add(bn.dataset.buyNow, Math.max(1, parseInt(qtyEl && qtyEl.value, 10) || 1)); go('checkout'); }
   });
   function pulse(el) { el.animate && el.animate([{ transform: 'scale(1)' }, { transform: 'scale(.94)' }, { transform: 'scale(1)' }], { duration: 260 }); }
 
@@ -205,15 +205,15 @@
         <img src="assets/img/bowls/pink-salt.webp" alt="" class="mx-auto w-36 opacity-90">
         <p class="mt-4 font-display text-2xl">Your cart is empty</p>
         <p class="mt-1 text-muted text-[14px]">Seven flavours are waiting.</p>
-        <a href="shop.html" class="btn-ink mt-6">Shop flavours</a></div>`;
+        <a href="shop" class="btn-ink mt-6">Shop flavours</a></div>`;
       foot.hidden = true; return;
     }
     foot.hidden = false;
     box.innerHTML = lines.map(l => `
       <div class="flex gap-3 border-b border-line py-4 last:border-0">
-        <a href="product-${l.slug}.html" class="grid place-items-center w-20 h-24 shrink-0 rounded-xl" style="background:${l.p.tint}"><img src="assets/img/products/${l.slug}.webp" alt="" class="h-[84px] w-auto"></a>
+        <a href="product-${l.slug}" class="grid place-items-center w-20 h-24 shrink-0 rounded-xl" style="background:${l.p.tint}"><img src="assets/img/products/${l.slug}.webp" alt="" class="h-[84px] w-auto"></a>
         <div class="min-w-0 flex-1">
-          <div class="flex items-start justify-between gap-2"><a href="product-${l.slug}.html" class="font-display text-[1.25rem] leading-tight hover:text-maroon">${escapeHtml(l.p.name)}</a>
+          <div class="flex items-start justify-between gap-2"><a href="product-${l.slug}" class="font-display text-[1.25rem] leading-tight hover:text-maroon">${escapeHtml(l.p.name)}</a>
           <button type="button" class="text-muted hover:text-maroon p-1 -m-1" data-remove="${l.slug}" aria-label="Remove ${escapeHtml(l.p.name)}"><svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12"/></svg></button></div>
           <p class="text-[12.5px] text-muted">${l.p.weight} tin · ${money(l.p.price)}</p>
           <div class="mt-2.5 flex items-center justify-between">${stepper(l.slug, l.qty, true)}<span class="num font-semibold">${money(l.line)}</span></div>
@@ -258,9 +258,9 @@
     if (!lines.length) return;
     $('[data-cart-lines]').innerHTML = lines.map(l => `
       <div class="grid grid-cols-[88px_1fr] sm:grid-cols-[112px_1fr_auto] gap-4 py-5 border-b border-line last:border-0">
-        <a href="product-${l.slug}.html" class="grid place-items-center h-[110px] sm:h-[130px] rounded-2xl overflow-hidden" style="background:${l.p.tint}"><img src="assets/img/products/${l.slug}.webp" alt="${escapeHtml(l.p.name)} tin" class="h-[98px] sm:h-[116px] w-auto"></a>
+        <a href="product-${l.slug}" class="grid place-items-center h-[110px] sm:h-[130px] rounded-2xl overflow-hidden" style="background:${l.p.tint}"><img src="assets/img/products/${l.slug}.webp" alt="${escapeHtml(l.p.name)} tin" class="h-[98px] sm:h-[116px] w-auto"></a>
         <div class="min-w-0">
-          <a href="product-${l.slug}.html" class="font-display text-[1.45rem] leading-tight hover:text-maroon">${escapeHtml(l.p.name)}</a>
+          <a href="product-${l.slug}" class="font-display text-[1.45rem] leading-tight hover:text-maroon">${escapeHtml(l.p.name)}</a>
           <p class="text-[13px] text-muted">${escapeHtml(l.p.tagline)}</p>
           <p class="mt-1 text-[13px] text-muted num">${l.p.weight} tin · ${money(l.p.price)} each</p>
           <div class="mt-3 flex flex-wrap items-center gap-3">${stepper(l.slug, l.qty)}
@@ -279,7 +279,7 @@
       ups.closest('section').hidden = !missing.length;
       ups.innerHTML = missing.map(p => `
         <div class="snap-start shrink-0 w-[150px] rounded-2xl border border-line bg-paper p-3 text-center">
-          <a href="product-${p.slug}.html" class="grid place-items-center h-28 rounded-xl" style="background:${p.tint}"><img src="assets/img/products/${p.slug}.webp" alt="" class="h-24 w-auto" loading="lazy"></a>
+          <a href="product-${p.slug}" class="grid place-items-center h-28 rounded-xl" style="background:${p.tint}"><img src="assets/img/products/${p.slug}.webp" alt="" class="h-24 w-auto" loading="lazy"></a>
           <p class="mt-2 font-display text-[1.1rem] leading-tight">${escapeHtml(p.name)}</p>
           <button type="button" class="btn-line btn-sm !h-9 mt-2 w-full" data-add="${p.slug}">Add · ${money(p.price)}</button>
         </div>`).join('');
@@ -360,7 +360,7 @@
         const orders = Store.get('vohra_orders', []); orders.unshift(order); Store.set('vohra_orders', orders);
         Store.set('vohra_last_order', id);
         if (fd.get('save')) Store.set('vohra_address', { name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'), line1: fd.get('line1'), line2: fd.get('line2'), city: fd.get('city'), state: fd.get('state'), pin: fd.get('pin') });
-        Cart.clear(); go('order-success.html');
+        Cart.clear(); go('order-success');
       }, 1100);
     };
     coForm.addEventListener('submit', submit);
@@ -385,7 +385,7 @@
     $('[data-o-totals]').innerHTML = totalsHTML(o.totals);
     $('[data-o-address]').innerHTML = `${escapeHtml(o.customer.name)}<br>${escapeHtml(o.address.line1)}${o.address.line2 ? ', ' + escapeHtml(o.address.line2) : ''}<br>${escapeHtml(o.address.city)}, ${escapeHtml(o.address.state)} ${escapeHtml(o.address.pin)}<br>${escapeHtml(o.customer.phone)}`;
     $('[data-o-pay]').textContent = o.payment === 'cod' ? 'Cash on delivery' : 'Paid online via Razorpay';
-    const tl = $('#track-link'); if (tl) tl.href = 'track-order.html#' + o.id;
+    const tl = $('#track-link'); if (tl) tl.href = 'track-order#' + o.id;
   }
 
   /* ---------------- shop page ---------------- */
@@ -513,14 +513,14 @@
       const email = login.elements.email.value.trim(); const reg = Store.get('vohra_registered', {}) || {};
       const known = reg[email.toLowerCase()];
       Store.set('vohra_user', known || { name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()), email, phone: '' });
-      busy($('button[type=submit]', login), true, 'Signing in'); setTimeout(() => go('account.html'), 600);
+      busy($('button[type=submit]', login), true, 'Signing in'); setTimeout(() => go('account'), 600);
     });
     const regF = $('[data-register-form]');
     regF && regF.addEventListener('submit', e => {
       e.preventDefault(); if (!validate(regF)) return;
       const u = { name: regF.elements.name.value.trim(), email: regF.elements.email.value.trim(), phone: regF.elements.phone.value.trim() };
       const reg = Store.get('vohra_registered', {}) || {}; reg[u.email.toLowerCase()] = u; Store.set('vohra_registered', reg);
-      Store.set('vohra_user', u); busy($('button[type=submit]', regF), true, 'Creating account'); setTimeout(() => go('account.html'), 600);
+      Store.set('vohra_user', u); busy($('button[type=submit]', regF), true, 'Creating account'); setTimeout(() => go('account'), 600);
     });
     $$('[data-toggle-pass]').forEach(b => b.addEventListener('click', () => {
       const i = $(b.dataset.togglePass); i.type = i.type === 'password' ? 'text' : 'password'; b.textContent = i.type === 'password' ? 'Show' : 'Hide';
@@ -547,9 +547,9 @@
           <span class="tag bg-leaf-soft text-leaf-deep">${STEPS[orderStage(o)]}</span>
         </div>
         <div class="mt-3 flex -space-x-3">${o.items.slice(0, 7).map(i => `<span class="grid place-items-center w-11 h-12 rounded-lg border-2 border-paper" style="background:${(BY[i.slug] || {}).tint}"><img src="assets/img/products/${i.slug}.webp" alt="${escapeHtml(i.name)}" class="h-10 w-auto"></span>`).join('')}</div>
-        <div class="mt-4 flex gap-2"><a href="track-order.html#${o.id}" class="btn-line btn-sm">Track order</a><button type="button" class="btn-ghost btn-sm" data-reorder="${o.id}">Buy again</button></div>
+        <div class="mt-4 flex gap-2"><a href="track-order#${o.id}" class="btn-line btn-sm">Track order</a><button type="button" class="btn-ghost btn-sm" data-reorder="${o.id}">Buy again</button></div>
       </article>`).join('')
-      : `<div class="panel p-8 text-center"><p class="font-display text-2xl">No orders yet</p><p class="mt-1 text-muted text-[14px]">When you place an order it will appear here with live tracking.</p><a href="shop.html" class="btn-ink mt-5">Start shopping</a></div>`;
+      : `<div class="panel p-8 text-center"><p class="font-display text-2xl">No orders yet</p><p class="mt-1 text-muted text-[14px]">When you place an order it will appear here with live tracking.</p><a href="shop" class="btn-ink mt-5">Start shopping</a></div>`;
     const a = Store.get('vohra_address', null);
     $('[data-address]').innerHTML = a ? `<p class="font-medium">${escapeHtml(a.name)}</p><p class="text-muted text-[14px]">${escapeHtml(a.line1)}${a.line2 ? ', ' + escapeHtml(a.line2) : ''}<br>${escapeHtml(a.city)}, ${escapeHtml(a.state)} ${escapeHtml(a.pin)}<br>${escapeHtml(a.phone)}</p>`
       : '<p class="text-muted text-[14px]">No saved address yet. Tick “Save this address” at checkout to keep it here.</p>';
@@ -703,15 +703,17 @@
   });
 
   /* ---------------- AJAX page navigation ----------------
-     Internal .html links load without a full refresh: fetch the page, swap <main>, update the title,
+     Internal page links (clean URLs like "about", or legacy "about.html") load without a full refresh: fetch the page, swap <main>, update the title,
      meta tags, body class and active nav, then re-run the page initialisers. Header, footer, drawers
      and the cart stay mounted. Any failure falls back to a normal page load. */
   const PAGE_CACHE = new Map(), CACHE_MS = 60000;
   const dirOf = p => p.replace(/[^/]*$/, '');
+  // "shop", "shop.html" and the folder index ("" -> "index") all name a page; anything with another extension is a file.
+  const pageName = u => { const last = u.pathname.split('/').pop(); return /^[\w-]*(\.html)?$/.test(last) ? (last.replace(/\.html$/, '') || 'index') : null; };
   function routable(a) {
     if (!a || !a.href || (a.target && a.target !== '_self') || a.hasAttribute('download') || a.hasAttribute('data-no-ajax')) return null;
     const u = new URL(a.href, location.href);
-    if (u.origin !== location.origin || !/\.html$/.test(u.pathname) || dirOf(u.pathname) !== dirOf(location.pathname)) return null;
+    if (u.origin !== location.origin || !pageName(u) || dirOf(u.pathname) !== dirOf(location.pathname)) return null;
     if (u.pathname === location.pathname && u.search === location.search && u.hash) return null; // same-page anchor
     return u;
   }
@@ -720,7 +722,7 @@
     if (hit && Date.now() - hit.t < CACHE_MS) return hit.p;
     const p = fetch(key, { credentials: 'same-origin', headers: { 'X-Requested-With': 'fetch' } }).then(r => {
       if (!r.ok || !(r.headers.get('content-type') || '').includes('text/html')) throw new Error('not a page');
-      return r.text();
+      return r.text().then(html => ({ html, url: r.url })); // r.url is after redirects (about.html -> about)
     });
     PAGE_CACHE.set(key, { t: Date.now(), p }); p.catch(() => PAGE_CACHE.delete(key));
     return p;
@@ -754,15 +756,15 @@
   const skPost = () => `<div class="rounded-[22px] border border-line overflow-hidden">${sk('aspect-[16/10] !rounded-none')}<div class="p-5 space-y-2.5">${sk('h-2.5 w-1/3')}${sk('h-5 w-5/6')}${skLines(2)}</div></div>`;
   const skHead = (title = 'w-2/3 sm:w-1/2') => `<section class="border-b border-line"><div class="container py-10 sm:py-14 space-y-4">${sk('h-3 w-32')}${sk('h-3 w-24 mt-6')}${sk('h-10 sm:h-14 ' + title)}<div class="max-w-xl space-y-2.5">${skLines(2)}</div></div></section>`;
   function skeletonHTML(u) {
-    const f = u.pathname.split('/').pop() || 'index.html';
+    const f = pageName(u);
     if (/^product-/.test(f)) return `<section class="container pt-6 sm:pt-8 pb-16"><div>${sk('h-3 w-56')}</div>
       <div class="mt-5 grid gap-8 lg:grid-cols-[1.08fr_1fr] lg:gap-14"><div>${sk('aspect-square !rounded-[28px]')}<div class="mt-3 flex gap-2.5">${sk('w-20 h-20 !rounded-xl')}${sk('w-20 h-20 !rounded-xl')}${sk('w-20 h-20 !rounded-xl')}</div></div>
       <div class="space-y-4">${sk('h-3 w-48')}${sk('h-12 sm:h-16 w-3/4')}${sk('h-6 w-1/2')}<div class="flex gap-2">${sk('h-6 w-24 !rounded-full')}${sk('h-6 w-20 !rounded-full')}</div>${sk('h-9 w-28 mt-6')}${sk('h-24 w-full !rounded-2xl')}${sk('h-10 w-40 !rounded-full')}<div class="flex gap-3 pt-2">${sk('h-12 w-28 !rounded-full')}${sk('h-12 flex-1 !rounded-full')}${sk('h-12 w-28 !rounded-full')}</div>${sk('h-28 w-full !rounded-2xl')}</div></div></section>`;
-    if (f === 'shop.html') return `${skHead('w-1/2 sm:w-1/3')}<div class="border-b border-line"><div class="container py-4 space-y-3"><div class="flex gap-2 overflow-hidden">${Array.from({ length: 6 }, () => sk('h-9 w-32 shrink-0 !rounded-full')).join('')}</div><div class="flex gap-2 overflow-hidden">${Array.from({ length: 5 }, () => sk('h-9 w-28 shrink-0 !rounded-full')).join('')}</div></div></div>
+    if (f === 'shop') return `${skHead('w-1/2 sm:w-1/3')}<div class="border-b border-line"><div class="container py-4 space-y-3"><div class="flex gap-2 overflow-hidden">${Array.from({ length: 6 }, () => sk('h-9 w-32 shrink-0 !rounded-full')).join('')}</div><div class="flex gap-2 overflow-hidden">${Array.from({ length: 5 }, () => sk('h-9 w-28 shrink-0 !rounded-full')).join('')}</div></div></div>
       <section class="container py-8"><div class="flex justify-between">${sk('h-4 w-28')}${sk('h-10 w-40 !rounded-full')}</div><div class="mt-6 grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">${Array.from({ length: 8 }, skCard).join('')}</div></section>`;
     if (/^blog-/.test(f)) return `${skHead()}<section class="container py-10"><div class="mx-auto max-w-4xl">${sk('aspect-[16/9] !rounded-[22px]')}</div><div class="mx-auto mt-10 max-w-prose space-y-3">${skLines(4)}${sk('h-7 w-1/2 mt-8')}${skLines(5, 'w-1/2')}</div></section>`;
-    if (f === 'blogs.html') return `${skHead()}<section class="container py-12"><div class="grid lg:grid-cols-[1.2fr_1fr] rounded-[22px] border border-line overflow-hidden">${sk('aspect-[16/10] !rounded-none')}<div class="p-8 space-y-4">${sk('h-6 w-32 !rounded-full')}${sk('h-10 w-5/6')}${skLines(3)}</div></div><div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">${Array.from({ length: 3 }, skPost).join('')}</div></section>`;
-    if (f === 'index.html' || f === 'home-2.html') return `<section class="container py-6">${sk('h-[58vh] min-h-[360px] !rounded-[28px]')}</section>
+    if (f === 'blogs') return `${skHead()}<section class="container py-12"><div class="grid lg:grid-cols-[1.2fr_1fr] rounded-[22px] border border-line overflow-hidden">${sk('aspect-[16/10] !rounded-none')}<div class="p-8 space-y-4">${sk('h-6 w-32 !rounded-full')}${sk('h-10 w-5/6')}${skLines(3)}</div></div><div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">${Array.from({ length: 3 }, skPost).join('')}</div></section>`;
+    if (f === 'index' || f === 'home-2') return `<section class="container py-6">${sk('h-[58vh] min-h-[360px] !rounded-[28px]')}</section>
       <section class="container py-10"><div class="space-y-3">${sk('h-3 w-28')}${sk('h-10 w-64')}</div><div class="mt-8 flex gap-5 overflow-hidden">${Array.from({ length: 7 }, () => `<div class="shrink-0 space-y-3">${sk('w-[112px] h-[112px] sm:w-[128px] sm:h-[128px] !rounded-full')}${sk('h-4 w-24 mx-auto')}</div>`).join('')}</div></section>
       <section class="container pb-16"><div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">${Array.from({ length: 4 }, skCard).join('')}</div></section>`;
     return `${skHead()}<section class="container py-12 sm:py-16"><div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">${Array.from({ length: 3 }, () => `<div class="rounded-2xl border border-line p-6 space-y-3">${sk('w-11 h-11 !rounded-full')}${sk('h-6 w-1/2')}${skLines(2)}</div>`).join('')}</div>
@@ -774,7 +776,7 @@
     m.innerHTML = `<div class="skel-page" role="status" aria-label="Loading page">${skeletonHTML(u)}</div>`;
     scrollTo(0, 0);
     // Highlight the destination in the nav straight away (swap() sets the exact value from the loaded page).
-    const f = (u.pathname.split('/').pop() || 'index.html').replace(/\.html$/, '');
+    const f = pageName(u);
     const pg = /^product-/.test(f) ? 'shop' : /^blog/.test(f) ? 'blogs' : /^(index|home-2)$/.test(f) ? 'home' : f;
     $$('[data-nav]').forEach(a => { if (a.dataset.nav === pg) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
   }
@@ -784,7 +786,8 @@
     let skelAt = 0;
     const skelTimer = setTimeout(() => { if (seq === navSeq) { skelAt = Date.now(); showSkeleton(u); } }, SKEL_DELAY);
     try {
-      const html = await fetchPage(u);
+      const { html, url } = await fetchPage(u);
+      if (url) { const hash = u.hash; u = new URL(url); u.hash = hash; }
       clearTimeout(skelTimer);
       if (skelAt) await new Promise(r => setTimeout(r, Math.max(0, SKEL_MIN - (Date.now() - skelAt))));
       const doc = new DOMParser().parseFromString(html, 'text/html');

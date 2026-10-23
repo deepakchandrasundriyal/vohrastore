@@ -1,0 +1,30 @@
+# Clean URLs: /about serves about.html, /go serves go.php.
+# Works from the domain root (production) or a sub-folder (XAMPP: /vohrastore/dist/).
+Options -MultiViews
+DirectoryIndex index.html index.php
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1) Address bar shows .html or .php -> 301 to the clean URL (query string is kept).
+  #    GET/HEAD only, and never for admin/ or api/, so form posts, the admin app and webhooks are untouched.
+  #    THE_REQUEST is the browser's original request line, so the internal rewrites below cannot loop.
+  RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+  RewriteCond %{THE_REQUEST} \s/+((?:[^?\s]*/)?)index\.(?:html|php)[?\s]
+  RewriteCond %{THE_REQUEST} !/(?:admin|api)/
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  RewriteCond %{REQUEST_METHOD} ^(GET|HEAD)$
+  RewriteCond %{THE_REQUEST} \s/+([^?\s]+)\.(?:html|php)[?\s]
+  RewriteCond %{THE_REQUEST} !/(?:admin|api)/
+  RewriteRule ^ /%1 [R=301,L,NE]
+
+  # 2) Clean URL -> the real file.
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.php -f
+  RewriteRule ^(.+?)/?$ $1.php [L]
+</IfModule>

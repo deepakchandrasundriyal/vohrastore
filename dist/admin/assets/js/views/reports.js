@@ -134,7 +134,7 @@ export async function render({ el, params, query, setQuery }) {
       </div>
       <div class="stack">
         ${table('links', 'Marketing links', 'Clicks and orders in this period', [
-          { label: 'Link', value: r => r.name, html: r => `<span class="strong">${esc(r.name)}</span><span class="sub mono">go.php?c=${esc(r.code)}</span>` },
+          { label: 'Link', value: r => r.name, html: r => `<span class="strong">${esc(r.name)}</span><span class="sub mono">go?c=${esc(r.code)}</span>` },
           { label: 'Source / medium', value: r => `${r.source} / ${r.medium}`, cls: 'hide-sm', html: r => `${esc(r.source)} <span class="muted">/ ${esc(r.medium)}</span>` },
           { label: 'Clicks', value: r => r.clicks, align: 'r', html: r => number(r.clicks) },
           { label: 'Orders', value: r => r.orders, align: 'r', html: r => r.orders ? ordersLink({ utm_id: r.code }, number(r.orders)) : '0' },

@@ -13,7 +13,7 @@ export async function render({ el, query, setQuery }) {
     meta = m; siteUrl = s.site_url.replace(/\/?$/, '/');
   } catch (err) { errorState(el, err, () => render({ el, query, setQuery })); return; }
 
-  const shortUrl = l => `${siteUrl}go.php?c=${l.code}`;
+  const shortUrl = l => `${siteUrl}go?c=${l.code}`;
   const fullUrl = l => {
     const q = new URLSearchParams(Object.entries({
       utm_source: l.utm_source, utm_medium: l.utm_medium, utm_campaign: l.utm_campaign, utm_term: l.utm_term, utm_content: l.utm_content, utm_id: l.code,

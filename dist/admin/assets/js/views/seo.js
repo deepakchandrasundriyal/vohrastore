@@ -108,7 +108,7 @@ export async function render({ el, query, setQuery }) {
       },
     });
     form.querySelector('a.link').addEventListener('click', () => form.closest('dialog').close());
-    bindSeo(form, { url: () => `${siteUrl}product-${product.slug}.html`, fallbackTitle: () => product.name, fallbackDesc: () => product.description, uploadPath: 'products/upload' });
+    bindSeo(form, { url: () => `${siteUrl}product-${product.slug}`, fallbackTitle: () => product.name, fallbackDesc: () => product.description, uploadPath: 'products/upload' });
   }
 
   el.addEventListener('click', e => {

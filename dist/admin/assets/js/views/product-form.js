@@ -35,7 +35,7 @@ export async function render({ el, params }) {
     <div class="page-head">
       <div><h1>${editing ? esc(p.name) : 'New product'}</h1>
         <p>${editing ? `Last updated ${esc(fmtDateTime(p.updated_at))} · ${number(p.sold)} tins sold` : 'Fill in the details exactly as printed on the pack.'}</p></div>
-      ${editing ? `<div class="actions"><button type="button" class="btn" data-jump-seo>${icon('globe')}SEO</button><a class="btn" href="../product-${esc(p.slug)}.html" target="_blank" rel="noopener">${icon('external')}View in store</a>
+      ${editing ? `<div class="actions"><button type="button" class="btn" data-jump-seo>${icon('globe')}SEO</button><a class="btn" href="../product-${esc(p.slug)}" target="_blank" rel="noopener">${icon('external')}View in store</a>
         <button type="button" class="btn btn-danger-text" data-delete>${icon('trash')}Delete</button></div>` : ''}
     </div>
 
@@ -46,7 +46,7 @@ export async function render({ el, params }) {
             <div class="card-head"><h2>Basic details</h2></div>
             <div class="card-body form-grid">
               ${field({ name: 'name', label: 'Product name', value: p.name, required: true, placeholder: 'e.g. Peri Peri' })}
-              ${field({ name: 'slug', label: 'URL slug', value: p.slug, required: true, prefix: 'product-', suffix: '.html', hint: 'Lowercase letters, numbers and dashes.' })}
+              ${field({ name: 'slug', label: 'URL slug', value: p.slug, required: true, prefix: 'product-', hint: 'Lowercase letters, numbers and dashes.' })}
               ${field({ name: 'tagline', label: 'Tagline', value: p.tagline, required: true, span: true, placeholder: 'Red chilli, garlic & spice roast' })}
               ${field({ name: 'description', label: 'Description', type: 'textarea', value: p.description, required: true, span: true, rows: 4 })}
               ${field({ name: 'profile', label: 'Taste profile', type: 'select', options: meta.profiles, value: p.profile, hint: 'Used by the shop filters.' })}
@@ -144,7 +144,7 @@ export async function render({ el, params }) {
   }
 
   get('settings').then(s => bindSeo(form, {
-    url: () => `${s.site_url.replace(/\/?$/, '/')}product-${form.elements.slug.value || 'new-product'}.html`,
+    url: () => `${s.site_url.replace(/\/?$/, '/')}product-${form.elements.slug.value || 'new-product'}`,
     fallbackTitle: () => form.elements.name.value,
     fallbackDesc: () => form.elements.description.value,
     uploadPath: 'products/upload',

@@ -17,14 +17,14 @@
         <div>
           <p class="eyebrow !text-gold mb-4">Help</p>
           <ul class="space-y-2.5 text-[14.5px]">
-            <li><a href="about.html" class="hover:text-gold">About us</a></li>
-            <li><a href="services.html" class="hover:text-gold">Our services</a></li>
-            <li><a href="blogs.html" class="hover:text-gold">Blogs</a></li>
-            <li><a href="channel-partner.html" class="hover:text-gold">Channel partner</a></li>
-            <li><a href="contact.html" class="hover:text-gold">Contact us</a></li>
-            <li><a href="faq.html" class="hover:text-gold">FAQs</a></li>
-            <li><a href="track-order.html" class="hover:text-gold">Track order</a></li>
-            <li><a href="account.html" class="hover:text-gold">My account</a></li>
+            <li><a href="about" class="hover:text-gold">About us</a></li>
+            <li><a href="services" class="hover:text-gold">Our services</a></li>
+            <li><a href="blogs" class="hover:text-gold">Blogs</a></li>
+            <li><a href="channel-partner" class="hover:text-gold">Channel partner</a></li>
+            <li><a href="contact" class="hover:text-gold">Contact us</a></li>
+            <li><a href="faq" class="hover:text-gold">FAQs</a></li>
+            <li><a href="track-order" class="hover:text-gold">Track order</a></li>
+            <li><a href="account" class="hover:text-gold">My account</a></li>
           </ul>
         </div>
       </div>
@@ -40,10 +40,10 @@
     <div class="container flex flex-col gap-3 py-5 text-[12.5px] sm:flex-row sm:items-center sm:justify-between">
       <p>© {{year}} {{marketer_name}}. All rights reserved.</p>
       <nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Policies">
-        <a href="privacy-policy.html" class="hover:text-gold">Privacy</a>
-        <a href="terms.html" class="hover:text-gold">Terms</a>
-        <a href="shipping-policy.html" class="hover:text-gold">Shipping</a>
-        <a href="refund-policy.html" class="hover:text-gold">Returns &amp; refunds</a>
+        <a href="privacy-policy" class="hover:text-gold">Privacy</a>
+        <a href="terms" class="hover:text-gold">Terms</a>
+        <a href="shipping-policy" class="hover:text-gold">Shipping</a>
+        <a href="refund-policy" class="hover:text-gold">Returns &amp; refunds</a>
       </nav>
     </div>
     <p class="container pb-5 text-[11.5px] text-cream/45">Design preview. Cart, checkout, accounts and payments are simulated in this browser and no real orders are placed.</p>
@@ -53,13 +53,13 @@
 <!-- Mobile tab bar -->
 <nav class="lg:hidden fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 backdrop-blur-md" style="padding-bottom:env(safe-area-inset-bottom,0px)" aria-label="Quick" data-tabbar>
   <div class="grid grid-cols-5 h-[64px] text-[10.5px] tracking-wide text-muted">
-    <a href="index.html" data-nav="home" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:home|w-[22px] h-[22px]}}Home</a>
-    <a href="shop.html" data-nav="shop" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:grid|w-[22px] h-[22px]}}Shop</a>
+    <a href="./" data-nav="home" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:home|w-[22px] h-[22px]}}Home</a>
+    <a href="shop" data-nav="shop" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:grid|w-[22px] h-[22px]}}Shop</a>
     <button type="button" data-open="search" class="flex flex-col items-center justify-center gap-1">{{icon:search|w-[22px] h-[22px]}}Search</button>
     <button type="button" data-open="cart" class="relative flex flex-col items-center justify-center gap-1">
       <span class="relative">{{icon:cart|w-[22px] h-[22px]}}<span class="absolute -right-2.5 -top-1.5 min-w-[17px] h-[17px] px-1 rounded-full bg-gold text-ink text-[10px] font-semibold leading-[17px] text-center num" data-cart-count hidden>0</span></span>Cart
     </button>
-    <a href="account.html" data-nav="account" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:user|w-[22px] h-[22px]}}Account</a>
+    <a href="account" data-nav="account" class="flex flex-col items-center justify-center gap-1 aria-[current=page]:text-ink">{{icon:user|w-[22px] h-[22px]}}Account</a>
   </div>
 </nav>
 

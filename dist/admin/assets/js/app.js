@@ -151,7 +151,7 @@ function renderShell() {
           </form>
           <div class="topbar-actions">
             <button type="button" class="btn btn-ghost btn-icon" data-theme-toggle aria-label="Toggle dark mode">${icon(currentTheme() === 'dark' ? 'sun' : 'moon')}</button>
-            <a href="../index.html" target="_blank" rel="noopener" class="btn btn-ghost btn-icon hide-sm" aria-label="View store">${icon('store')}</a>
+            <a href="../" target="_blank" rel="noopener" class="btn btn-ghost btn-icon hide-sm" aria-label="View store">${icon('store')}</a>
             <a href="#/orders/new" class="btn btn-primary">${icon('plus')}<span class="hide-sm">New order</span></a>
           </div>
         </header>
@@ -185,7 +185,7 @@ function renderShell() {
 
   $('[data-user-menu]', app).addEventListener('click', e => openMenu(e.currentTarget, [
     { label: 'My profile', icon: 'user', onClick: () => navigate('/profile') },
-    { label: 'View store', icon: 'external', onClick: () => window.open('../index.html', '_blank', 'noopener') },
+    { label: 'View store', icon: 'external', onClick: () => window.open('../', '_blank', 'noopener') },
     '-',
     { label: alertPrefs.get().sound ? 'New-order sound: on' : 'New-order sound: off', icon: 'inbox', onClick: () => { const on = !alertPrefs.get().sound; alertPrefs.set({ sound: on }); toast(on ? 'New-order sound turned on' : 'New-order sound turned off'); } },
     { label: alertPrefs.get().desktop ? 'Desktop alerts: on' : 'Turn on desktop alerts', icon: 'alert', onClick: async () => { const r = await enableDesktopNotifications(); toast(r === 'granted' ? 'Desktop alerts on. You will be notified of new orders even in another tab.' : 'Your browser blocked notifications. Allow them in the site settings.', r === 'granted' ? 'ok' : 'error'); } },

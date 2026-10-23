@@ -11,7 +11,7 @@ require __DIR__ . '/../backend/bootstrap.php';
 use Vohra\Repositories\CampaignRepository;
 
 $code = preg_replace('/[^a-z0-9]/', '', strtolower((string) ($_GET['c'] ?? '')));
-$target = 'index.html';
+$target = './';
 
 try {
     $link = $code !== '' ? CampaignRepository::findActiveByCode($code) : null;
@@ -24,7 +24,9 @@ try {
             'utm_source' => $link['utm_source'], 'utm_medium' => $link['utm_medium'], 'utm_campaign' => $link['utm_campaign'],
             'utm_term' => $link['utm_term'], 'utm_content' => $link['utm_content'], 'utm_id' => $link['code'],
         ], static fn ($v) => $v !== '' && $v !== null);
-        $target = $link['destination'] . '?' . http_build_query($query);
+        // Destinations are stored as file names (shop.html); send visitors to the clean URL (shop, or ./ for index.html).
+        $dest = preg_replace(['/(^|\/)index\.html$/', '/\.html$/'], ['$1', ''], (string) $link['destination']);
+        $target = ($dest === '' ? './' : $dest) . '?' . http_build_query($query);
     }
 } catch (Throwable $e) {
     error_log((string) $e); // never block the visitor because tracking failed

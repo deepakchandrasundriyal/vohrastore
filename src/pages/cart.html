@@ -1,7 +1,7 @@
 <!--meta {"title": "Your Cart", "desc": "Review the Vohra's roasted makhana tins in your cart.", "page": "cart"} -->
 
 <section class="container py-8 sm:py-12" data-cart-page>
-  <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="index.html" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><span class="text-ink">Cart</span></nav>
+  <nav class="text-[13px] text-muted" aria-label="Breadcrumb"><a href="./" class="hover:text-ink">Home</a><span class="mx-1.5">/</span><span class="text-ink">Cart</span></nav>
   <h1 class="h-section mt-3">Your cart</h1>
   <div class="ornament mt-4 max-w-[220px]" aria-hidden="true"><span></span><span></span></div>
 
@@ -9,7 +9,7 @@
     <img src="assets/img/bowls/cream-onion.webp" alt="" class="mx-auto w-48">
     <p class="mt-6 font-display text-3xl">Your cart is empty</p>
     <p class="mt-2 text-muted">Seven flavours of roasted makhana are a tap away.</p>
-    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3"><a href="shop.html" class="btn-ink">Shop flavours</a><button type="button" class="btn-line" data-add-all>Add one of each · {{all_price}}</button></div>
+    <div class="mt-7 flex flex-col sm:flex-row justify-center gap-3"><a href="shop" class="btn-ink">Shop flavours</a><button type="button" class="btn-line" data-add-all>Add one of each · {{all_price}}</button></div>
   </div>
 
   <div data-cart-full hidden>
@@ -17,7 +17,7 @@
       <div>
         <div data-freeship></div>
         <div class="mt-2" data-cart-lines></div>
-        <a href="shop.html" class="mt-6 inline-flex items-center gap-2 text-[14px] text-maroon hover:underline underline-offset-4">{{icon:arrow-left|w-4 h-4}} Continue shopping</a>
+        <a href="shop" class="mt-6 inline-flex items-center gap-2 text-[14px] text-maroon hover:underline underline-offset-4">{{icon:arrow-left|w-4 h-4}} Continue shopping</a>
       </div>
 
       <aside class="panel p-5 sm:p-6 lg:sticky lg:top-28" aria-label="Order summary">
@@ -28,7 +28,7 @@
           <p class="mt-2 text-[13px] min-h-[1.2rem]" data-coupon-msg aria-live="polite"></p>
         </form>
         <dl class="mt-4 space-y-2.5 text-[14.5px]" data-cart-totals></dl>
-        <a href="checkout.html" class="btn-ink mt-6 w-full">{{icon:lock|w-4 h-4}} Proceed to checkout</a>
+        <a href="checkout" class="btn-ink mt-6 w-full">{{icon:lock|w-4 h-4}} Proceed to checkout</a>
         <p class="mt-4 flex items-center justify-center gap-2 text-[12.5px] text-muted">{{icon:shield|w-4 h-4}} Secure payments by Razorpay · UPI, cards, net banking</p>
       </aside>
     </div>
